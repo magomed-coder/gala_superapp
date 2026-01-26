@@ -255,9 +255,10 @@ export const shopCategories: ShopCategory[] = [
     ],
   },
   {
+    // "fast-food" | "fast-food-outline" | "fast-food-sharp"
     id: "sc2",
     name: "Спортивное питание",
-    icon: "sports_nutrition",
+    icon: "fast-food-outline",
     image: "sports_nutrition",
     color: "#30364F",
     shops: [
@@ -301,7 +302,7 @@ export const shopCategories: ShopCategory[] = [
   {
     id: "sc4",
     name: "Смартфоны и техника",
-    icon: "phone",
+    icon: "phone-portrait",
     image: "phone",
     color: "#296374",
     shops: [
@@ -323,7 +324,7 @@ export const shopCategories: ShopCategory[] = [
   {
     id: "sc5",
     name: "Аптеки",
-    icon: "pharm",
+    icon: "bandage-outline",
     image: "pharm",
     color: "#574964",
     shops: [
