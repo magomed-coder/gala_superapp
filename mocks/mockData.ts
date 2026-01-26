@@ -3,6 +3,7 @@ export interface Provider {
   id: string;
   name: string;
   specialization: string;
+  yearsExperience: number;
   rating: number;
   reviewCount: number;
   image: string;
@@ -106,6 +107,7 @@ function generateProviders(prefix: string, specialization: string): Provider[] {
     id: `${prefix}${i + 1}`,
     name: `${specialization} ${i + 1}`,
     specialization,
+    yearsExperience: Math.floor(1 + Math.random() * 20),
     rating: +(4.5 + Math.random() * 0.5).toFixed(1),
     reviewCount: Math.floor(50 + Math.random() * 200),
     // large image for service details (Unsplash placeholder)

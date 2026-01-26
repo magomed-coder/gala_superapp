@@ -33,7 +33,7 @@ import {
   ServiceCategory,
   Shop,
 } from "../../../mocks/mockData";
-import { Badge, StarRating, Text } from "../../../shared/components/ui";
+import { Badge, Text } from "../../../shared/components/ui";
 
 // ────────────────────────────────────────────────
 const HEADER_FULL_HEIGHT = 130;
@@ -209,24 +209,42 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          <View style={styles.providerRatingContainer}>
-            <StarRating
-              rating={provider.rating}
-              count={provider.reviewCount}
-              size="small"
-            />
-          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "baseline",
+              gap: 4,
+            }}
+          >
+            <View style={styles.providerFooter}>
+              <Text weight="bold" style={styles.providerExperience}>
+                {provider.yearsExperience}
+              </Text>
+              <Text size="xs" color="#666">
+                лет опыта
+              </Text>
+            </View>
 
-          <View style={styles.providerFooter}>
-            <Text size="xs" color="#666">
-              от
-            </Text>
-            <Text size="lg" weight="bold" style={styles.providerPrice}>
-              {provider.price}₽
-            </Text>
-            <Text size="xs" color="#666">
-              /ч
-            </Text>
+            <View style={styles.providerRatingContainer}>
+              <Ionicons name="star" size={12} color="#FFD700" />
+              <Text
+                size="xs"
+                weight="bold"
+                color="#000000"
+                style={styles.ratingText}
+              >
+                {provider.rating}
+              </Text>
+              <Text
+                size="xs"
+                // weight="bold"
+                color="#000000"
+                style={styles.ratingText}
+              >
+                ({provider.reviewCount})
+              </Text>
+            </View>
           </View>
         </View>
       </TouchableOpacity>
@@ -402,7 +420,7 @@ export default function HomeScreen() {
               ))}
             </Animated.ScrollView>
           </View>
-          {/* Услуги - новый дизайн заголовка */}{" "}
+          {/* Услуги - новый дизайн заголовка */}
           {/* <View style={styles.section}>
             <View style={styles.titleSection}>
               <Text size="2xl" weight="bold" style={styles.mainTitle}>
@@ -891,16 +909,19 @@ const styles = StyleSheet.create({
 
   providerRatingContainer: {
     marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 2,
   },
 
   providerFooter: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
+    gap: 2,
   },
 
-  providerPrice: {
-    color: "#667eea",
+  providerExperience: {
+    // color: "#667eea",
   },
 
   // ─── Карточка магазина ───
@@ -939,9 +960,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
 
-  ratingText: {
-    marginLeft: 2,
-  },
+  ratingText: {},
 
   promotedBadgeContainer: {
     position: "absolute",
