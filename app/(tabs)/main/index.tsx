@@ -595,7 +595,7 @@ export default function HomeScreen() {
               </View>
             ))
           )}
-          <View style={styles.footer} />
+          {/* <View style={styles.footer} /> */}
         </Animated.View>
       </Animated.ScrollView>
     </SafeAreaView>

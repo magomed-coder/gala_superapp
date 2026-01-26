@@ -21,9 +21,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="main"
         options={{
-          title: "Главная",
+          title: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={22} name="home-outline" color={color} />
+            <Ionicons size={26} name="home-outline" color={color} />
           ),
         }}
       />
@@ -31,9 +31,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="search"
         options={{
-          title: "Поиск",
+          title: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={24} name="search" color={color} />
+            <Ionicons size={26} name="search" color={color} />
           ),
         }}
       />
@@ -50,9 +50,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="orders"
         options={{
-          title: "Заказы",
+          title: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={24} name="list" color={color} />
+            <Ionicons size={26} name="list" color={color} />
           ),
         }}
       />
@@ -60,9 +60,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Профиль",
+          title: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={24} name="person" color={color} />
+            <Ionicons size={26} name="person" color={color} />
           ),
         }}
       />
