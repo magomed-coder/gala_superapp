@@ -39,8 +39,9 @@ const HEADER_FULL_HEIGHT = 130;
 const SEARCH_HEIGHT = 56;
 const HEADER_MIN_HEIGHT = HEADER_FULL_HEIGHT - SEARCH_HEIGHT;
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const PROMO_ITEM_WIDTH = SCREEN_WIDTH - 80;
-const PROMO_ITEM_SPACING = 16;
+const PROMO_HORIZONTAL_PADDING = 60;
+const PROMO_ITEM_WIDTH = SCREEN_WIDTH - PROMO_HORIZONTAL_PADDING;
+const PROMO_ITEM_SPACING = 6;
 const PROMO_SIDE_PADDING = (SCREEN_WIDTH - PROMO_ITEM_WIDTH) / 2;
 
 // ────────────────────────────────────────────────
@@ -48,7 +49,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const stickyHeaderHeight = HEADER_MIN_HEIGHT + insets.top;
-  const paddedContentTop = stickyHeaderHeight + SEARCH_HEIGHT;
+  const paddedContentTop = stickyHeaderHeight + 20;
 
   const [serviceCategories, setServiceCategories] = useState<ServiceCategory[]>(
     [],
@@ -179,50 +180,8 @@ export default function HomeScreen() {
     );
   };
 
-  const PromoIndicatorDot = ({ index }: { index: number }) => {
-    const inputRange = [
-      (index - 1) * (PROMO_ITEM_WIDTH + PROMO_ITEM_SPACING),
-      index * (PROMO_ITEM_WIDTH + PROMO_ITEM_SPACING),
-      (index + 1) * (PROMO_ITEM_WIDTH + PROMO_ITEM_SPACING),
-    ];
-
-    const dotWidth = useAnimatedStyle(() => {
-      const width = interpolate(
-        promoScrollX.value,
-        inputRange,
-        [8, 24, 8],
-        Extrapolation.CLAMP,
-      );
-      const opacity = interpolate(
-        promoScrollX.value,
-        inputRange,
-        [0.5, 1, 0.5],
-        Extrapolation.CLAMP,
-      );
-      // Remove backgroundColor interpolation, fallback to static color or use interpolateColor from 'react-native-reanimated' v3+
-      return {
-        width,
-        opacity,
-        // backgroundColor: interpolateColor(...) // If using v3+, otherwise fallback:
-        backgroundColor: "#FFF",
-      };
-    });
-
-    return <Animated.View style={[styles.promoIndicator, dotWidth]} />;
-  };
-
-  const renderPromoIndicator = () => {
-    return (
-      <View style={styles.promoIndicators}>
-        {promoBanners.map((_, index) => (
-          <PromoIndicatorDot key={index} index={index} />
-        ))}
-      </View>
-    );
-  };
-
   const handlePromoScroll = (event: any) => {
-    const slideSize = SCREEN_WIDTH - 80;
+    const slideSize = SCREEN_WIDTH - PROMO_HORIZONTAL_PADDING;
   };
 
   const renderProvider = (provider: Provider) => {
@@ -394,7 +353,8 @@ export default function HomeScreen() {
       >
         <Animated.View style={contentTranslateY}>
           {/* Promo Swiper */}
-          <View style={styles.promoSection}>
+          <View style={[styles.promoSection]}>
+            {/* можно добавить небольшой отступ */}
             <Animated.FlatList
               ref={promoFlatListRef}
               data={promoBanners}
@@ -414,9 +374,7 @@ export default function HomeScreen() {
               )}
               contentContainerStyle={{ paddingHorizontal: PROMO_SIDE_PADDING }}
             />
-            {renderPromoIndicator()}
           </View>
-
           {/* Quick Actions */}
           <View style={styles.section}>
             <Animated.ScrollView
@@ -449,35 +407,17 @@ export default function HomeScreen() {
               ))}
             </Animated.ScrollView>
           </View>
-
-          {/* Услуги - новый дизайн заголовка */}
+          {/* Услуги - новый дизайн заголовка */}{" "}
           <View style={styles.section}>
             <View style={styles.titleSection}>
-              <View style={styles.titleDecoration}>
-                <View style={styles.titleLine} />
-                <View style={styles.titleDot} />
-              </View>
-              <View>
-                <Text size="2xl" weight="bold" style={styles.mainTitle}>
-                  Услуги
-                </Text>
-                <Text size="sm" color="#666" style={styles.subtitle}>
-                  Найдите проверенных мастеров
-                </Text>
-              </View>
-              <TouchableOpacity style={styles.titleAction}>
-                <Text size="sm" color="#667eea" weight="semibold">
-                  Смотреть все
-                </Text>
-                <Ionicons
-                  name="arrow-forward-circle"
-                  size={20}
-                  color="#667eea"
-                />
-              </TouchableOpacity>
+              <Text size="2xl" weight="bold" style={styles.mainTitle}>
+                Услуги
+              </Text>
+              <Text size="sm" color="#666" style={styles.subtitle}>
+                Найдите проверенных мастеров
+              </Text>
             </View>
           </View>
-
           {servicesLoading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color="#9AA9C0" />
@@ -553,35 +493,17 @@ export default function HomeScreen() {
               </View>
             ))
           )}
-
           {/* Популярные магазины - новый дизайн заголовка */}
           <View style={styles.section}>
             <View style={styles.titleSection}>
-              <View style={styles.titleDecoration}>
-                <View
-                  style={[styles.titleLine, { backgroundColor: "#9C27B0" }]}
-                />
-                <View
-                  style={[styles.titleDot, { backgroundColor: "#9C27B0" }]}
-                />
-              </View>
-              <View>
-                <Text size="2xl" weight="bold" style={styles.mainTitle}>
-                  Магазины и сервисы
-                </Text>
-                <Text size="sm" color="#666" style={styles.subtitle}>
-                  Доставка и самовывоз рядом с вами
-                </Text>
-              </View>
-              <TouchableOpacity style={styles.titleAction}>
-                <Text size="sm" color="#9C27B0" weight="semibold">
-                  Показать все
-                </Text>
-                <Ionicons name="storefront-outline" size={20} color="#9C27B0" />
-              </TouchableOpacity>
+              <Text size="2xl" weight="bold" style={styles.mainTitle}>
+                Магазины и сервисы
+              </Text>
+              <Text size="sm" color="#666" style={styles.subtitle}>
+                Доставка и самовывоз рядом с вами
+              </Text>
             </View>
           </View>
-
           {shopsLoading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color="#9AA9C0" />
@@ -660,7 +582,6 @@ export default function HomeScreen() {
               </View>
             ))
           )}
-
           <View style={styles.footer} />
         </Animated.View>
       </Animated.ScrollView>
@@ -757,7 +678,7 @@ const styles = StyleSheet.create({
   promoSection: {
     position: "relative",
     height: 200,
-    marginBottom: 24,
+    marginBottom: 20, // можно вернуть этот отступ
   },
 
   promoSlide: {
@@ -772,11 +693,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
-    elevation: 5,
+    // shadowColor: "#000",
+    // shadowOffset: { width: 0, height: 4 },
+    // shadowOpacity: 0.1,
+    // shadowRadius: 12,
+    // elevation: 5,
   },
 
   promoContent: {
@@ -827,20 +748,9 @@ const styles = StyleSheet.create({
 
   // ─── Новый дизайн заголовков ───
   titleSection: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 24,
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    backgroundColor: "#FFF",
-    borderRadius: 16,
-    marginHorizontal: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
+    // justifyContent: "space-between",
+    marginBottom: 20,
+    marginHorizontal: 16,
   },
 
   titleDecoration: {
