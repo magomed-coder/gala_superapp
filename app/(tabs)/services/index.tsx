@@ -124,9 +124,6 @@ export default function ServicesScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={{ fontSize: 20, fontWeight: "600" }}>Услуги</Text>
-            <Text style={{ fontSize: 14, color: "#666666" }}>
-              {serviceCategories.length} категорий
-            </Text>
           </View>
           <View style={styles.grid}>
             {serviceCategories.map((item) =>
@@ -140,9 +137,6 @@ export default function ServicesScreen() {
           <View style={styles.sectionHeader}>
             <Text style={{ fontSize: 20, fontWeight: "600" }}>
               Магазины и сервисы
-            </Text>
-            <Text style={{ fontSize: 14, color: "#666666" }}>
-              {shopCategories.length} категорий
             </Text>
           </View>
           <View style={styles.grid}>
@@ -184,7 +178,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 8,
+    // gap: 8,
+    // justifyContent: "space-between",
   },
   categoryCard: {
     width: "48%",
@@ -196,6 +191,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     overflow: "hidden",
     position: "relative",
+    marginBottom: 0,
   },
   iconBackground: {
     position: "absolute",
