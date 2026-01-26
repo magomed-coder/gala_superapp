@@ -35,8 +35,8 @@ export default function ServicesScreen() {
     loadCategories();
   }, []);
 
-  const getIconImage = (icon: string) => {
-    const iconMap: { [key: string]: any } = {
+  const getIconImage = (image: string) => {
+    const imageMap: { [key: string]: any } = {
       construct: require("../../../assets/imgs/handyAndRepair.png"),
       medical: require("../../../assets/imgs/doc.png"),
       pharm: require("../../../assets/imgs/pharm.png"),
@@ -49,15 +49,16 @@ export default function ServicesScreen() {
       cut: require("../../../assets/imgs/cut.png"),
       sparkles: require("../../../assets/imgs/cleaning.png"),
       water: require("../../../assets/imgs/dryclean.png"),
-      "car-sport": require("../../../assets/imgs/autorepair.png"),
+      autorepair: require("../../../assets/imgs/autorepair.png"),
       settings: require("../../../assets/imgs/autoparts.png"),
       shirt: require("../../../assets/imgs/clothes.png"),
       phone: require("../../../assets/imgs/phone.png"),
-      "car-outline": require("../../../assets/imgs/cars.png"),
+      cars: require("../../../assets/imgs/cars.png"),
       sports_nutrition: require("../../../assets/imgs/sports_nutrition.png"),
       home: require("../../../assets/imgs/home.png"),
+      detailing: require("../../../assets/imgs/detailing.png"),
     };
-    return iconMap[icon] || require("../../../assets/imgs/default.png");
+    return imageMap[image] || require("../../../assets/imgs/default.png");
   };
 
   function renderCategoryCard(
@@ -85,7 +86,7 @@ export default function ServicesScreen() {
           }
         >
           <Image
-            source={getIconImage(item.icon)}
+            source={getIconImage(item.image)}
             style={styles.iconBackground}
             resizeMode="contain"
           />
@@ -112,7 +113,7 @@ export default function ServicesScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
+    <SafeAreaView style={styles.container} edges={["top"]}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Text style={{ fontSize: 28, fontWeight: "bold" }}>Все услуги</Text>

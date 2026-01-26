@@ -6,6 +6,7 @@ export interface Provider {
   rating: number;
   reviewCount: number;
   image: string;
+  smallIcon: string;
   price: number;
   description: string;
   whatsappPhone: string;
@@ -17,6 +18,7 @@ export interface ServiceCategory {
   id: string;
   name: string;
   icon: string;
+  image: string;
   color: string;
   providers: Provider[];
 }
@@ -25,6 +27,7 @@ export interface ShopCategory {
   id: string;
   name: string;
   icon: string;
+  image: string;
   color: string;
   shops: Shop[];
 }
@@ -105,9 +108,10 @@ function generateProviders(prefix: string, specialization: string): Provider[] {
     specialization,
     rating: +(4.5 + Math.random() * 0.5).toFixed(1),
     reviewCount: Math.floor(50 + Math.random() * 200),
-    image: `https://placehold.jp/100x100.png?text=${encodeURIComponent(
-      specialization,
-    )}+${i + 1}`,
+    // large image for service details (Unsplash placeholder)
+    image: `https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80&ixlib=rb-4.0.3&sat=10&bg=fff`,
+    // small icon for main list (used on main screen) (Unsplash small)
+    smallIcon: `https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=64&q=80&ixlib=rb-4.0.3&sat=10&bg=fff`,
     price: 500 + Math.floor(Math.random() * 2000),
     description: `Описание для ${specialization} ${i + 1}`,
     whatsappPhone: `+7900${String(1000000 + i).slice(0, 7)}`,
@@ -116,11 +120,25 @@ function generateProviders(prefix: string, specialization: string): Provider[] {
   }));
 }
 
+// Ensure each service category has at least 10 providers (safety check)
+// If any category was created differently, regenerate providers to keep count consistent.
+// This runs at module initialization and mutates the exported array items.
+// Note: most categories already use `generateProviders`, so this is just a safeguard.
+export const ensureTenProviders = () => {
+  serviceCategories.forEach((cat, idx) => {
+    if (!cat.providers || cat.providers.length < 10) {
+      const prefix = `sp${idx + 1}_`;
+      cat.providers = generateProviders(prefix, cat.name);
+    }
+  });
+};
+
 export const serviceCategories: ServiceCategory[] = [
   {
     id: "1",
     name: "Ремонт и обслуживание",
     icon: "construct", // Валидная иконка Ionicons
+    image: "construct",
     color: "#576A8F",
     providers: generateProviders("sp1_", "Сантехник"),
   },
@@ -128,6 +146,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "2",
     name: "Медицинские услуги",
     icon: "medical",
+    image: "medical",
     color: "#30364F",
     providers: generateProviders("sp2_", "Врач"),
   },
@@ -135,6 +154,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "3",
     name: "Букеты и подарки",
     icon: "gift",
+    image: "gift",
     color: "#656D3F",
     providers: generateProviders("sp3_", "Флорист"),
   },
@@ -142,6 +162,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "4",
     name: "Красота и уход",
     icon: "cut", // scissors icon, use cut.png
+    image: "cut",
     color: "#296374",
     providers: generateProviders("sp4_", "Стилист"),
   },
@@ -149,6 +170,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "5",
     name: "Клининг",
     icon: "sparkles", // sparkles icon, use cleaning.png
+    image: "sparkles",
     color: "#574964",
     providers: generateProviders("sp5_", "Клинер"),
   },
@@ -156,6 +178,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "6",
     name: "Химчистка",
     icon: "water", // water icon, use dryclean.png
+    image: "water",
     color: "#36656B",
     providers: generateProviders("sp6_", "Химчистка"),
   },
@@ -163,6 +186,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "7",
     name: "Ремонт авто",
     icon: "car-sport", // car-sport icon, use autorepair.png
+    image: "autorepair",
     color: "#E5BA41",
     providers: generateProviders("sp7_", "Автомеханик"),
   },
@@ -170,6 +194,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "8",
     name: "Перевозки",
     icon: "car", // car-outline icon, use cars.png
+    image: "car",
     color: "#75B06F",
     providers: generateProviders("sp8_", "Водитель"),
   },
@@ -177,16 +202,18 @@ export const serviceCategories: ServiceCategory[] = [
     id: "9",
     name: "Туры с гидом",
     icon: "map",
+    image: "map",
     color: "#005461",
     providers: generateProviders("sp9_", "Гид"),
   },
-  // {
-  //   id: "10",
-  //   name: "Недвижимость",
-  //   icon: "home",
-  //   color: "#81C784",
-  //   providers: generateProviders("sp10_", "Недвижимость"),
-  // },
+  {
+    id: "10",
+    name: "Детейлинг",
+    icon: "car-sport",
+    image: "detailing",
+    color: "#D97706",
+    providers: generateProviders("sp10_", "Детейлинг"),
+  },
 ];
 
 export const shopCategories: ShopCategory[] = [
@@ -194,13 +221,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc1",
     name: "Магазины продуктов",
     icon: "bag",
+    image: "bag",
     color: "#576A8F",
     shops: [
       {
         id: "shop1",
         name: 'Супермаркет "Вкусная жизнь"',
         category: "Продукты",
-        image: "https://placehold.jp/150x150.png?text=Supermarket",
+        image:
+          "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=300&q=80",
         rating: 4.6,
         reviewCount: 234,
         deliveryTime: { min: 30, max: 45 },
@@ -212,7 +241,8 @@ export const shopCategories: ShopCategory[] = [
         id: "shop2",
         name: "Электроника Pro",
         category: "Электроника",
-        image: "https://placehold.jp/150x150.png?text=Electronics",
+        image:
+          "https://images.unsplash.com/photo-1510557880182-3b77e9c8b1b1?auto=format&fit=crop&w=300&q=80",
         rating: 4.5,
         reviewCount: 189,
         deliveryTime: { min: 60, max: 120 },
@@ -226,13 +256,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc2",
     name: "Спортивное питание",
     icon: "sports_nutrition",
+    image: "sports_nutrition",
     color: "#30364F",
     shops: [
       {
         id: "shop10",
         name: "SportFood",
         category: "Спортивное питание",
-        image: "https://placehold.jp/150x150.png?text=SportFood",
+        image:
+          "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80",
         rating: 4.8,
         reviewCount: 120,
         deliveryTime: { min: 20, max: 40 },
@@ -246,13 +278,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc3",
     name: "Одежда и обувь",
     icon: "shirt",
+    image: "shirt",
     color: "#656D3F",
     shops: [
       {
         id: "shop11",
         name: "FashionStyle",
         category: "Одежда и обувь",
-        image: "https://placehold.jp/150x150.png?text=FashionStyle",
+        image:
+          "https://images.unsplash.com/photo-1521335629791-ce4aec67dd47?auto=format&fit=crop&w=300&q=80",
         rating: 4.7,
         reviewCount: 98,
         deliveryTime: { min: 30, max: 60 },
@@ -266,13 +300,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc4",
     name: "Смартфоны и техника",
     icon: "phone",
+    image: "phone",
     color: "#296374",
     shops: [
       {
         id: "shop2",
         name: "Электроника Pro",
         category: "Электроника",
-        image: "https://placehold.jp/150x150.png?text=Electronics",
+        image:
+          "https://images.unsplash.com/photo-1510557880182-3b77e9c8b1b1?auto=format&fit=crop&w=300&q=80",
         rating: 4.5,
         reviewCount: 189,
         deliveryTime: { min: 60, max: 120 },
@@ -286,13 +322,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc5",
     name: "Аптеки",
     icon: "pharm",
+    image: "pharm",
     color: "#574964",
     shops: [
       {
         id: "shop5",
         name: 'Аптека "Здоровье"',
         category: "Лекарства",
-        image: "https://placehold.jp/150x150.png?text=Pharmacy",
+        image:
+          "https://images.unsplash.com/photo-1496180727794-817822f65950?auto=format&fit=crop&w=300&q=80",
         rating: 4.9,
         reviewCount: 456,
         deliveryTime: { min: 15, max: 30 },
@@ -304,7 +342,8 @@ export const shopCategories: ShopCategory[] = [
         id: "shop6",
         name: 'Аптека "Плюс"',
         category: "Витамины",
-        image: "https://placehold.jp/150x150.png?text=Pharmacy2",
+        image:
+          "https://images.unsplash.com/photo-1582719478250-9b1b9b4f9f2b?auto=format&fit=crop&w=300&q=80",
         rating: 4.6,
         reviewCount: 189,
         deliveryTime: { min: 20, max: 35 },
@@ -318,13 +357,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc6",
     name: "Автозапчасти",
     icon: "settings",
+    image: "settings",
     color: "#36656B",
     shops: [
       {
         id: "shop12",
         name: "АвтоДеталь",
         category: "Автозапчасти",
-        image: "https://placehold.jp/150x150.png?text=АвтоДеталь",
+        image:
+          "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=300&q=80",
         rating: 4.7,
         reviewCount: 77,
         deliveryTime: { min: 40, max: 90 },
@@ -338,13 +379,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc7",
     name: "Автосалоны",
     icon: "car-outline",
+    image: "cars",
     color: "#E5BA41",
     shops: [
       {
         id: "shop13",
         name: "АвтоГрад",
         category: "Автосалон",
-        image: "https://placehold.jp/150x150.png?text=АвтоГрад",
+        image:
+          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=300&q=80",
         rating: 4.8,
         reviewCount: 65,
         deliveryTime: { min: 0, max: 0 },
@@ -358,13 +401,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc8",
     name: "Рестораны",
     icon: "restaurant",
+    image: "restaurant",
     color: "#75B06F",
     shops: [
       {
         id: "shop3",
         name: 'Ресторан "Вкусная еда"',
         category: "Итальянская кухня",
-        image: "https://placehold.jp/150x150.png?text=Restaurant",
+        image:
+          "https://images.unsplash.com/photo-1541542684-4b0b1e4f3d6f?auto=format&fit=crop&w=300&q=80",
         rating: 4.8,
         reviewCount: 312,
         deliveryTime: { min: 30, max: 60 },
@@ -376,7 +421,8 @@ export const shopCategories: ShopCategory[] = [
         id: "shop4",
         name: 'Кафе "Уют"',
         category: "Кофейня",
-        image: "https://placehold.jp/150x150.png?text=Cafe",
+        image:
+          "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&w=300&q=80",
         rating: 4.7,
         reviewCount: 267,
         deliveryTime: { min: 20, max: 40 },
@@ -390,13 +436,15 @@ export const shopCategories: ShopCategory[] = [
     id: "sc9",
     name: "Отели",
     icon: "bed",
+    image: "bed",
     color: "#005461",
     shops: [
       {
         id: "shop8",
         name: "Отель Прима",
         category: "Проживание",
-        image: "https://placehold.jp/150x150.png?text=Hotel",
+        image:
+          "https://images.unsplash.com/photo-1505691723518-36a5b0d1b38e?auto=format&fit=crop&w=300&q=80",
         rating: 4.8,
         reviewCount: 567,
         deliveryTime: { min: 0, max: 0 },
@@ -410,6 +458,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc10",
     name: "Недвижимость",
     icon: "home",
+    image: "home",
     color: "#E67E22",
     shops: [
       {
@@ -455,13 +504,45 @@ export const shopCategories: ShopCategory[] = [
   },
 ];
 
+// Helper: generate a shop object
+function makeShop(prefix: string, index: number, categoryName: string): Shop {
+  return {
+    id: `${prefix}${index + 1}`,
+    name: `${categoryName} ${index + 1}`,
+    category: categoryName,
+    image: `https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=300&q=80`,
+    rating: +(4 + Math.random()).toFixed(1),
+    reviewCount: Math.floor(5 + Math.random() * 500),
+    deliveryTime: { min: 20, max: 60 },
+    minimumOrder: Math.floor(Math.random() * 1000),
+    freeDelivery: false,
+    isPromoted: false,
+  };
+}
+
+// Ensure each shop category has 10 shops by appending generated shops when needed.
+export const ensureTenShops = () => {
+  shopCategories.forEach((cat, catIdx) => {
+    const prefix = `sc${catIdx + 1}_`;
+    while (cat.shops.length < 10) {
+      const nextIndex = cat.shops.length;
+      cat.shops.push(makeShop(prefix, nextIndex, cat.name));
+    }
+  });
+};
+
+// Run safety checks at module init
+ensureTenProviders();
+ensureTenShops();
+
 export const products: Product[] = [
   {
     id: "prod1",
     shopId: "shop1",
     name: "Хлеб ржаной",
     price: 85,
-    image: "https://placehold.jp/120x120.png?text=Хлеб",
+    image:
+      "https://images.unsplash.com/photo-1544937954-8f7ce3f37724?auto=format&fit=crop&w=120&q=80",
     rating: 4.7,
   },
   {
@@ -469,7 +550,8 @@ export const products: Product[] = [
     shopId: "shop1",
     name: "Молоко 1 литр",
     price: 95,
-    image: "https://placehold.jp/120x120.png?text=Молоко",
+    image:
+      "https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=120&q=80",
     rating: 4.8,
   },
   {
@@ -477,7 +559,8 @@ export const products: Product[] = [
     shopId: "shop2",
     name: "iPhone 15",
     price: 89900,
-    image: "https://placehold.jp/120x120.png?text=iPhone",
+    image:
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=120&q=80",
     rating: 4.9,
   },
   {
@@ -485,7 +568,8 @@ export const products: Product[] = [
     shopId: "shop2",
     name: "AirPods Pro",
     price: 28990,
-    image: "https://placehold.jp/120x120.png?text=AirPods",
+    image:
+      "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=120&q=80",
     rating: 4.8,
   },
   {
@@ -493,7 +577,8 @@ export const products: Product[] = [
     shopId: "shop3",
     name: "Футболка хлопок",
     price: 1290,
-    image: "https://placehold.jp/120x120.png?text=Футболка",
+    image:
+      "https://images.unsplash.com/photo-1520975919905-6a6b5a3b0b00?auto=format&fit=crop&w=120&q=80",
     rating: 4.6,
   },
   {
@@ -501,7 +586,8 @@ export const products: Product[] = [
     shopId: "shop3",
     name: "Джинсы классические",
     price: 2990,
-    image: "https://placehold.jp/120x120.png?text=Джинсы",
+    image:
+      "https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=120&q=80",
     rating: 4.7,
   },
 ];
