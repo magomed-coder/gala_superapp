@@ -347,7 +347,9 @@ export default function HomeScreen() {
 
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingTop: paddedContentTop }}
+        contentContainerStyle={{
+          paddingTop: paddedContentTop,
+        }}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
       >
@@ -1008,6 +1010,6 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    height: 40,
+    height: 40, // ← уменьшите или уберите если не нужен отступ внизу
   },
 });
