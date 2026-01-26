@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -13,7 +13,7 @@ export default function TabLayout() {
           styles.tabBar,
           { paddingBottom: 8 + insets.bottom, height: 70 + insets.bottom },
         ],
-        tabBarActiveTintColor: "#9AA9C0",
+        tabBarActiveTintColor: "#000",
         tabBarInactiveTintColor: "#BCBBC1",
         tabBarLabelStyle: styles.tabLabel,
       }}
@@ -23,7 +23,11 @@ export default function TabLayout() {
         options={{
           title: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={26} name="home-outline" color={color} />
+            <MaterialCommunityIcons
+              size={28}
+              name="home-search-outline"
+              color={color}
+            />
           ),
         }}
       />
@@ -62,7 +66,7 @@ export default function TabLayout() {
         options={{
           title: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={26} name="person" color={color} />
+            <Feather size={26} name="user" color={color} />
           ),
         }}
       />
@@ -73,8 +77,8 @@ export default function TabLayout() {
 const styles = StyleSheet.create({
   tabBar: {
     borderTopWidth: 1,
-    borderTopColor: "#E8E8EA",
-    backgroundColor: "#FDF7F3",
+    borderTopColor: "transparent",
+    backgroundColor: "rgba(248, 249, 250, 0.96)",
     paddingTop: 8,
   },
   tabLabel: {

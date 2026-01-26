@@ -343,7 +343,12 @@ export default function HomeScreen() {
           searchTranslateY,
         ]}
       >
-        <TouchableOpacity style={styles.searchBar}>
+        <TouchableOpacity
+          style={styles.searchBar}
+          onPress={() =>
+            router.push({ pathname: "/(tabs)/main/search" })
+          }
+        >
           <View style={styles.searchIcon}>
             <Ionicons name="search" size={20} color="#9AA9C0" />
           </View>
