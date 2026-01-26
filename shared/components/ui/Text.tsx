@@ -1,4 +1,3 @@
-import React from "react";
 import { Text as RNText, TextProps } from "react-native";
 
 interface CustomTextProps extends TextProps {
@@ -7,13 +6,14 @@ interface CustomTextProps extends TextProps {
   color?: string;
 }
 
-export const Text: React.FC<CustomTextProps> = ({
+export const Text = ({
   weight = "regular",
   size = "base",
   color = "#000",
   style,
+  children,
   ...props
-}) => {
+}: CustomTextProps) => {
   const fontFamily = {
     regular: "Inter-Regular",
     semibold: "Inter-SemiBold",
@@ -41,6 +41,8 @@ export const Text: React.FC<CustomTextProps> = ({
         },
         style,
       ]}
-    />
+    >
+      {children}
+    </RNText>
   );
 };

@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   FlatList,
   SafeAreaView,
@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { fetchMockData, Shop } from "../../../../mocks/mockData";
-import { Card, Divider, Text } from "../../../../shared/components/ui";
+import { fetchMockData, Shop } from "../../../mocks/mockData";
+import { Card, Divider, Text } from "../../../shared/components/ui";
 
 export default function SearchResultsScreen() {
   const router = useRouter();

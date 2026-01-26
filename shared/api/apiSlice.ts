@@ -23,6 +23,18 @@ export const endpoints = {
   // Reviews
   reviews: "/reviews",
   review: (id: string) => `/reviews/${id}`,
+
+  // Auth
+  register: "/api/register/",
+  verifyEmail: "/api/verify-email/",
+  resendCode: "/api/resend-code/",
+  login: "/api/login/",
+  refresh: "/api/refresh/",
+  logout: "/api/logout/",
+  me: "/api/me/",
+  deleteMe: "/api/me/delete/",
+  changeEmail: "/api/change-email/",
+  changePassword: "/api/change-password/",
 } as const;
 
 // Query Keys

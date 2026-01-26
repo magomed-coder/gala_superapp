@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Alert,
   KeyboardAvoidingView,
@@ -57,7 +57,7 @@ export default function LoginScreen() {
       });
 
       // Переход на главный экран
-      router.replace("/(tabs)/home");
+      router.replace("/(tabs)/main");
     } catch (error) {
       Alert.alert("Ошибка", "Не удалось выполнить вход. Попробуйте снова.");
     } finally {
@@ -76,7 +76,7 @@ export default function LoginScreen() {
         avatar: "https://i.pravatar.cc/150?img=1",
         role: "customer",
       });
-      router.replace("/(tabs)/home");
+      router.replace("/(tabs)/main");
     } catch (error) {
       Alert.alert("Ошибка", "Не удалось выполнить вход.");
     } finally {

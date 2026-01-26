@@ -8,7 +8,7 @@ export default function SearchLayout() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="results/index" />
+      <Stack.Screen name="results" />
     </Stack>
   );
 }

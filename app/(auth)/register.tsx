@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Alert,
   KeyboardAvoidingView,
@@ -84,7 +84,7 @@ export default function RegisterScreen() {
         role: "customer",
       });
 
-      router.replace("/(tabs)/home");
+      router.replace("/(tabs)/main");
     } catch (error) {
       Alert.alert("Ошибка", "Не удалось создать аккаунт. Попробуйте снова.");
     } finally {
