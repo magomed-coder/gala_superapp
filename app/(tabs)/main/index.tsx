@@ -199,14 +199,6 @@ export default function HomeScreen() {
       >
         <View style={styles.providerCardContent}>
           <View style={styles.providerHeader}>
-            <View style={styles.providerAvatarContainer}>
-              <Image
-                source={{
-                  uri: provider.image || "https://via.placeholder.com/50",
-                }}
-                style={styles.providerAvatar}
-              />
-            </View>
             <View style={styles.providerInfo}>
               <Text weight="semibold" size="sm" numberOfLines={1}>
                 {provider.name}
@@ -881,6 +873,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 12,
+  },
+
+  avatarPlaceholder: {
+    backgroundColor: "#667EEA",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   providerInfo: {
