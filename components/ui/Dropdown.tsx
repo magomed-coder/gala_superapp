@@ -1,6 +1,6 @@
 import { Text } from "@/components/ui/Text";
 import { AntDesign } from "@expo/vector-icons";
-import React, { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   FlatList,
   Modal,
@@ -23,7 +23,7 @@ interface DropDownProps {
   placeholder: string;
 }
 
-export default function Dropdown({
+export function Dropdown({
   data,
   onChange,
   selectedValue,
@@ -42,7 +42,7 @@ export default function Dropdown({
       onChange(item);
       setExpanded(false);
     },
-    [onChange]
+    [onChange],
   );
 
   return (

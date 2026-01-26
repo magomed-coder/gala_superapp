@@ -112,7 +112,14 @@ export const SwipeableModal: React.FC<SwipeableModalProps> = ({
         stiffness: 120,
       });
     }
-  }, []);
+  }, [
+    animationDuration,
+    overlayOpacity,
+    overlayOpacityAnim,
+    position,
+    scale,
+    translateY,
+  ]);
 
   const panGesture = Gesture.Pan()
     .enabled(swipeToClose && (position === "bottom" || position === "top"))
@@ -145,7 +152,7 @@ export const SwipeableModal: React.FC<SwipeableModalProps> = ({
           { duration: 200 },
           () => {
             runOnJS(closeModal)();
-          }
+          },
         );
       } else {
         translateY.value = withSpring(0, {

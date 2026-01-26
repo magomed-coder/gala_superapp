@@ -2,7 +2,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Href, useRouter } from "expo-router";
-import React, { memo, useCallback } from "react";
+import React, { useCallback } from "react";
 import { Pressable, StyleSheet, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -14,7 +14,7 @@ type Props = {
   onFallbackRoute?: Href; // если нет истории назад
 };
 
-const BackButton: React.FC<Props> = ({
+export const BackButton: React.FC<Props> = ({
   style,
   iconColor = "#111",
   backgroundColor = "rgba(255,255,255,0.95)",
@@ -62,8 +62,6 @@ const BackButton: React.FC<Props> = ({
     </Pressable>
   );
 };
-
-export default memo(BackButton);
 
 const styles = StyleSheet.create({
   container: {

@@ -1,4 +1,3 @@
-import React from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 import Animated, {
   interpolate,
@@ -24,7 +23,7 @@ interface AnimatedSwiperProps {
   data: string[]; // массив элементов приходит через пропсы
 }
 
-export default function AnimatedSwiper({ data }: AnimatedSwiperProps) {
+export function AnimatedSwiper({ data }: AnimatedSwiperProps) {
   // SharedValue хранит текущее значение прокрутки по оси X
   const scrollX = useSharedValue(0);
 

@@ -9,7 +9,7 @@ interface StatusScreenProps {
   action?: React.ReactNode;
 }
 
-const StatusScreen: React.FC<StatusScreenProps> = ({
+export const StatusScreen: React.FC<StatusScreenProps> = ({
   title,
   description,
   icon,
@@ -33,8 +33,6 @@ const StatusScreen: React.FC<StatusScreenProps> = ({
     </View>
   );
 };
-
-export default StatusScreen;
 
 const styles = StyleSheet.create({
   container: {

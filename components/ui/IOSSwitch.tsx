@@ -20,7 +20,7 @@ type IOSSwitchProps = {
   thumbColor?: string;
 };
 
-const IOSSwitch: React.FC<IOSSwitchProps> = ({
+export const IOSSwitch: React.FC<IOSSwitchProps> = ({
   onValueChange,
   value,
   activeTrackColor = "#28303E",
@@ -42,7 +42,7 @@ const IOSSwitch: React.FC<IOSSwitchProps> = ({
       backgroundColor: interpolateColor(
         translateX.value,
         [0, TRANSLATE_X],
-        [inactiveTrackColor, activeTrackColor]
+        [inactiveTrackColor, activeTrackColor],
       ),
     };
   });
@@ -94,5 +94,3 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
 });
-
-export default IOSSwitch;

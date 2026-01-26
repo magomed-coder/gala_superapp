@@ -1,6 +1,5 @@
 // components/ui/Divider.tsx
 import { Colors } from "@/lib/design-system";
-import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 
 interface DividerProps {
@@ -9,7 +8,7 @@ interface DividerProps {
   color?: string;
 }
 
-export default function Divider({
+export function Divider({
   vertical = false,
   style,
   color = Colors.gray[200],

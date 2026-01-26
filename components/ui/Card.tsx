@@ -11,7 +11,7 @@ interface CardProps {
   onPress?: () => void;
 }
 
-export default function Card({
+export function Card({
   children,
   style,
   variant = "default",

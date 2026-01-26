@@ -1,6 +1,5 @@
 // components/ui/Badge.tsx
 import { BorderRadius, Colors, Spacing, Typography } from "@/lib/design-system";
-import React from "react";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
 
 interface BadgeProps {
@@ -10,7 +9,7 @@ interface BadgeProps {
   style?: ViewStyle;
 }
 
-export default function Badge({
+export function Badge({
   label,
   variant = "default",
   size = "medium",

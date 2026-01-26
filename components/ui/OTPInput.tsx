@@ -19,7 +19,7 @@ interface OTPInputProps {
   isLoading?: boolean;
 }
 
-const OTPInput: React.FC<OTPInputProps> = ({
+export const OTPInput: React.FC<OTPInputProps> = ({
   email,
   onVerify,
   onResend,
