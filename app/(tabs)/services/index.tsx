@@ -178,8 +178,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     flexDirection: "row",
     flexWrap: "wrap",
-    // gap: 8,
-    // justifyContent: "space-between",
+    gap: 6,
   },
   categoryCard: {
     width: "48%",
