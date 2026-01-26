@@ -111,7 +111,7 @@ export default function ServicesScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Text style={{ fontSize: 28, fontWeight: "bold" }}>Все услуги</Text>
