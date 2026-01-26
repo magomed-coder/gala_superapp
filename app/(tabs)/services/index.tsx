@@ -55,6 +55,7 @@ export default function ServicesScreen() {
       phone: require("../../../assets/imgs/phone.png"),
       "car-outline": require("../../../assets/imgs/cars.png"),
       sports_nutrition: require("../../../assets/imgs/sports_nutrition.png"),
+      home: require("../../../assets/imgs/home.png"),
     };
     return iconMap[icon] || require("../../../assets/imgs/default.png");
   };
@@ -90,7 +91,7 @@ export default function ServicesScreen() {
           />
           <View style={styles.categoryInfo}>
             <Text
-              style={{ fontSize: 16, fontWeight: "bold", color: "#FFFFFF" }}
+              style={{ fontSize: 14, fontWeight: "bold", color: "#FFFFFF" }}
             >
               {item.name}
             </Text>
@@ -181,8 +182,11 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   categoryCard: {
-    width: "48%",
-    height: 120,
+    // width: "48%",
+    height: 110,
+    flexGrow: 1,
+    flexBasis: "48%",
+    maxWidth: "50%",
   },
   categoryCardContent: {
     flex: 1,

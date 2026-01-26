@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   FlatList,
   Image,
@@ -24,7 +24,11 @@ export default function SearchScreen() {
   useEffect(() => {
     const loadShops = async () => {
       const data = await fetchMockData("shopCategories");
-      setShops(data);
+      // Преобразуем категории в плоский массив магазинов, защищаясь от undefined
+      const allShops: Shop[] = Array.isArray(data)
+        ? data.flatMap((cat: any) => cat.shops || [])
+        : [];
+      setShops(allShops);
       setLoading(false);
     };
     loadShops();

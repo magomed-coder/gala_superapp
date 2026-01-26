@@ -8,7 +8,7 @@ export default function ServicesLayout() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="detail/index" />
+      <Stack.Screen name="detail" />
     </Stack>
   );
 }

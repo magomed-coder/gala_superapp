@@ -121,65 +121,72 @@ export const serviceCategories: ServiceCategory[] = [
     id: "1",
     name: "Ремонт и обслуживание",
     icon: "construct", // Валидная иконка Ionicons
-    color: "#9AA9C0",
+    color: "#576A8F",
     providers: generateProviders("sp1_", "Сантехник"),
   },
   {
     id: "2",
     name: "Медицинские услуги",
     icon: "medical",
-    color: "#BCBBC1",
+    color: "#30364F",
     providers: generateProviders("sp2_", "Врач"),
   },
   {
     id: "3",
     name: "Букеты и подарки",
     icon: "gift",
-    color: "#FFB6C1",
+    color: "#656D3F",
     providers: generateProviders("sp3_", "Флорист"),
   },
   {
     id: "4",
     name: "Красота и уход",
     icon: "cut", // scissors icon, use cut.png
-    color: "#F48FB1",
+    color: "#296374",
     providers: generateProviders("sp4_", "Стилист"),
   },
   {
     id: "5",
     name: "Клининг",
     icon: "sparkles", // sparkles icon, use cleaning.png
-    color: "#64b5f6",
+    color: "#574964",
     providers: generateProviders("sp5_", "Клинер"),
   },
   {
     id: "6",
     name: "Химчистка",
     icon: "water", // water icon, use dryclean.png
-    color: "#4DD0E1",
+    color: "#36656B",
     providers: generateProviders("sp6_", "Химчистка"),
   },
   {
     id: "7",
     name: "Ремонт авто",
     icon: "car-sport", // car-sport icon, use autorepair.png
-    color: "#90CAF9",
+    color: "#E5BA41",
     providers: generateProviders("sp7_", "Автомеханик"),
   },
   {
     id: "8",
     name: "Перевозки",
     icon: "car", // car-outline icon, use cars.png
-    color: "#BCBBC1",
+    color: "#75B06F",
     providers: generateProviders("sp8_", "Водитель"),
   },
   {
     id: "9",
     name: "Туры с гидом",
     icon: "map",
-    color: "#81C784",
+    color: "#005461",
     providers: generateProviders("sp9_", "Гид"),
   },
+  // {
+  //   id: "10",
+  //   name: "Недвижимость",
+  //   icon: "home",
+  //   color: "#81C784",
+  //   providers: generateProviders("sp10_", "Недвижимость"),
+  // },
 ];
 
 export const shopCategories: ShopCategory[] = [
@@ -187,7 +194,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc1",
     name: "Магазины продуктов",
     icon: "bag",
-    color: "#9AA9C0",
+    color: "#576A8F",
     shops: [
       {
         id: "shop1",
@@ -219,7 +226,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc2",
     name: "Спортивное питание",
     icon: "sports_nutrition",
-    color: "#81C784",
+    color: "#30364F",
     shops: [
       {
         id: "shop10",
@@ -239,7 +246,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc3",
     name: "Одежда и обувь",
     icon: "shirt",
-    color: "#FBC02D",
+    color: "#656D3F",
     shops: [
       {
         id: "shop11",
@@ -259,7 +266,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc4",
     name: "Смартфоны и техника",
     icon: "phone",
-    color: "#64b5f6",
+    color: "#296374",
     shops: [
       {
         id: "shop2",
@@ -279,7 +286,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc5",
     name: "Аптеки",
     icon: "pharm",
-    color: "#9AA9C0",
+    color: "#574964",
     shops: [
       {
         id: "shop5",
@@ -311,7 +318,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc6",
     name: "Автозапчасти",
     icon: "settings",
-    color: "#90CAF9",
+    color: "#36656B",
     shops: [
       {
         id: "shop12",
@@ -330,8 +337,8 @@ export const shopCategories: ShopCategory[] = [
   {
     id: "sc7",
     name: "Автосалоны",
-    icon: "car-sport",
-    color: "#BCBBC1",
+    icon: "car-outline",
+    color: "#E5BA41",
     shops: [
       {
         id: "shop13",
@@ -351,7 +358,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc8",
     name: "Рестораны",
     icon: "restaurant",
-    color: "#BCBBC1",
+    color: "#75B06F",
     shops: [
       {
         id: "shop3",
@@ -383,7 +390,7 @@ export const shopCategories: ShopCategory[] = [
     id: "sc9",
     name: "Отели",
     icon: "bed",
-    color: "#9AA9C0",
+    color: "#005461",
     shops: [
       {
         id: "shop8",
@@ -394,6 +401,53 @@ export const shopCategories: ShopCategory[] = [
         reviewCount: 567,
         deliveryTime: { min: 0, max: 0 },
         minimumOrder: 5000,
+        freeDelivery: false,
+        isPromoted: false,
+      },
+    ],
+  },
+  {
+    id: "sc10",
+    name: "Недвижимость",
+    icon: "home",
+    color: "#E67E22",
+    shops: [
+      {
+        id: "shop20",
+        name: "Агентство 'Город'",
+        category: "Продажа квартир",
+        image:
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80",
+        rating: 4.9,
+        reviewCount: 210,
+        deliveryTime: { min: 0, max: 0 },
+        minimumOrder: 0,
+        freeDelivery: false,
+        isPromoted: true,
+      },
+      {
+        id: "shop21",
+        name: "Жильё+",
+        category: "Аренда недвижимости",
+        image:
+          "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=300&q=80",
+        rating: 4.7,
+        reviewCount: 145,
+        deliveryTime: { min: 0, max: 0 },
+        minimumOrder: 0,
+        freeDelivery: false,
+        isPromoted: false,
+      },
+      {
+        id: "shop22",
+        name: "Новостройки",
+        category: "Новостройки",
+        image:
+          "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=300&q=80",
+        rating: 4.8,
+        reviewCount: 98,
+        deliveryTime: { min: 0, max: 0 },
+        minimumOrder: 0,
         freeDelivery: false,
         isPromoted: false,
       },

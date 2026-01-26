@@ -9,7 +9,10 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: [styles.tabBar, { paddingBottom: 8 + insets.bottom }],
+        tabBarStyle: [
+          styles.tabBar,
+          { paddingBottom: 8 + insets.bottom, height: 70 + insets.bottom },
+        ],
         tabBarActiveTintColor: "#9AA9C0",
         tabBarInactiveTintColor: "#BCBBC1",
         tabBarLabelStyle: styles.tabLabel,
@@ -20,7 +23,7 @@ export default function TabLayout() {
         options={{
           title: "Главная",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={24} name="home" color={color} />
+            <Ionicons size={22} name="home-outline" color={color} />
           ),
         }}
       />
@@ -34,13 +37,12 @@ export default function TabLayout() {
           ),
         }}
       />
-
       <Tabs.Screen
         name="services"
         options={{
-          title: "Услуги",
+          title: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={24} name="briefcase" color={color} />
+            <Ionicons size={30} name="apps" color={color} />
           ),
         }}
       />
@@ -73,9 +75,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#E8E8EA",
     backgroundColor: "#FDF7F3",
-    paddingBottom: 8,
-    paddingTop: 12,
-    height: 100,
+    paddingTop: 8,
   },
   tabLabel: {
     fontSize: 12,

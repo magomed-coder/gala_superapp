@@ -24,6 +24,7 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
+import { IS_IOS } from "@/constants/config.constants";
 import {
   fetchMockData,
   PromoBanner,
@@ -39,9 +40,9 @@ const HEADER_FULL_HEIGHT = 130;
 const SEARCH_HEIGHT = 56;
 const HEADER_MIN_HEIGHT = HEADER_FULL_HEIGHT - SEARCH_HEIGHT;
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const PROMO_HORIZONTAL_PADDING = 60;
+const PROMO_HORIZONTAL_PADDING = 32;
 const PROMO_ITEM_WIDTH = SCREEN_WIDTH - PROMO_HORIZONTAL_PADDING;
-const PROMO_ITEM_SPACING = 6;
+const PROMO_ITEM_SPACING = 4;
 const PROMO_SIDE_PADDING = (SCREEN_WIDTH - PROMO_ITEM_WIDTH) / 2;
 
 // ────────────────────────────────────────────────
@@ -49,7 +50,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const stickyHeaderHeight = HEADER_MIN_HEIGHT + insets.top;
-  const paddedContentTop = stickyHeaderHeight + 20;
+  const paddedContentTop = stickyHeaderHeight + (IS_IOS ? 20 : 50);
 
   const [serviceCategories, setServiceCategories] = useState<ServiceCategory[]>(
     [],
@@ -410,7 +411,7 @@ export default function HomeScreen() {
             </Animated.ScrollView>
           </View>
           {/* Услуги - новый дизайн заголовка */}{" "}
-          <View style={styles.section}>
+          {/* <View style={styles.section}>
             <View style={styles.titleSection}>
               <Text size="2xl" weight="bold" style={styles.mainTitle}>
                 Услуги
@@ -419,7 +420,7 @@ export default function HomeScreen() {
                 Найдите проверенных мастеров
               </Text>
             </View>
-          </View>
+          </View> */}
           {servicesLoading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color="#9AA9C0" />
@@ -496,7 +497,7 @@ export default function HomeScreen() {
             ))
           )}
           {/* Популярные магазины - новый дизайн заголовка */}
-          <View style={styles.section}>
+          {/* <View style={styles.section}>
             <View style={styles.titleSection}>
               <Text size="2xl" weight="bold" style={styles.mainTitle}>
                 Магазины и сервисы
@@ -505,7 +506,7 @@ export default function HomeScreen() {
                 Доставка и самовывоз рядом с вами
               </Text>
             </View>
-          </View>
+          </View> */}
           {shopsLoading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color="#9AA9C0" />
@@ -657,11 +658,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     flexDirection: "row",
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
   },
 
   searchIcon: {
@@ -680,7 +676,7 @@ const styles = StyleSheet.create({
   promoSection: {
     position: "relative",
     height: 200,
-    marginBottom: 20, // можно вернуть этот отступ
+    marginBottom: 0, // можно вернуть этот отступ
   },
 
   promoSlide: {
@@ -695,11 +691,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    // shadowColor: "#000",
-    // shadowOffset: { width: 0, height: 4 },
-    // shadowOpacity: 0.1,
-    // shadowRadius: 12,
-    // elevation: 5,
   },
 
   promoContent: {
@@ -803,7 +794,7 @@ const styles = StyleSheet.create({
   quickActions: {
     flexDirection: "row",
     paddingHorizontal: 20,
-    gap: 12,
+    gap: 8,
   },
 
   quickAction: {
@@ -813,15 +804,10 @@ const styles = StyleSheet.create({
   quickActionIcon: {
     width: 64,
     height: 64,
-    borderRadius: 18,
+    borderRadius: 16,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 8,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
   },
 
   quickActionText: {
@@ -880,11 +866,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     borderRadius: 16,
     padding: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
   },
 
   providerHeader: {
@@ -931,11 +912,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     borderRadius: 16,
     overflow: "hidden",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
   },
 
   shopImageContainer: {
