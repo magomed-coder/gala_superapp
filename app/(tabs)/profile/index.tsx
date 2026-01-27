@@ -6,13 +6,13 @@ import {
   Alert,
   Image,
   Modal,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
 } from "react-native";
 
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useProfileStore } from "../../../shared/stores";
 
 export default function ProfileScreen() {
@@ -36,6 +36,7 @@ export default function ProfileScreen() {
     ordersCount: 24,
     addresses: 3,
   });
+  // надо будет вставить балы
 
   const handleLogout = () => {
     // Логика выхода
@@ -53,53 +54,58 @@ export default function ProfileScreen() {
     ]);
   };
 
+  // Серый/черный с прозрачностью для иконок
+  const iconColor = "rgba(0,0,0,0.5)";
   const menuItems = [
     {
       title: "Редактировать профиль",
-      icon: <Ionicons name="create-outline" size={22} color="#6366F1" />,
+      icon: <Ionicons name="create-outline" size={22} color={iconColor} />,
       route: "/(tabs)/profile/edit",
     },
     {
       title: "Мои адреса",
-      icon: <Ionicons name="location-outline" size={22} color="#F59E0B" />,
+      icon: <Ionicons name="location-outline" size={22} color={iconColor} />,
       route: "/(tabs)/profile/addresses",
     },
     {
       title: "Мои заказы",
-      icon: <Ionicons name="cube-outline" size={22} color="#3B82F6" />,
+      icon: <Ionicons name="cube-outline" size={22} color={iconColor} />,
       route: "/(tabs)/profile/orders",
-      badge: profileData.ordersCount,
     },
     {
       title: "Избранное",
-      icon: <Ionicons name="heart-outline" size={22} color="#EF4444" />,
+      icon: <Ionicons name="heart-outline" size={22} color={iconColor} />,
       route: "/(tabs)/profile/favorites",
     },
     {
       title: "Корзина",
-      icon: <Ionicons name="bag-outline" size={22} color="#F59E0B" />,
+      icon: <Ionicons name="bag-outline" size={22} color={iconColor} />,
       route: "/(tabs)/cart",
     },
     {
       title: "Платежные методы",
-      icon: <Ionicons name="card-outline" size={22} color="#0EA5E9" />,
+      icon: <Ionicons name="card-outline" size={22} color={iconColor} />,
       route: "/(tabs)/profile/payments",
     },
     {
       title: "Уведомления",
-      icon: <Ionicons name="notifications-outline" size={22} color="#10B981" />,
+      icon: (
+        <Ionicons name="notifications-outline" size={22} color={iconColor} />
+      ),
       route: "/(tabs)/profile/notifications",
     },
     {
       title: "Безопасность",
       icon: (
-        <Ionicons name="shield-checkmark-outline" size={22} color="#10B981" />
+        <Ionicons name="shield-checkmark-outline" size={22} color={iconColor} />
       ),
       route: "/(tabs)/profile/security",
     },
     {
       title: "Настройки профиля",
-      icon: <Ionicons name="person-circle-outline" size={22} color="#0EA5E9" />,
+      icon: (
+        <Ionicons name="person-circle-outline" size={22} color={iconColor} />
+      ),
       route: "/(tabs)/profile/settings",
     },
     {
@@ -108,7 +114,7 @@ export default function ProfileScreen() {
         <Ionicons
           name="chatbubble-ellipses-outline"
           size={22}
-          color="#6366F1"
+          color={iconColor}
         />
       ),
       route: "/(tabs)/profile/support",
@@ -116,39 +122,13 @@ export default function ProfileScreen() {
     {
       title: "О приложении",
       icon: (
-        <Ionicons name="information-circle-outline" size={22} color="#64748B" />
+        <Ionicons
+          name="information-circle-outline"
+          size={22}
+          color={iconColor}
+        />
       ),
       route: "/(tabs)/profile/about",
-    },
-  ];
-
-  // Вынесем actionButtons в отдельную переменную, показываем только если нет соответствующего пункта в menuItems
-  const hasAddressesMenu = menuItems.some(
-    (item) => item.route === "/(tabs)/profile/addresses",
-  );
-  const hasEditMenu = menuItems.some(
-    (item) => item.route === "/(tabs)/profile/edit",
-  );
-
-  // Добавим иконки для каждой статистики
-  const stats = [
-    {
-      label: "Баллы",
-      value: profileData.points,
-      color: "#3B82F6",
-      icon: <Ionicons name="trophy-outline" size={24} color="#3B82F6" />,
-    },
-    {
-      label: "Заказы",
-      value: profileData.ordersCount,
-      color: "#10B981",
-      icon: <Ionicons name="cube-outline" size={24} color="#10B981" />,
-    },
-    {
-      label: "Адреса",
-      value: profileData.addresses,
-      color: "#F59E0B",
-      icon: <Ionicons name="location-outline" size={24} color="#F59E0B" />,
     },
   ];
 
@@ -180,6 +160,7 @@ export default function ProfileScreen() {
                         fontSize: 32,
                         fontWeight: "bold",
                         color: "#FFF",
+                        lineHeight: 40,
                       }}
                     >
                       {profileData.firstName[0]}
@@ -203,6 +184,7 @@ export default function ProfileScreen() {
                 Участник с {profileData.joinDate}
               </Text>
 
+              {/* Баллы внутри карточки профиля */}
               <View style={styles.badgesContainer}>
                 <View style={[styles.badge, { backgroundColor: "#EFF6FF" }]}>
                   <Text
@@ -242,61 +224,7 @@ export default function ProfileScreen() {
               <Text style={styles.contactText}>{profileData.phone}</Text>
             </View>
           </View>
-
-          {/* Показываем кнопки только если их нет в меню */}
-          {(!hasEditMenu || !hasAddressesMenu) && (
-            <View style={styles.actionButtons}>
-              {!hasEditMenu && (
-                <Button
-                  title="Редактировать"
-                  onPress={() => router.push("/(tabs)/profile/edit")}
-                  style={styles.editButton}
-                />
-              )}
-              {!hasAddressesMenu && (
-                <Button
-                  title="Мои адреса"
-                  onPress={() => router.push("/(tabs)/profile/addresses")}
-                  style={styles.editButton}
-                />
-              )}
-            </View>
-          )}
         </Card>
-
-        {/* Stats Overview */}
-        <View style={styles.statsRedesignedContainer}>
-          {stats.map((stat, index) => (
-            <View key={index} style={styles.statRedesignedCard}>
-              <View
-                style={[
-                  styles.statRedesignedIcon,
-                  { backgroundColor: `${stat.color}22` },
-                ]}
-              >
-                {stat.icon}
-              </View>
-              <View style={styles.statRedesignedInfo}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "700",
-                    color: stat.color,
-                    // marginBottom: 2,
-                    lineHeight: 20,
-                  }}
-                >
-                  {stat.value}
-                </Text>
-                <Text
-                  style={{ fontSize: 13, lineHeight: 16, color: "#64748B" }}
-                >
-                  {stat.label}
-                </Text>
-              </View>
-            </View>
-          ))}
-        </View>
 
         {/* Quick Actions */}
         <Card style={styles.menuCard}>
@@ -313,20 +241,6 @@ export default function ProfileScreen() {
                   </Text>
                 </View>
                 <View style={styles.menuItemRight}>
-                  {item.badge && (
-                    <View style={styles.badgeCount}>
-                      <Text
-                        style={{
-                          fontSize: 12,
-                          fontWeight: "700",
-                          color: "#FFF",
-                          lineHeight: 20,
-                        }}
-                      >
-                        {item.badge}
-                      </Text>
-                    </View>
-                  )}
                   <Ionicons name="chevron-forward" size={20} color="#999999" />
                 </View>
               </TouchableOpacity>
@@ -410,6 +324,7 @@ const styles = StyleSheet.create({
   profileCard: {
     marginBottom: 20,
     padding: 20,
+    borderWidth: 0,
   },
   profileHeader: {
     flexDirection: "row",
@@ -511,6 +426,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 0,
     overflow: "hidden",
+    borderWidth: 0,
   },
   sectionTitle: {
     marginBottom: 16,

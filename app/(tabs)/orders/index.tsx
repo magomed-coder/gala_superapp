@@ -62,7 +62,7 @@ export default function OrdersScreen() {
     const steps = statusSteps[status] || [true, false, false];
     return (
       <View style={styles.progressBar}>
-        {["Принято", "Готовится", "Доставляется"].map((step, index) => (
+        {["Принято", "Готовится", "В пути"].map((step, index) => (
           <View key={index} style={styles.stepContainer}>
             <View
               style={[

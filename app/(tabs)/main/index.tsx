@@ -181,9 +181,7 @@ export default function HomeScreen() {
     );
   };
 
-  const handlePromoScroll = (event: any) => {
-    const slideSize = SCREEN_WIDTH - PROMO_HORIZONTAL_PADDING;
-  };
+  const handlePromoScroll = (event: any) => {};
 
   const renderProvider = (provider: Provider) => {
     return (
@@ -345,9 +343,7 @@ export default function HomeScreen() {
       >
         <TouchableOpacity
           style={styles.searchBar}
-          onPress={() =>
-            router.push({ pathname: "/(tabs)/main/search" })
-          }
+          onPress={() => router.push({ pathname: "/(tabs)/main/search" })}
         >
           <View style={styles.searchIcon}>
             <Ionicons name="search" size={20} color="#9AA9C0" />
@@ -869,17 +865,24 @@ const styles = StyleSheet.create({
   horizontalList: {
     paddingLeft: 20,
     paddingRight: 10,
+    paddingVertical: 4,
   },
 
   // ─── Карточка мастера ───
   providerCard: {
     width: 180,
     marginRight: 12,
+    // Тень для выделения карточки
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.12,
+    shadowRadius: 4,
+    elevation: 2, // для Android
   },
 
   providerCardContent: {
     backgroundColor: "#FFF",
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 16,
   },
 
@@ -934,14 +937,22 @@ const styles = StyleSheet.create({
     width: 200,
     marginRight: 12,
     backgroundColor: "#FFF",
-    borderRadius: 16,
-    overflow: "hidden",
+    borderRadius: 12,
+    // Не используем overflow: 'hidden', чтобы тень была видна
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.12,
+    shadowRadius: 4,
+    elevation: 2, // для Android
   },
 
   shopImageContainer: {
     position: "relative",
     width: "100%",
     height: 140,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    overflow: "hidden",
   },
 
   shopImage: {
