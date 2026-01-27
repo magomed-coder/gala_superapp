@@ -1,5 +1,6 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -8,18 +9,22 @@ import {
   View,
 } from "react-native";
 import { Button, Card, Input, Text } from "../../../shared/components/ui";
+import { useAuthStore } from "../../../shared/stores";
 
 export default function EditProfileScreen() {
   const router = useRouter();
+  const auth = useAuthStore();
+
   const [profileData, setProfileData] = useState({
-    firstName: "Иван",
-    lastName: "Петров",
-    email: "ivan@example.com",
-    phone: "+7 (999) 123-45-67",
+    firstName: auth.user?.firstName ?? "Иван",
+    lastName: auth.user?.lastName ?? "Петров",
+    email: auth.user?.email ?? "ivan@example.com",
+    phone: auth.user?.phone ?? "+7 (999) 123-45-67",
   });
 
   const handleSave = () => {
-    // Save logic here
+    // Update auth store with new user data
+    auth.updateUser({ ...(auth.user ?? {}), ...profileData });
     router.back();
   };
 
@@ -28,9 +33,15 @@ export default function EditProfileScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()}>
-            <Text size="lg" color="#FF6B6B">
-              ← Назад
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={styles.backRow}
+            accessibilityRole="button"
+            accessibilityLabel="Назад"
+          >
+            <Ionicons name="arrow-back" size={20} color="#FF6B6B" />
+            <Text size="lg" color="#FF6B6B" style={{ marginLeft: 8 }}>
+              Назад
             </Text>
           </TouchableOpacity>
           <Text size="xl" weight="bold" style={{ marginTop: 8 }}>
@@ -95,6 +106,10 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingVertical: 12,
+  },
+  backRow: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   formCard: {
     marginHorizontal: 16,

@@ -1,5 +1,6 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -9,6 +10,7 @@ import {
   View,
 } from "react-native";
 import { Card, Divider, Text } from "../../../shared/components/ui";
+import { useAuthStore } from "../../../shared/stores";
 
 export default function SettingsScreen() {
   const router = useRouter();
@@ -19,6 +21,8 @@ export default function SettingsScreen() {
     darkMode: false,
   });
 
+  const auth = useAuthStore();
+
   const toggleSetting = (key: keyof typeof settings) => {
     setSettings({ ...settings, [key]: !settings[key] });
   };
@@ -28,9 +32,15 @@ export default function SettingsScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()}>
-            <Text size="lg" color="#FF6B6B">
-              ← Назад
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={styles.backRow}
+            accessibilityRole="button"
+            accessibilityLabel="Назад"
+          >
+            <Ionicons name="arrow-back" size={20} color="#FF6B6B" />
+            <Text size="lg" color="#FF6B6B" style={{ marginLeft: 8 }}>
+              Назад
             </Text>
           </TouchableOpacity>
           <Text size="xl" weight="bold" style={{ marginTop: 8 }}>
@@ -94,20 +104,25 @@ export default function SettingsScreen() {
             Аккаунт
           </Text>
 
-          <TouchableOpacity style={styles.settingRow}>
+          <TouchableOpacity
+            style={styles.settingRow}
+            onPress={() => router.push("/(tabs)/profile/change-password")}
+          >
             <Text size="base">Изменить пароль</Text>
-            <Text size="base" color="#FF6B6B">
-              →
-            </Text>
+            <Ionicons name="chevron-forward" size={20} color="#FF6B6B" />
           </TouchableOpacity>
 
           <Divider style={styles.divider} />
 
-          <TouchableOpacity style={styles.settingRow}>
+          <TouchableOpacity
+            style={styles.settingRow}
+            onPress={() => {
+              auth.logout();
+              router.replace("/(auth)/login");
+            }}
+          >
             <Text size="base">Выйти из аккаунта</Text>
-            <Text size="base" color="#EF4444">
-              →
-            </Text>
+            <Ionicons name="chevron-forward" size={20} color="#EF4444" />
           </TouchableOpacity>
         </Card>
       </ScrollView>
@@ -123,6 +138,10 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingVertical: 12,
+  },
+  backRow: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   sectionCard: {
     marginHorizontal: 16,

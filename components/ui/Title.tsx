@@ -1,5 +1,5 @@
 // components/ui/SectionTitle.tsx
-import { Text } from "@/components/ui/Text";
+import { Text } from "@/components/ui/Text2";
 
 import React from "react";
 import { StyleSheet, TextProps, TextStyle } from "react-native";

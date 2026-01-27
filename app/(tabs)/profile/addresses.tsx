@@ -1,5 +1,6 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -14,44 +15,33 @@ import {
   Input,
   Text,
 } from "../../../shared/components/ui";
+import { useProfileStore } from "../../../shared/stores";
 
 export default function AddressesScreen() {
   const router = useRouter();
-  const [addresses, setAddresses] = useState([
-    {
-      id: "1",
-      name: "Дом",
-      address: "ул. Ленина, 42, кв. 15",
-      isDefault: true,
-    },
-    {
-      id: "2",
-      name: "Офис",
-      address: "пр. Центральный, 100",
-      isDefault: false,
-    },
-  ]);
+  const profile = useProfileStore();
   const [showAddForm, setShowAddForm] = useState(false);
   const [newAddress, setNewAddress] = useState({ name: "", address: "" });
 
   const handleAddAddress = () => {
     if (newAddress.name && newAddress.address) {
-      setAddresses([
-        ...addresses,
-        {
-          id: Date.now().toString(),
-          name: newAddress.name,
-          address: newAddress.address,
-          isDefault: false,
-        },
-      ]);
+      profile.addAddress({
+        id: Date.now().toString(),
+        name: newAddress.name,
+        address: newAddress.address,
+        isDefault: profile.addresses.length === 0,
+      });
       setNewAddress({ name: "", address: "" });
       setShowAddForm(false);
     }
   };
 
   const handleRemoveAddress = (id: string) => {
-    setAddresses(addresses.filter((addr) => addr.id !== id));
+    profile.removeAddress(id);
+  };
+
+  const handleSetDefault = (id: string) => {
+    profile.setDefaultAddress(id);
   };
 
   return (
@@ -59,9 +49,15 @@ export default function AddressesScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()}>
-            <Text size="lg" color="#FF6B6B">
-              ← Назад
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={styles.backRow}
+            accessibilityRole="button"
+            accessibilityLabel="Назад"
+          >
+            <Ionicons name="arrow-back" size={20} color="#FF6B6B" />
+            <Text size="lg" color="#FF6B6B" style={{ marginLeft: 8 }}>
+              Назад
             </Text>
           </TouchableOpacity>
           <Text size="xl" weight="bold" style={{ marginTop: 8 }}>
@@ -70,7 +66,7 @@ export default function AddressesScreen() {
         </View>
 
         {/* Addresses List */}
-        {addresses.map((addr) => (
+        {profile.addresses.map((addr) => (
           <Card key={addr.id} style={styles.addressCard}>
             <View style={styles.addressHeader}>
               <View style={{ flex: 1 }}>
@@ -98,13 +94,33 @@ export default function AddressesScreen() {
             </View>
             <Divider style={{ marginVertical: 12 }} />
             <View style={styles.addressActions}>
-              <TouchableOpacity>
-                <Text size="sm" color="#FF6B6B" weight="semibold">
-                  Редактировать
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleRemoveAddress(addr.id)}>
-                <Text size="sm" color="#EF4444" weight="semibold">
+              {!addr.isDefault && (
+                <TouchableOpacity
+                  onPress={() => handleSetDefault(addr.id)}
+                  style={styles.actionButton}
+                >
+                  <Ionicons name="star" size={16} color="#10B981" />
+                  <Text
+                    size="sm"
+                    color="#10B981"
+                    weight="semibold"
+                    style={{ marginLeft: 8 }}
+                  >
+                    По умолчанию
+                  </Text>
+                </TouchableOpacity>
+              )}
+              <TouchableOpacity
+                onPress={() => handleRemoveAddress(addr.id)}
+                style={styles.actionButton}
+              >
+                <Ionicons name="trash" size={16} color="#EF4444" />
+                <Text
+                  size="sm"
+                  color="#EF4444"
+                  weight="semibold"
+                  style={{ marginLeft: 8 }}
+                >
                   Удалить
                 </Text>
               </TouchableOpacity>
@@ -199,5 +215,13 @@ const styles = StyleSheet.create({
   addButtonContainer: {
     paddingHorizontal: 16,
     paddingVertical: 16,
+  },
+  actionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  backRow: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

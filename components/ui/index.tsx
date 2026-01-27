@@ -16,7 +16,7 @@ export * from "./RadioButton";
 export * from "./StatusScreen";
 export * from "./SwipeableModal";
 export * from "./SwipeableToast";
-export * from "./Text";
+export * from "./Text2";
 export * from "./Title";
 
 // Some modules use default exports; re-export them as named for consistency

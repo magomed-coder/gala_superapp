@@ -1,4 +1,4 @@
-import { Text } from "@/components/ui/Text";
+import { Text } from "@/components/ui/Text2";
 import { AntDesign } from "@expo/vector-icons";
 import { useCallback, useRef, useState } from "react";
 import {
