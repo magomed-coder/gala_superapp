@@ -55,6 +55,16 @@ export default function ProfileScreen() {
 
   const menuItems = [
     {
+      title: "Редактировать профиль",
+      icon: <Ionicons name="create-outline" size={22} color="#6366F1" />,
+      route: "/(tabs)/profile/edit",
+    },
+    {
+      title: "Мои адреса",
+      icon: <Ionicons name="location-outline" size={22} color="#F59E0B" />,
+      route: "/(tabs)/profile/addresses",
+    },
+    {
       title: "Мои заказы",
       icon: <Ionicons name="cube-outline" size={22} color="#3B82F6" />,
       route: "/(tabs)/profile/orders",
@@ -71,14 +81,26 @@ export default function ProfileScreen() {
       route: "/(tabs)/cart",
     },
     {
+      title: "Платежные методы",
+      icon: <Ionicons name="card-outline" size={22} color="#0EA5E9" />,
+      route: "/(tabs)/profile/payments",
+    },
+    {
       title: "Уведомления",
       icon: <Ionicons name="notifications-outline" size={22} color="#10B981" />,
       route: "/(tabs)/profile/notifications",
     },
     {
-      title: "Платежные методы",
-      icon: <Ionicons name="card-outline" size={22} color="#0EA5E9" />,
-      route: "/(tabs)/profile/payments",
+      title: "Безопасность",
+      icon: (
+        <Ionicons name="shield-checkmark-outline" size={22} color="#10B981" />
+      ),
+      route: "/(tabs)/profile/security",
+    },
+    {
+      title: "Настройки профиля",
+      icon: <Ionicons name="person-circle-outline" size={22} color="#0EA5E9" />,
+      route: "/(tabs)/profile/settings",
     },
     {
       title: "Служба поддержки",
@@ -98,19 +120,15 @@ export default function ProfileScreen() {
       ),
       route: "/(tabs)/profile/about",
     },
-    {
-      title: "Настройки профиля",
-      icon: <Ionicons name="person-circle-outline" size={22} color="#0EA5E9" />,
-      route: "/(tabs)/profile/settings",
-    },
-    {
-      title: "Безопасность",
-      icon: (
-        <Ionicons name="shield-checkmark-outline" size={22} color="#10B981" />
-      ),
-      route: "/(tabs)/profile/security",
-    },
   ];
+
+  // Вынесем actionButtons в отдельную переменную, показываем только если нет соответствующего пункта в menuItems
+  const hasAddressesMenu = menuItems.some(
+    (item) => item.route === "/(tabs)/profile/addresses",
+  );
+  const hasEditMenu = menuItems.some(
+    (item) => item.route === "/(tabs)/profile/edit",
+  );
 
   // Добавим иконки для каждой статистики
   const stats = [
@@ -225,22 +243,25 @@ export default function ProfileScreen() {
             </View>
           </View>
 
-          <View style={styles.actionButtons}>
-            <Button
-              title="Редактировать"
-              // variant="outline"
-              // size="sm"
-              onPress={() => router.push("/(tabs)/profile/edit")}
-              style={styles.editButton}
-            />
-            <Button
-              title="Мои адреса"
-              // variant="outline"/
-              // size="sm"
-              onPress={() => router.push("/(tabs)/profile/addresses")}
-              style={styles.editButton}
-            />
-          </View>
+          {/* Показываем кнопки только если их нет в меню */}
+          {(!hasEditMenu || !hasAddressesMenu) && (
+            <View style={styles.actionButtons}>
+              {!hasEditMenu && (
+                <Button
+                  title="Редактировать"
+                  onPress={() => router.push("/(tabs)/profile/edit")}
+                  style={styles.editButton}
+                />
+              )}
+              {!hasAddressesMenu && (
+                <Button
+                  title="Мои адреса"
+                  onPress={() => router.push("/(tabs)/profile/addresses")}
+                  style={styles.editButton}
+                />
+              )}
+            </View>
+          )}
         </Card>
 
         {/* Stats Overview */}
@@ -571,13 +592,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
     marginBottom: 20,
+
+    backgroundColor: "#FFF",
+    borderRadius: 16,
   },
   statRedesignedCard: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#FFF",
-    borderRadius: 16,
     paddingVertical: 14,
     paddingHorizontal: 12,
     marginHorizontal: 2,
