@@ -67,7 +67,7 @@ export default function ProfileScreen() {
     },
     {
       title: "Корзина",
-      icon: <Ionicons name="cart-outline" size={22} color="#F59E0B" />,
+      icon: <Ionicons name="bag-outline" size={22} color="#F59E0B" />,
       route: "/(tabs)/cart",
     },
     {
@@ -112,10 +112,26 @@ export default function ProfileScreen() {
     },
   ];
 
+  // Добавим иконки для каждой статистики
   const stats = [
-    { label: "Баллы", value: profileData.points, color: "#3B82F6" },
-    { label: "Заказы", value: profileData.ordersCount, color: "#10B981" },
-    { label: "Адреса", value: profileData.addresses, color: "#F59E0B" },
+    {
+      label: "Баллы",
+      value: profileData.points,
+      color: "#3B82F6",
+      icon: <Ionicons name="trophy-outline" size={24} color="#3B82F6" />,
+    },
+    {
+      label: "Заказы",
+      value: profileData.ordersCount,
+      color: "#10B981",
+      icon: <Ionicons name="cube-outline" size={24} color="#10B981" />,
+    },
+    {
+      label: "Адреса",
+      value: profileData.addresses,
+      color: "#F59E0B",
+      icon: <Ionicons name="location-outline" size={24} color="#F59E0B" />,
+    },
   ];
 
   return (
@@ -228,38 +244,41 @@ export default function ProfileScreen() {
         </Card>
 
         {/* Stats Overview */}
-        <View style={styles.statsContainer}>
+        <View style={styles.statsRedesignedContainer}>
           {stats.map((stat, index) => (
-            <Card key={index} style={styles.statCard}>
+            <View key={index} style={styles.statRedesignedCard}>
               <View
                 style={[
-                  styles.statIcon,
-                  { backgroundColor: `${stat.color}15` },
+                  styles.statRedesignedIcon,
+                  { backgroundColor: `${stat.color}22` },
                 ]}
               >
+                {stat.icon}
+              </View>
+              <View style={styles.statRedesignedInfo}>
                 <Text
-                  style={{ fontSize: 20, fontWeight: "700", color: stat.color }}
+                  style={{
+                    fontSize: 18,
+                    fontWeight: "700",
+                    color: stat.color,
+                    // marginBottom: 2,
+                    lineHeight: 20,
+                  }}
                 >
                   {stat.value}
                 </Text>
+                <Text
+                  style={{ fontSize: 13, lineHeight: 16, color: "#64748B" }}
+                >
+                  {stat.label}
+                </Text>
               </View>
-              <Text
-                style={[styles.statLabel, { fontSize: 14, fontWeight: "500" }]}
-              >
-                {stat.label}
-              </Text>
-            </Card>
+            </View>
           ))}
         </View>
 
         {/* Quick Actions */}
         <Card style={styles.menuCard}>
-          {/* <Text
-            style={[styles.sectionTitle, { fontSize: 20, fontWeight: "700" }]}
-          >
-            Меню
-          </Text> */}
-
           {menuItems.map((item, index) => (
             <React.Fragment key={index}>
               <TouchableOpacity
@@ -546,5 +565,33 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     flex: 1,
+  },
+  statsRedesignedContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 12,
+    marginBottom: 20,
+  },
+  statRedesignedCard: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#FFF",
+    borderRadius: 16,
+    paddingVertical: 14,
+    paddingHorizontal: 12,
+    marginHorizontal: 2,
+  },
+  statRedesignedIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 10,
+  },
+  statRedesignedInfo: {
+    flex: 1,
+    justifyContent: "center",
   },
 });
