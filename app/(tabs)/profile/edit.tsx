@@ -24,7 +24,7 @@ export default function EditProfileScreen() {
 
   const handleSave = () => {
     // Update auth store with new user data
-    auth.updateUser({ ...(auth.user ?? {}), ...profileData });
+    // auth.updateUser({ ...(auth.user ?? {}), ...profileData });
     router.back();
   };
 

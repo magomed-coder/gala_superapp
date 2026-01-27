@@ -1,4 +1,4 @@
-import { Button, Card, Divider, IOSSwitch, Text } from "@/components/ui";
+import { Button, Card, Divider, Text } from "@/components/ui";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -98,6 +98,18 @@ export default function ProfileScreen() {
       ),
       route: "/(tabs)/profile/about",
     },
+    {
+      title: "Настройки профиля",
+      icon: <Ionicons name="person-circle-outline" size={22} color="#0EA5E9" />,
+      route: "/(tabs)/profile/settings",
+    },
+    {
+      title: "Безопасность",
+      icon: (
+        <Ionicons name="shield-checkmark-outline" size={22} color="#10B981" />
+      ),
+      route: "/(tabs)/profile/security",
+    },
   ];
 
   const stats = [
@@ -115,11 +127,6 @@ export default function ProfileScreen() {
         {/* Header */}
         <View style={styles.header}>
           <Text style={{ fontSize: 24, fontWeight: "bold" }}>Профиль</Text>
-          <TouchableOpacity
-            onPress={() => router.push("/(tabs)/profile/settings")}
-          >
-            <Ionicons name="settings" size={24} color="#666666" />
-          </TouchableOpacity>
         </View>
 
         {/* Profile Card */}
@@ -247,11 +254,11 @@ export default function ProfileScreen() {
 
         {/* Quick Actions */}
         <Card style={styles.menuCard}>
-          <Text
+          {/* <Text
             style={[styles.sectionTitle, { fontSize: 20, fontWeight: "700" }]}
           >
             Меню
-          </Text>
+          </Text> */}
 
           {menuItems.map((item, index) => (
             <React.Fragment key={index}>
@@ -273,6 +280,7 @@ export default function ProfileScreen() {
                           fontSize: 12,
                           fontWeight: "700",
                           color: "#FFF",
+                          lineHeight: 20,
                         }}
                       >
                         {item.badge}
@@ -285,49 +293,6 @@ export default function ProfileScreen() {
               {index < menuItems.length - 1 && <Divider />}
             </React.Fragment>
           ))}
-        </Card>
-
-        {/* Preferences */}
-        <Card style={styles.preferencesCard}>
-          <Text
-            style={[styles.sectionTitle, { fontSize: 20, fontWeight: "700" }]}
-          >
-            Настройки
-          </Text>
-
-          <View style={styles.preferenceItem}>
-            <View style={styles.preferenceInfo}>
-              <Text style={{ fontSize: 16, fontWeight: "500" }}>
-                Push-уведомления
-              </Text>
-              <Text style={{ fontSize: 14, color: "#666666" }}>
-                Получать уведомления в приложении
-              </Text>
-            </View>
-            <IOSSwitch
-              value={notifications}
-              onValueChange={setNotifications}
-              // color="#3B82F6"
-            />
-          </View>
-
-          <Divider />
-
-          <View style={styles.preferenceItem}>
-            <View style={styles.preferenceInfo}>
-              <Text style={{ fontSize: 16, fontWeight: "500" }}>
-                Email-рассылка
-              </Text>
-              <Text style={{ fontSize: 14, color: "#666666" }}>
-                Получать новости и предложения
-              </Text>
-            </View>
-            <IOSSwitch
-              value={emailUpdates}
-              onValueChange={setEmailUpdates}
-              // color="#3B82F6"
-            />
-          </View>
         </Card>
 
         {/* Logout Button */}
@@ -507,10 +472,6 @@ const styles = StyleSheet.create({
     padding: 0,
     overflow: "hidden",
   },
-  preferencesCard: {
-    marginBottom: 20,
-    padding: 20,
-  },
   sectionTitle: {
     marginBottom: 16,
   },
@@ -519,7 +480,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 16,
-    paddingHorizontal: 20,
   },
   menuItemLeft: {
     flexDirection: "row",
@@ -533,6 +493,7 @@ const styles = StyleSheet.create({
   menuItemRight: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     gap: 8,
   },
   badgeCount: {
