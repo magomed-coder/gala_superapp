@@ -1,3 +1,4 @@
+import { Button, Card, Input, Text } from "@/components/ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
@@ -11,7 +12,6 @@ import {
   View,
 } from "react-native";
 import { useAuthStore } from "../../features/auth/store/useAuthStore";
-import { Button, Card, Input, Text } from "../../shared/components/ui";
 
 export default function LoginScreen() {
   const router = useRouter();

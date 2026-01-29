@@ -3,7 +3,7 @@ import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 
 import * as SplashScreen from "expo-splash-screen";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useAuthStore } from "@/contexts/auth.store";
@@ -39,9 +39,9 @@ export default function RootLayout() {
     [FONTS.UbuntuMedium]: require("../assets/fonts/Ubuntu-Medium.ttf"),
     [FONTS.UbuntuBold]: require("../assets/fonts/Ubuntu-Bold.ttf"),
 
-    [FONTS.InterRegular]: require("../assets/fonts/Inter_18pt-Regular.ttf"),
-    [FONTS.InterSemiBold]: require("../assets/fonts/Inter_18pt-SemiBold.ttf"),
-    [FONTS.InterBold]: require("../assets/fonts/Inter_18pt-Bold.ttf"),
+    // [FONTS.InterRegular]: require("../assets/fonts/Inter_18pt-Regular.ttf"),
+    // [FONTS.InterSemiBold]: require("../assets/fonts/Inter_18pt-SemiBold.ttf"),
+    // [FONTS.InterBold]: require("../assets/fonts/Inter_18pt-Bold.ttf"),
   });
 
   useEffect(() => {

@@ -24,6 +24,7 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
+import { Badge, Text } from "@/components/ui";
 import { IS_IOS } from "@/constants/config.constants";
 import {
   fetchMockData,
@@ -33,7 +34,6 @@ import {
   ServiceCategory,
   Shop,
 } from "../../../mocks/mockData";
-import { Badge, Text } from "../../../shared/components/ui";
 
 // ────────────────────────────────────────────────
 const HEADER_FULL_HEIGHT = 130;
@@ -145,16 +145,11 @@ export default function HomeScreen() {
           style={styles.promoBanner}
         >
           <View style={styles.promoContent}>
-            <Badge label={item.badge} variant="primary" />
-            <Text
-              size="xl"
-              weight="bold"
-              color="#FFF"
-              style={styles.promoTitle}
-            >
+            <Badge label={item.badge} variant="success" />
+            <Text variant="r700.20" color="#FFF" style={styles.promoTitle}>
               {item.title}
             </Text>
-            <Text size="sm" color="rgba(255,255,255,0.9)">
+            <Text variant="u400.14" color="rgba(255,255,255,0.9)">
               {item.description}
             </Text>
             <TouchableOpacity
@@ -163,7 +158,7 @@ export default function HomeScreen() {
                 console.log(`Promo ${item.id} clicked`);
               }}
             >
-              <Text size="sm" weight="bold" color="#FFF">
+              <Text variant="r.700.14" color="#FFF">
                 {item.buttonText}
               </Text>
               <Ionicons name="arrow-forward" size={16} color="#FFF" />
@@ -198,10 +193,14 @@ export default function HomeScreen() {
         <View style={styles.providerCardContent}>
           <View style={styles.providerHeader}>
             <View style={styles.providerInfo}>
-              <Text weight="semibold" size="sm" numberOfLines={1}>
+              <Text variant="r700.14" numberOfLines={1}>
                 {provider.name}
               </Text>
-              <Text size="xs" color="#666" style={styles.specialization}>
+              <Text
+                variant="u400.12"
+                color="#666"
+                style={styles.specialization}
+              >
                 {provider.specialization}
               </Text>
             </View>
@@ -216,30 +215,20 @@ export default function HomeScreen() {
             }}
           >
             <View style={styles.providerFooter}>
-              <Text weight="bold" style={styles.providerExperience}>
+              <Text variant="r700.16" style={styles.providerExperience}>
                 {provider.yearsExperience}
               </Text>
-              <Text size="xs" color="#666">
+              <Text variant="r400.12" color="#666">
                 лет опыта
               </Text>
             </View>
 
             <View style={styles.providerRatingContainer}>
               <Ionicons name="star" size={12} color="#FFD700" />
-              <Text
-                size="xs"
-                weight="bold"
-                color="#000000"
-                style={styles.ratingText}
-              >
+              <Text variant="r700.12" color="#000000" style={styles.ratingText}>
                 {provider.rating}
               </Text>
-              <Text
-                size="xs"
-                // weight="bold"
-                color="#000000"
-                style={styles.ratingText}
-              >
+              <Text variant="r400.12" color="#000000" style={styles.ratingText}>
                 ({provider.reviewCount})
               </Text>
             </View>
@@ -269,30 +258,25 @@ export default function HomeScreen() {
         <View style={styles.shopBadgeContainer}>
           <View style={styles.shopRatingBadge}>
             <Ionicons name="star" size={12} color="#FFD700" />
-            <Text
-              size="xs"
-              weight="bold"
-              color="#FFF"
-              style={styles.ratingText}
-            >
+            <Text variant="r700.12" color="#FFF" style={styles.ratingText}>
               {item.rating}
             </Text>
           </View>
         </View>
         {item.isPromoted && (
           <View style={styles.promotedBadgeContainer}>
-            <Badge label="TOP" variant="primary" />
+            <Badge label="TOP" variant="success" />
           </View>
         )}
       </View>
       <View style={styles.shopInfo}>
-        <Text weight="semibold" size="base" numberOfLines={1}>
+        <Text variant="r700.16" numberOfLines={1}>
           {item.name}
         </Text>
         <View style={styles.shopDetails}>
           <View style={styles.deliveryInfo}>
             <Ionicons name="time-outline" size={14} color="#999" />
-            <Text size="xs" color="#999" style={styles.deliveryTime}>
+            <Text variant="r400.12" color="#999" style={styles.deliveryTime}>
               {item.deliveryTime.min}-{item.deliveryTime.max} мин
             </Text>
           </View>
@@ -314,10 +298,10 @@ export default function HomeScreen() {
       >
         <View style={styles.headerContent}>
           <View>
-            <Text size="3xl" weight="bold" color="#000">
+            <Text variant="r700.30" color="#000">
               ġala
             </Text>
-            <Text size="sm" color="#000">
+            <Text variant="r400.14" color="#000">
               Город в твоих руках
             </Text>
           </View>
@@ -348,7 +332,7 @@ export default function HomeScreen() {
           <View style={styles.searchIcon}>
             <Ionicons name="search" size={20} color="#9AA9C0" />
           </View>
-          <Text color="#999" style={styles.searchText}>
+          <Text variant="r400.14" color="#999" style={styles.searchText}>
             Поиск услуг и магазинов...
           </Text>
           <View style={styles.searchFilter}>
@@ -410,11 +394,7 @@ export default function HomeScreen() {
                       color="#FFF"
                     />
                   </View>
-                  <Text
-                    size="xs"
-                    weight="semibold"
-                    style={styles.quickActionText}
-                  >
+                  <Text variant="r700.12" style={styles.quickActionText}>
                     {action.title}
                   </Text>
                 </TouchableOpacity>
@@ -464,14 +444,10 @@ export default function HomeScreen() {
                       />
                     </LinearGradient>
                     <View>
-                      <Text
-                        size="base"
-                        weight="bold"
-                        style={styles.categoryName}
-                      >
+                      <Text variant="r700.16" style={styles.categoryName}>
                         {category.name}
                       </Text>
-                      <Text size="xs" color="#999" weight="regular">
+                      <Text variant="r400.12" color="#999">
                         {category.providers.length} мастеров
                       </Text>
                     </View>
@@ -485,7 +461,7 @@ export default function HomeScreen() {
                       })
                     }
                   >
-                    <Text size="sm" color="#9AA9C0" weight="semibold">
+                    <Text variant="r700.14" color="#9AA9C0">
                       Все
                     </Text>
                     <Ionicons
@@ -552,14 +528,10 @@ export default function HomeScreen() {
                       />
                     </LinearGradient>
                     <View>
-                      <Text
-                        size="base"
-                        weight="bold"
-                        style={styles.categoryName}
-                      >
+                      <Text variant="r700.16" style={styles.categoryName}>
                         {shopCategory.name}
                       </Text>
-                      <Text size="xs" color="#999" weight="regular">
+                      <Text variant="r400.12" color="#999">
                         {shopCategory.shops.length} магазинов
                       </Text>
                     </View>
@@ -574,7 +546,7 @@ export default function HomeScreen() {
                       })
                     }
                   >
-                    <Text size="sm" color="#9AA9C0" weight="semibold">
+                    <Text variant="r700.14" color="#9AA9C0">
                       Все
                     </Text>
                     <Ionicons

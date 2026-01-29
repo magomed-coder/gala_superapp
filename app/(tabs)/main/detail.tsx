@@ -1,5 +1,7 @@
+import { Button, Card, Divider, StarRating, Text } from "@/components/ui";
+
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Alert,
   FlatList,
@@ -11,13 +13,6 @@ import {
   View,
 } from "react-native";
 import { fetchMockData, Product, Shop } from "../../../mocks/mockData";
-import {
-  Button,
-  Card,
-  Divider,
-  StarRating,
-  Text,
-} from "../../../shared/components/ui";
 
 export default function ShopDetailScreen() {
   const router = useRouter();
@@ -30,8 +25,7 @@ export default function ShopDetailScreen() {
     const loadData = async () => {
       const shopCategories = await fetchMockData("shopCategories");
       const allShops = shopCategories.flatMap((cat: any) => cat.shops);
-      const found =
-        allShops.find((s: Shop) => s.id === shopId) || allShops[0];
+      const found = allShops.find((s: Shop) => s.id === shopId) || allShops[0];
       setShop(found);
 
       const productsData = await fetchMockData("products");
@@ -58,7 +52,7 @@ export default function ShopDetailScreen() {
         </Text>
       </View>
       <Button
-        label="В корзину"
+        title="В корзину"
         variant="primary"
         onPress={() => Alert.alert("Товар добавлен в корзину")}
         style={{ marginTop: 8 }}

@@ -1,5 +1,6 @@
+import { Card, Divider, Text } from "@/components/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FlatList,
   SafeAreaView,
@@ -14,7 +15,6 @@ import {
   Shop,
   ShopCategory,
 } from "../../../mocks/mockData";
-import { Card, Divider, Text } from "../../../shared/components/ui";
 
 export default function CategoryScreen() {
   const router = useRouter();

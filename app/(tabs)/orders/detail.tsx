@@ -1,5 +1,6 @@
+import { Badge, Card, Divider, Text } from "@/components/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -8,7 +9,6 @@ import {
   View,
 } from "react-native";
 import { fetchMockData, Order } from "../../../mocks/mockData";
-import { Badge, Card, Divider, Text } from "../../../shared/components/ui";
 
 export default function OrderDetailScreen() {
   const router = useRouter();

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { Text } from "@/components/ui/Text2";
+import { Text } from "@/components/ui/Text";
 import { useCountdownTimer } from "@/hooks/useCountdownTimer";
 import { Feather } from "@expo/vector-icons";
 import React, { useRef, useState } from "react";

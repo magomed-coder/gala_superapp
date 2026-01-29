@@ -1,3 +1,4 @@
+import { Card, Divider, Text } from "@/components/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -9,7 +10,6 @@ import {
   View,
 } from "react-native";
 import { fetchMockData, Shop } from "../../../mocks/mockData";
-import { Card, Divider, Text } from "../../../shared/components/ui";
 
 export default function SearchResultsScreen() {
   const router = useRouter();

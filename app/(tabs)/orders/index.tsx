@@ -1,3 +1,4 @@
+import { Badge, Card, Divider, Text } from "@/components/ui";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
@@ -8,7 +9,6 @@ import {
   View,
 } from "react-native";
 import { fetchMockData, type Order } from "../../../mocks/mockData";
-import { Badge, Card, Divider, Text } from "../../../shared/components/ui";
 
 const statusConfig = {
   completed: { label: "Завершён", color: "#10B981" },

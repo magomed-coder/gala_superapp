@@ -1,5 +1,6 @@
+import { Button, Card, Divider, StarRating, Text } from "@/components/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Alert,
   Linking,
@@ -14,13 +15,6 @@ import {
   Provider,
   ServiceCategory,
 } from "../../../mocks/mockData";
-import {
-  Button,
-  Card,
-  Divider,
-  StarRating,
-  Text,
-} from "../../../shared/components/ui";
 
 export default function ServiceDetailScreen() {
   const router = useRouter();
@@ -143,7 +137,7 @@ export default function ServiceDetailScreen() {
           <View style={styles.contactButtonsContainer}>
             {provider.whatsappPhone && (
               <Button
-                label="WhatsApp"
+                title="WhatsApp"
                 variant="primary"
                 onPress={() => handleContact("whatsapp")}
                 style={{ ...styles.contactButton, backgroundColor: "#25D366" }}
@@ -151,14 +145,14 @@ export default function ServiceDetailScreen() {
             )}
             {provider.telegramUsername && (
               <Button
-                label="Telegram"
+                title="Telegram"
                 variant="primary"
                 onPress={() => handleContact("telegram")}
                 style={{ ...styles.contactButton, backgroundColor: "#0088cc" }}
               />
             )}
             <Button
-              label="Позвонить"
+              title="Позвонить"
               variant="primary"
               onPress={() => handleContact("phone")}
               style={{ ...styles.contactButton, backgroundColor: "#666666" }}
@@ -169,7 +163,7 @@ export default function ServiceDetailScreen() {
         {/* Booking Button */}
         <View style={styles.bookingContainer}>
           <Button
-            label="Забронировать"
+            title="Забронировать"
             variant="primary"
             onPress={() => Alert.alert("Успешно", "Услуга забронирована!")}
           />

@@ -1,3 +1,4 @@
+import { Card, Input, StarRating, Text } from "@/components/ui";
 import { useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -10,7 +11,6 @@ import {
   View,
 } from "react-native";
 import { fetchMockData, Shop } from "../../../mocks/mockData";
-import { Card, Input, StarRating, Text } from "../../../shared/components/ui";
 
 export default function SearchScreen() {
   const router = useRouter();

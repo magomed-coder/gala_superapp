@@ -1,4 +1,4 @@
-import { Text } from "@/components/ui/Text2";
+import { Text } from "@/components/ui/Text";
 import { FONTS } from "@/constants";
 import React from "react";
 import {

@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/constants";
+import { BASE_URL, endpoints } from "@/constants";
 import {
   getAccessToken,
   getRefreshToken,
@@ -6,7 +6,6 @@ import {
 } from "@/services/tokenStorage.service";
 
 import axios, { AxiosRequestConfig, InternalAxiosRequestConfig } from "axios";
-import { endpoints } from "./apiSlice";
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -56,7 +55,7 @@ api.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
-      !originalRequest.url?.includes(endpoints.auth.refresh)
+      !originalRequest.url?.includes(endpoints.refresh)
     ) {
       originalRequest._retry = true;
 
@@ -95,7 +94,7 @@ api.interceptors.response.use(
 
 export const refreshToken = async () => {
   const refresh_token = await getRefreshToken();
-  const res = await api.post(endpoints.auth.refresh, {
+  const res = await api.post(endpoints.refresh, {
     refresh: refresh_token,
   });
   const { access, refresh } = res.data;

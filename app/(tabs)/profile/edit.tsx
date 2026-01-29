@@ -1,3 +1,4 @@
+import { Button, Card, Input, Text } from "@/components/ui";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -8,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Button, Card, Input, Text } from "../../../shared/components/ui";
 import { useAuthStore } from "../../../shared/stores";
 
 export default function EditProfileScreen() {

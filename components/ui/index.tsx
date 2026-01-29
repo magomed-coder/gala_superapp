@@ -13,10 +13,11 @@ export * from "./Input";
 export * from "./InputAntd";
 export * from "./IOSSwitch";
 export * from "./RadioButton";
+export * from "./StarRating";
 export * from "./StatusScreen";
 export * from "./SwipeableModal";
 export * from "./SwipeableToast";
-export * from "./Text2";
+export * from "./Text";
 export * from "./Title";
 
 // Some modules use default exports; re-export them as named for consistency

@@ -1,3 +1,4 @@
+import { Card, Text } from "@/components/ui";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
@@ -14,7 +15,32 @@ import {
   ServiceCategory,
   ShopCategory,
 } from "../../../mocks/mockData";
-import { Card, Text } from "../../../shared/components/ui";
+
+const getIconImage = (image: string) => {
+  const imageMap: { [key: string]: any } = {
+    construct: require("../../../assets/imgs/handyAndRepair.png"),
+    medical: require("../../../assets/imgs/doc.png"),
+    pharm: require("../../../assets/imgs/pharm.png"),
+    gift: require("../../../assets/imgs/gift.png"),
+    bag: require("../../../assets/imgs/bag.png"),
+    restaurant: require("../../../assets/imgs/restaurant.png"),
+    car: require("../../../assets/imgs/car.png"),
+    bed: require("../../../assets/imgs/hotel.png"),
+    map: require("../../../assets/imgs/tour.png"),
+    cut: require("../../../assets/imgs/cut.png"),
+    sparkles: require("../../../assets/imgs/cleaning.png"),
+    water: require("../../../assets/imgs/dryclean.png"),
+    autorepair: require("../../../assets/imgs/autorepair.png"),
+    settings: require("../../../assets/imgs/autoparts.png"),
+    shirt: require("../../../assets/imgs/clothes.png"),
+    phone: require("../../../assets/imgs/phone.png"),
+    cars: require("../../../assets/imgs/cars.png"),
+    sports_nutrition: require("../../../assets/imgs/sports_nutrition.png"),
+    home: require("../../../assets/imgs/home.png"),
+    detailing: require("../../../assets/imgs/detailing.png"),
+  };
+  return imageMap[image] || require("../../../assets/imgs/default.png");
+};
 
 export default function ServicesScreen() {
   const router = useRouter();
@@ -34,32 +60,6 @@ export default function ServicesScreen() {
     };
     loadCategories();
   }, []);
-
-  const getIconImage = (image: string) => {
-    const imageMap: { [key: string]: any } = {
-      construct: require("../../../assets/imgs/handyAndRepair.png"),
-      medical: require("../../../assets/imgs/doc.png"),
-      pharm: require("../../../assets/imgs/pharm.png"),
-      gift: require("../../../assets/imgs/gift.png"),
-      bag: require("../../../assets/imgs/bag.png"),
-      restaurant: require("../../../assets/imgs/restaurant.png"),
-      car: require("../../../assets/imgs/car.png"),
-      bed: require("../../../assets/imgs/hotel.png"),
-      map: require("../../../assets/imgs/tour.png"),
-      cut: require("../../../assets/imgs/cut.png"),
-      sparkles: require("../../../assets/imgs/cleaning.png"),
-      water: require("../../../assets/imgs/dryclean.png"),
-      autorepair: require("../../../assets/imgs/autorepair.png"),
-      settings: require("../../../assets/imgs/autoparts.png"),
-      shirt: require("../../../assets/imgs/clothes.png"),
-      phone: require("../../../assets/imgs/phone.png"),
-      cars: require("../../../assets/imgs/cars.png"),
-      sports_nutrition: require("../../../assets/imgs/sports_nutrition.png"),
-      home: require("../../../assets/imgs/home.png"),
-      detailing: require("../../../assets/imgs/detailing.png"),
-    };
-    return imageMap[image] || require("../../../assets/imgs/default.png");
-  };
 
   function renderCategoryCard(
     item: ServiceCategory | ShopCategory,
@@ -91,9 +91,7 @@ export default function ServicesScreen() {
             resizeMode="contain"
           />
           <View style={styles.categoryInfo}>
-            <Text
-              style={{ fontSize: 14, fontWeight: "bold", color: "#FFFFFF" }}
-            >
+            <Text variant="r700.14" style={{ color: "#FFFFFF" }}>
               {item.name}
             </Text>
           </View>
@@ -106,7 +104,7 @@ export default function ServicesScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
-          <Text style={{ fontSize: 16 }}>Загрузка...</Text>
+          <Text variant="400.16">Загрузка...</Text>
         </View>
       </SafeAreaView>
     );
@@ -116,8 +114,8 @@ export default function ServicesScreen() {
     <SafeAreaView style={styles.container} edges={["top"]}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
-          <Text style={{ fontSize: 28, fontWeight: "bold" }}>Все услуги</Text>
-          <Text style={{ fontSize: 14, color: "#666666", marginTop: 4 }}>
+          <Text variant="r700.28">Все услуги</Text>
+          <Text variant="400.14" style={{ color: "#666666", marginTop: 4 }}>
             Выберите нужную категорию
           </Text>
         </View>
@@ -125,7 +123,7 @@ export default function ServicesScreen() {
         {/* Услуги */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={{ fontSize: 20, fontWeight: "600" }}>Услуги</Text>
+            <Text variant="r500.20">Услуги</Text>
           </View>
           <View style={styles.grid}>
             {serviceCategories.map((item) =>
@@ -137,9 +135,7 @@ export default function ServicesScreen() {
         {/* Магазины и сервисы */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={{ fontSize: 20, fontWeight: "600" }}>
-              Магазины и сервисы
-            </Text>
+            <Text variant="r500.20">Магазины и сервисы</Text>
           </View>
           <View style={styles.grid}>
             {shopCategories.map((item) => renderCategoryCard(item, "shop"))}
@@ -158,7 +154,6 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingVertical: 16,
-    backgroundColor: "#FFFFFF",
     marginBottom: 8,
   },
   loadingContainer: {

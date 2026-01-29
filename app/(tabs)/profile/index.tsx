@@ -140,7 +140,7 @@ export default function ProfileScreen() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <Text style={{ fontSize: 24, fontWeight: "bold" }}>Профиль</Text>
+          <Text variant="r700.24">Профиль</Text>
         </View>
 
         {/* Profile Card */}
@@ -155,14 +155,7 @@ export default function ProfileScreen() {
                   />
                 ) : (
                   <View style={styles.avatarPlaceholder}>
-                    <Text
-                      style={{
-                        fontSize: 32,
-                        fontWeight: "bold",
-                        color: "#FFF",
-                        lineHeight: 40,
-                      }}
-                    >
+                    <Text variant="r700.32.40" color="#FFF">
                       {profileData.firstName[0]}
                       {profileData.lastName[0]}
                     </Text>
@@ -175,11 +168,12 @@ export default function ProfileScreen() {
             </TouchableOpacity>
 
             <View style={styles.profileInfo}>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+              <Text variant="r700.20">
                 {profileData.firstName} {profileData.lastName}
               </Text>
               <Text
-                style={[styles.memberSince, { fontSize: 14, color: "#666666" }]}
+                variant="r400.14"
+                style={[styles.memberSince, { color: "#666666" }]}
               >
                 Участник с {profileData.joinDate}
               </Text>
@@ -188,9 +182,8 @@ export default function ProfileScreen() {
               <View style={styles.badgesContainer}>
                 <View style={[styles.badge, { backgroundColor: "#EFF6FF" }]}>
                   <Text
+                    variant="r700.12"
                     style={{
-                      fontSize: 12,
-                      fontWeight: "600",
                       color: "#3B82F6",
                     }}
                   >
@@ -199,9 +192,8 @@ export default function ProfileScreen() {
                 </View>
                 <View style={[styles.badge, { backgroundColor: "#F0F9FF" }]}>
                   <Text
+                    variant="r700.12"
                     style={{
-                      fontSize: 12,
-                      fontWeight: "600",
                       color: "#0EA5E9",
                     }}
                   >
@@ -217,11 +209,15 @@ export default function ProfileScreen() {
           <View style={styles.contactInfo}>
             <View style={styles.contactRow}>
               <Ionicons name="mail" size={20} color="#666666" />
-              <Text style={styles.contactText}>{profileData.email}</Text>
+              <Text variant="r400.14" style={styles.contactText}>
+                {profileData.email}
+              </Text>
             </View>
             <View style={styles.contactRow}>
               <Ionicons name="call" size={20} color="#666666" />
-              <Text style={styles.contactText}>{profileData.phone}</Text>
+              <Text variant="r400.14" style={styles.contactText}>
+                {profileData.phone}
+              </Text>
             </View>
           </View>
         </Card>
@@ -236,9 +232,7 @@ export default function ProfileScreen() {
               >
                 <View style={styles.menuItemLeft}>
                   {item.icon}
-                  <Text style={{ fontSize: 16, fontWeight: "500" }}>
-                    {item.title}
-                  </Text>
+                  <Text variant="r500.16">{item.title}</Text>
                 </View>
                 <View style={styles.menuItemRight}>
                   <Ionicons name="chevron-forward" size={20} color="#999999" />
@@ -259,7 +253,10 @@ export default function ProfileScreen() {
         />
 
         {/* Version Info */}
-        <Text style={[styles.versionText, { fontSize: 12, color: "#999999" }]}>
+        <Text
+          variant="r400.12"
+          style={[styles.versionText, { color: "#999999" }]}
+        >
           Версия 1.0.0 • 2024
         </Text>
       </ScrollView>
@@ -273,13 +270,10 @@ export default function ProfileScreen() {
       >
         <View style={styles.modalOverlay}>
           <Card style={styles.modalContent}>
+            <Text variant="r700.24">Выйти из аккаунта?</Text>
             <Text
-              style={[styles.modalTitle, { fontSize: 24, fontWeight: "700" }]}
-            >
-              Выйти из аккаунта?
-            </Text>
-            <Text
-              style={[styles.modalText, { fontSize: 16, color: "#666666" }]}
+              variant="r400.16"
+              style={[styles.modalText, { color: "#666666" }]}
             >
               Вы уверены, что хотите выйти? Вам нужно будет снова войти в
               аккаунт.
@@ -391,7 +385,6 @@ const styles = StyleSheet.create({
   },
   contactText: {
     flex: 1,
-    fontSize: 14,
     color: "#374151",
   },
   actionButtons: {

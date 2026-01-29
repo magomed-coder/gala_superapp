@@ -1,55 +1,7 @@
+import { endpoints, queryKeys } from "@/constants";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type { Order, Product, Review, ServiceCategory, Shop } from "../types";
 import { api } from "./api";
-
-export const endpoints = {
-  // Service Categories
-  serviceCategories: "/serviceCategories",
-  serviceCategory: (id: string) => `/serviceCategories/${id}`,
-
-  // Products
-  products: "/products",
-  product: (id: string) => `/products/${id}`,
-  productsByShop: (shopId: string) => `/products?shopId=${shopId}`,
-
-  // Orders
-  orders: "/orders",
-  order: (id: string) => `/orders/${id}`,
-
-  // Shops
-  shops: "/shops",
-  shop: (id: string) => `/shops/${id}`,
-
-  // Reviews
-  reviews: "/reviews",
-  review: (id: string) => `/reviews/${id}`,
-
-  // Auth
-  register: "/api/register/",
-  verifyEmail: "/api/verify-email/",
-  resendCode: "/api/resend-code/",
-  login: "/api/login/",
-  refresh: "/api/refresh/",
-  logout: "/api/logout/",
-  me: "/api/me/",
-  deleteMe: "/api/me/delete/",
-  changeEmail: "/api/change-email/",
-  changePassword: "/api/change-password/",
-} as const;
-
-// Query Keys
-const queryKeys = {
-  serviceCategories: ["serviceCategories"] as const,
-  serviceCategory: (id: string) => ["serviceCategory", id] as const,
-  products: ["products"] as const,
-  product: (id: string) => ["product", id] as const,
-  productsByShop: (shopId: string) => ["products", shopId] as const,
-  orders: ["orders"] as const,
-  order: (id: string) => ["order", id] as const,
-  shops: ["shops"] as const,
-  shop: (id: string) => ["shop", id] as const,
-  reviews: ["reviews"] as const,
-};
 
 // Service Categories
 export const useServiceCategoriesQuery = () =>

@@ -1,6 +1,6 @@
+import { Text } from "@/components/ui/Text";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "./Text";
 
 interface StarRatingProps {
   rating: number;
