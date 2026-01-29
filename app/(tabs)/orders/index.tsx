@@ -74,15 +74,11 @@ export default function OrdersScreen() {
                 },
               ]}
             >
-              <Text
-                size="xs"
-                weight="bold"
-                color={steps[index] ? "#FFF" : "#000"}
-              >
+              <Text variant="r700.12" color={steps[index] ? "#FFF" : "#000"}>
                 {index + 1}
               </Text>
             </View>
-            <Text size="xs" style={styles.stepLabel}>
+            <Text variant="r400.12" style={styles.stepLabel}>
               {step}
             </Text>
           </View>
@@ -106,10 +102,8 @@ export default function OrdersScreen() {
         contentContainerStyle={styles.content}
       >
         <View style={styles.header}>
-          <Text size="xl" weight="bold">
-            Мои заказы
-          </Text>
-          <Text size="sm" color="#666666">
+          <Text variant="r700.20">Мои заказы</Text>
+          <Text variant="r400.14" color="#666666">
             Отслеживайте статус ваших заказов
           </Text>
         </View>
@@ -137,8 +131,7 @@ export default function OrdersScreen() {
                 onPress={() => toggleFilter(filter)}
               >
                 <Text
-                  size="sm"
-                  weight={isActive ? "semibold" : "regular"}
+                  variant={isActive ? "r700.14" : "r400.14"}
                   color={isActive ? "#FFF" : "#666666"}
                 >
                   {label}
@@ -158,16 +151,14 @@ export default function OrdersScreen() {
               <Card style={styles.orderCard}>
                 <View style={styles.orderHeader}>
                   <View style={{ flex: 1 }}>
-                    <Text weight="semibold" size="lg">
-                      Заказ {order.id}
-                    </Text>
-                    <Text size="sm" color="#666666">
+                    <Text variant="r700.18">Заказ {order.id}</Text>
+                    <Text variant="r400.14" color="#666666">
                       {order.createdAt}
                     </Text>
                   </View>
                   <Badge
                     label={statusConfig[order.status].label}
-                    variant="primary"
+                    variant="success"
                   />
                 </View>
 
@@ -176,7 +167,7 @@ export default function OrdersScreen() {
                 {/* Товары */}
                 <View style={styles.itemsContainer}>
                   {order.items.map((item, idx) => (
-                    <Text key={idx} size="sm" color="#666666">
+                    <Text key={idx} variant="r400.14" color="#666666">
                       • {item.name} x{item.quantity}
                     </Text>
                   ))}
@@ -190,14 +181,12 @@ export default function OrdersScreen() {
                 {/* Сумма */}
                 <View style={styles.orderFooter}>
                   <View style={{ flex: 1 }}>
-                    <Text size="sm" color="#666666">
+                    <Text variant="r400.14" color="#666666">
                       Доставка: {order.estimatedDeliveryTime}
                     </Text>
                   </View>
                   <View style={styles.amountContainer}>
-                    <Text weight="bold" size="lg">
-                      {order.totalAmount}₽
-                    </Text>
+                    <Text variant="r700.18">{order.totalAmount}₽</Text>
                   </View>
                 </View>
               </Card>
@@ -205,7 +194,7 @@ export default function OrdersScreen() {
           ))
         ) : (
           <View style={styles.emptyContainer}>
-            <Text size="lg" weight="semibold" color="#999999">
+            <Text variant="r700.18" color="#999999">
               Нет заказов
             </Text>
           </View>

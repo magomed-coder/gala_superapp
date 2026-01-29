@@ -136,7 +136,7 @@ function parseVariant(variant?: string): TextStyle | undefined {
   // Если явно указан lineHeight (например, r400.12.12), используем его, иначе считаем автоматически
   const lineHeight = lineHeightStr
     ? parseInt(lineHeightStr, 10)
-    : Math.round(fontSize * 1.1);
+    : Math.round(fontSize * 1.2);
   return {
     fontSize,
     lineHeight,
