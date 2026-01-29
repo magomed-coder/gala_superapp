@@ -78,11 +78,6 @@ export default function ProfileScreen() {
       route: "/(tabs)/profile/favorites",
     },
     {
-      title: "Корзина",
-      icon: <Ionicons name="bag-outline" size={22} color={iconColor} />,
-      route: "/(tabs)/cart",
-    },
-    {
       title: "Платежные методы",
       icon: <Ionicons name="card-outline" size={22} color={iconColor} />,
       route: "/(tabs)/profile/payments",
