@@ -30,6 +30,7 @@ export default function OrderDetailScreen() {
     completed: { label: "Завершён", color: "#10B981" },
     in_progress: { label: "В пути", color: "#F59E0B" },
     pending: { label: "Ожидание", color: "#3B82F6" },
+    cancelled: { label: "Отменён", color: "#EF4444" },
   };
 
   if (loading || !order) {
@@ -46,33 +47,33 @@ export default function OrderDetailScreen() {
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => router.back()}>
-            <Text size="lg" color="#FF6B6B">
+            <Text variant="r400.18" color="#FF6B6B">
               ← Назад
             </Text>
           </TouchableOpacity>
-          <Text size="xl" weight="bold">
-            Заказ #{order.id}
-          </Text>
+          <Text variant="r700.20">Заказ #{order.id}</Text>
         </View>
 
         {/* Status Card */}
         <Card style={styles.statusCard}>
           <View style={styles.statusHeader}>
-            <Text size="lg" weight="bold">
-              Заказ от {order.createdAt}
-            </Text>
-            <Badge label={statusConfig[order.status].label} variant="primary" />
+            <Text variant="r700.18">Заказ от {order.createdAt}</Text>
+            <Badge label={statusConfig[order.status].label} variant="success" />
           </View>
         </Card>
 
         {/* Items */}
         <Card style={styles.itemsCard}>
-          <Text size="lg" weight="semibold" style={styles.sectionTitle}>
+          <Text variant="r700.18" style={styles.sectionTitle}>
             Товары
           </Text>
           {order.items.map((item, idx) => (
             <View key={idx}>
-              <Text size="sm" color="#333333" style={{ paddingVertical: 8 }}>
+              <Text
+                variant="r400.14"
+                color="#333333"
+                style={{ paddingVertical: 8 }}
+              >
                 {item.name} x{item.quantity} - {item.price}₽
               </Text>
               {idx < order.items.length - 1 && <Divider />}
@@ -83,10 +84,8 @@ export default function OrderDetailScreen() {
         {/* Total */}
         <Card style={styles.totalCard}>
           <View style={styles.totalRow}>
-            <Text size="lg" weight="semibold">
-              Итого
-            </Text>
-            <Text size="lg" weight="bold" color="#FF6B6B">
+            <Text variant="r700.18">Итого</Text>
+            <Text variant="r700.18" color="#FF6B6B">
               {order.totalAmount}₽
             </Text>
           </View>

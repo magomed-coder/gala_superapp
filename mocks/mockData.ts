@@ -68,11 +68,14 @@ export interface OrderItem {
 
 export interface Order {
   id: string;
-  status: "completed" | "in_progress" | "pending";
+  status: "completed" | "in_progress" | "pending" | "cancelled";
   totalAmount: number;
   createdAt: string;
   estimatedDeliveryTime: string;
   items: OrderItem[];
+  type?: "delivery" | "service" | "booking";
+  providerName?: string;
+  address?: string;
 }
 
 export interface Review {
@@ -606,6 +609,9 @@ export const orders: Order[] = [
       { name: "Молоко 1 литр", quantity: 2, price: 95 },
       { name: "Хлеб ржаной", quantity: 1, price: 85 },
     ],
+    providerName: "Магазин Продукты",
+    type: "delivery",
+    address: "ул. Примерная, д. 1",
   },
   {
     id: "ord2",
@@ -617,6 +623,9 @@ export const orders: Order[] = [
       { name: "Футболка хлопок", quantity: 2, price: 1290 },
       { name: "Джинсы классические", quantity: 1, price: 2990 },
     ],
+    providerName: "Магазин Одежды",
+    type: "delivery",
+    address: "ул. Покупок, д. 5",
   },
   {
     id: "ord3",
@@ -625,6 +634,39 @@ export const orders: Order[] = [
     createdAt: "2024-12-24T13:30:00Z",
     estimatedDeliveryTime: "2024-12-24T15:30:00Z",
     items: [{ name: "AirPods Pro", quantity: 1, price: 28990 }],
+    providerName: "Apple Store",
+    type: "delivery",
+    address: "пр. Технологий, д. 10",
+  },
+  // Новые данные для бронирования
+  {
+    id: "ord4",
+    status: "completed",
+    totalAmount: 12000,
+    createdAt: "2024-12-20T09:00:00Z",
+    estimatedDeliveryTime: "2024-12-22T12:00:00Z",
+    items: [
+      { name: "Бронирование отеля 'Престиж'", quantity: 2, price: 5000 },
+      { name: "Завтрак", quantity: 2, price: 1000 },
+    ],
+    providerName: "Отель Престиж",
+    type: "booking",
+    address: "ул. Туристическая, д. 7",
+  },
+  // Новые данные для услуги
+  {
+    id: "ord5",
+    status: "in_progress",
+    totalAmount: 3500,
+    createdAt: "2024-12-25T14:00:00Z",
+    estimatedDeliveryTime: "2024-12-25T16:00:00Z",
+    items: [
+      { name: "Уборка квартиры", quantity: 1, price: 3000 },
+      { name: "Мойка окон", quantity: 2, price: 250 },
+    ],
+    providerName: "Клининг Сервис",
+    type: "service",
+    address: "ул. Ленина, д. 42, кв. 15",
   },
 ];
 
