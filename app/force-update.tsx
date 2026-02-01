@@ -2,6 +2,7 @@
 import { IS_IOS } from "@/constants/config.constants";
 import { useAppVersionStore } from "@/contexts/version.store";
 
+import { Text } from "@/components/ui";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import {
@@ -10,7 +11,6 @@ import {
   Linking,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";

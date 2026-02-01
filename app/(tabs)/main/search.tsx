@@ -42,7 +42,7 @@ export default function MainSearchScreen() {
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.header}>
-        <Text type="h1">Поиск</Text>
+        {/* <Text type="h1">Поиск</Text> */}
         <TouchableOpacity onPress={() => router.back()} style={styles.closeBtn}>
           <Ionicons name="close" size={24} color="#000" />
         </TouchableOpacity>

@@ -128,15 +128,15 @@ export default function ProfileScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top"]}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
         {/* Header */}
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <Text variant="r700.24">Профиль</Text>
-        </View>
+        </View> */}
 
         {/* Profile Card */}
         <Card style={styles.profileCard}>

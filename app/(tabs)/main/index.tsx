@@ -7,6 +7,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  StatusBar,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -289,6 +290,7 @@ export default function HomeScreen() {
   // ────────────────────────────────────────────────
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
+      <StatusBar barStyle="dark-content" />
       {/* Sticky header */}
       <Animated.View
         style={[
@@ -394,24 +396,15 @@ export default function HomeScreen() {
                       color="#FFF"
                     />
                   </View>
-                  <Text variant="r700.12" style={styles.quickActionText}>
+                  <Text variant="r500.12" style={styles.quickActionText}>
                     {action.title}
                   </Text>
                 </TouchableOpacity>
               ))}
             </Animated.ScrollView>
           </View>
-          {/* Услуги - новый дизайн заголовка */}
-          {/* <View style={styles.section}>
-            <View style={styles.titleSection}>
-              <Text size="2xl" weight="bold" style={styles.mainTitle}>
-                Услуги
-              </Text>
-              <Text size="sm" color="#666" style={styles.subtitle}>
-                Найдите проверенных мастеров
-              </Text>
-            </View>
-          </View> */}
+
+          {/* Услуги */}
           {servicesLoading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color="#9AA9C0" />
@@ -444,10 +437,10 @@ export default function HomeScreen() {
                       />
                     </LinearGradient>
                     <View>
-                      <Text variant="r700.16" style={styles.categoryName}>
+                      <Text variant="u700.16" style={styles.categoryName}>
                         {category.name}
                       </Text>
-                      <Text variant="r400.12" color="#999">
+                      <Text variant="u400.12" color="#999">
                         {category.providers.length} мастеров
                       </Text>
                     </View>
@@ -483,17 +476,8 @@ export default function HomeScreen() {
               </View>
             ))
           )}
-          {/* Популярные магазины - новый дизайн заголовка */}
-          {/* <View style={styles.section}>
-            <View style={styles.titleSection}>
-              <Text size="2xl" weight="bold" style={styles.mainTitle}>
-                Магазины и сервисы
-              </Text>
-              <Text size="sm" color="#666" style={styles.subtitle}>
-                Доставка и самовывоз рядом с вами
-              </Text>
-            </View>
-          </View> */}
+          {/* Популярные магазины */}
+
           {shopsLoading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color="#9AA9C0" />
@@ -528,10 +512,10 @@ export default function HomeScreen() {
                       />
                     </LinearGradient>
                     <View>
-                      <Text variant="r700.16" style={styles.categoryName}>
+                      <Text variant="u700.16" style={styles.categoryName}>
                         {shopCategory.name}
                       </Text>
-                      <Text variant="r400.12" color="#999">
+                      <Text variant="u400.12" color="#999">
                         {shopCategory.shops.length} магазинов
                       </Text>
                     </View>
@@ -790,7 +774,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 8,
+    marginBottom: 5,
   },
 
   quickActionText: {
@@ -802,7 +786,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 8,
     paddingHorizontal: 20,
   },
 

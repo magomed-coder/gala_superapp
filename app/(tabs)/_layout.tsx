@@ -1,18 +1,25 @@
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { Tabs, useSegments } from "expo-router";
 import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabLayout() {
+  const segments = useSegments();
   const insets = useSafeAreaInsets();
+
+  // console.log("Segments:", segments);
+
+  const hideTabBar = segments[segments.length - 1] === "search";
+
+  const commonTabBarStyle = [
+    styles.tabBar,
+    { paddingBottom: 8 + insets.bottom, height: 70 + insets.bottom },
+  ];
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: [
-          styles.tabBar,
-          { paddingBottom: 8 + insets.bottom, height: 70 + insets.bottom },
-        ],
         tabBarActiveTintColor: "#000",
         tabBarInactiveTintColor: "#BCBBC1",
         tabBarLabelStyle: styles.tabLabel,
@@ -29,6 +36,9 @@ export default function TabLayout() {
               color={color}
             />
           ),
+          tabBarStyle: hideTabBar
+            ? [{ display: "none" }, ...commonTabBarStyle]
+            : commonTabBarStyle,
         }}
       />
 
@@ -39,6 +49,8 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <Ionicons size={26} name="search" color={color} />
           ),
+
+          tabBarStyle: commonTabBarStyle,
         }}
       />
       <Tabs.Screen
@@ -48,6 +60,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <Ionicons size={30} name="apps" color={color} />
           ),
+          tabBarStyle: commonTabBarStyle,
         }}
       />
 
@@ -58,6 +71,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <Ionicons size={26} name="list" color={color} />
           ),
+          tabBarStyle: commonTabBarStyle,
         }}
       />
 
@@ -68,6 +82,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <Feather size={26} name="user" color={color} />
           ),
+          tabBarStyle: commonTabBarStyle,
         }}
       />
     </Tabs>
