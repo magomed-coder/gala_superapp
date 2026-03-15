@@ -11,26 +11,26 @@ import {
 } from "react-native";
 import { fetchMockData, Shop } from "../../../mocks/mockData";
 
-export default function SearchResultsScreen() {
+export default function TransportResultsScreen() {
   const router = useRouter();
   const { query } = useLocalSearchParams();
-  const [shops, setShops] = useState<Shop[]>([]);
+  const [transports, setTransports] = useState<Shop[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadShops = async () => {
+    const loadTransports = async () => {
       const data = await fetchMockData("shops");
-      setShops(data);
+      setTransports(data);
       setLoading(false);
     };
-    loadShops();
+    loadTransports();
   }, []);
 
   const filteredResults = useMemo(() => {
-    return shops.filter((shop) =>
-      shop.name.toLowerCase().includes((query as string)?.toLowerCase() || ""),
+    return transports.filter((item) =>
+      item.name.toLowerCase().includes((query as string)?.toLowerCase() || ""),
     );
-  }, [shops, query]);
+  }, [transports, query]);
 
   const renderResult = ({ item }: { item: Shop }) => (
     <Card style={styles.resultCard}>
@@ -63,7 +63,7 @@ export default function SearchResultsScreen() {
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Loading...</Text>
+        <Text>Загрузка...</Text>
       </SafeAreaView>
     );
   }
@@ -79,7 +79,7 @@ export default function SearchResultsScreen() {
             </Text>
           </TouchableOpacity>
           <Text size="xl" weight="bold" style={{ marginTop: 8 }}>
-            Результаты поиска
+            Результаты перевозок
           </Text>
           <Text size="sm" color="#666666">
             Найдено: {filteredResults.length} результатов

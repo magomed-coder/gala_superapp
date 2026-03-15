@@ -9,7 +9,9 @@ export default function TabLayout() {
 
   // console.log("Segments:", segments);
 
-  const hideTabBar = segments[segments.length - 1] === "search";
+  const hideTabBar =
+    segments[segments.length - 1] === "search" ||
+    segments[segments.length - 1] === "transport";
 
   const commonTabBarStyle = [
     styles.tabBar,
@@ -43,14 +45,19 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="search"
+        name="transport"
         options={{
           title: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={26} name="search" color={color} />
+            <MaterialCommunityIcons
+              size={28}
+              name="truck-fast-outline"
+              color={color}
+            />
           ),
-
-          tabBarStyle: commonTabBarStyle,
+          tabBarStyle: hideTabBar
+            ? [{ display: "none" }, ...commonTabBarStyle]
+            : commonTabBarStyle,
         }}
       />
       <Tabs.Screen
