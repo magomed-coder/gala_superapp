@@ -1,4 +1,4 @@
-import { getScrollChromeProgress } from "@/features/home/utils/scroll-chrome-progress";
+import { getScrollChromeProgress } from "@/shared/lib/navigation/scroll-chrome-progress";
 import { useScrollChrome } from "@/shared/lib/navigation/scroll-chrome";
 import { useFocusEffect, useIsFocused } from "expo-router";
 import { useCallback } from "react";
@@ -9,20 +9,27 @@ import {
   withSpring,
 } from "react-native-reanimated";
 
-/** Связывает панели с прокруткой главной на UI-потоке; при возврате на экран показывает обе. */
-export function useHomeScrollChrome(headerHeight: number) {
+/** Связывает панели с прокруткой на UI-потоке; высота задаёт расстояние скрытия, reset возвращает панели при смене списка. */
+export function useScrollChromeController(headerHeight: number) {
   const { hiddenProgress, keepVisible } = useScrollChrome();
   const focused = useIsFocused();
   const previousOffset = useSharedValue(0);
   const previousViewportHeight = useSharedValue(-1);
   const direction = useSharedValue(0);
 
+  /** Показывает панели и сбрасывает направление перед новой позицией или другим набором данных. */
+  const reset = useCallback(() => {
+    hiddenProgress.set(0);
+    previousViewportHeight.set(-1);
+    previousOffset.set(0);
+    direction.set(0);
+  }, [hiddenProgress, previousViewportHeight, previousOffset, direction]);
+
   useFocusEffect(
     useCallback(() => {
-      hiddenProgress.set(0);
-      previousViewportHeight.set(-1);
-      return () => hiddenProgress.set(0);
-    }, [hiddenProgress, previousViewportHeight]),
+      reset();
+      return reset;
+    }, [reset]),
   );
 
   const onScroll = useAnimatedScrollHandler({
@@ -95,5 +102,5 @@ export function useHomeScrollChrome(headerHeight: number) {
     ],
   }));
 
-  return { onScroll, headerStyle };
+  return { onScroll, headerStyle, reset };
 }

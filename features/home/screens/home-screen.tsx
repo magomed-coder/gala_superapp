@@ -1,4 +1,4 @@
-import { useHomeScrollChrome } from "@/features/home/hooks/use-home-scroll-chrome";
+import { useScrollChromeController } from "@/shared/lib/navigation/use-scroll-chrome-controller";
 import { CatalogCategories } from "@/features/services/components/catalog-categories";
 import { CatalogSearchLink } from "@/features/services/components/catalog-search-link";
 import { AppFooter } from "@/shared/components/app-footer";
@@ -20,7 +20,7 @@ export default function HomeScreen() {
   const [headerHeight, setHeaderHeight] = useState(
     theme.components.search.height + theme.spacing.sm * 2,
   );
-  const { onScroll, headerStyle } = useHomeScrollChrome(headerHeight);
+  const { onScroll, headerStyle } = useScrollChromeController(headerHeight);
 
   return (
     <SafeAreaView
@@ -31,12 +31,16 @@ export default function HomeScreen() {
       }}
     >
       {/* Отступы постоянны при скролле: скрытие панелей не сдвигает строки списка. */}
+      {/* Отступ над логотипом задаёт последняя категория: spacing.lg, как в профиле. */}
       <CatalogCategories
         header={<View style={{ height: headerHeight }} />}
-        footer={<AppFooter style={{ minHeight: 64 }} />}
+        footer={<AppFooter style={{ paddingBottom: theme.spacing.xs }} />}
         stickyHeader={false}
         onScroll={onScroll}
-        contentContainerStyle={{ paddingBottom: tabBarHeight }}
+        // Под логотипом, как в заказах: spacing.xs + spacing.lg и место под навбар.
+        contentContainerStyle={{
+          paddingBottom: tabBarHeight + theme.spacing.lg,
+        }}
       />
       {/* Область обрезает уходящий поиск ниже safe area; высота учитывает системный размер текста. */}
       <View

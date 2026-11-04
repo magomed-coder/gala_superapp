@@ -1,19 +1,20 @@
 import { useScrollChrome } from "@/shared/lib/navigation/scroll-chrome";
+import { usePathname } from "expo-router";
 import { BottomTabBar, type BottomTabBarProps } from "expo-router/tabs";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
 
-/** Сдвигает стандартный навбар только на указанной вкладке; остальные сохраняют обычную компоновку. */
+/** Сдвигает навбар только на заданных страницах; вложенные детали сохраняют обычную компоновку. */
 export function ScrollAwareTabBar({
-  collapseOnRoute,
+  collapseOnPaths,
   ...props
-}: BottomTabBarProps & { collapseOnRoute: string }) {
+}: BottomTabBarProps & { collapseOnPaths: readonly string[] }) {
   const { hiddenProgress, keepVisible } = useScrollChrome();
   const height = useSharedValue(0);
-  const collapsible =
-    props.state.routes[props.state.index].name === collapseOnRoute;
+  const pathname = usePathname();
+  const collapsible = collapseOnPaths.includes(pathname);
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [
       {
@@ -24,7 +25,7 @@ export function ScrollAwareTabBar({
   }));
 
   return (
-    // На главной панель вне потока: её движение не меняет высоту списка и позицию строк.
+    // На страницах со скрытием панель вне потока: её движение не меняет высоту списка и позицию строк.
     <Animated.View
       testID="main-tab-bar"
       onLayout={(event) => height.set(event.nativeEvent.layout.height)}

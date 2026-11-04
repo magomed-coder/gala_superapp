@@ -1,135 +1,241 @@
-import { Badge } from "@/shared/components/badge";
-import { Card } from "@/shared/components/card";
-import { Divider } from "@/shared/components/divider";
-import { Text } from "@/shared/components/text";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { OrderStatus } from "@/features/orders/components/order-card";
 import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { fetchMockData, Order } from "@/shared/mocks/mock-data";
+  OrderAction,
+  OrderRefreshBar,
+  OrdersSkeleton,
+  OrderState,
+} from "@/features/orders/components/order-states";
+import { useDemoOrders } from "@/features/orders/hooks/use-demo-orders";
+import {
+  formatOrderAmount,
+  formatOrderDate,
+  isActiveOrder,
+  orderTypes,
+} from "@/features/orders/utils/order-presentation";
+import { useAppTheme } from "@/shared/theme";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { RefreshControl, ScrollView, Text, View } from "react-native";
 
+/** Показывает выбранный заказ из общего кеша; неизвестный ID не подменяется чужим заказом. */
 export default function OrderDetailScreen() {
+  const theme = useAppTheme();
   const router = useRouter();
-  const { orderId } = useLocalSearchParams();
-  const [order, setOrder] = useState<Order | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadOrder = async () => {
-      const data = await fetchMockData("orders");
-      const found = data.find((o: Order) => o.id === orderId) || data[0];
-      setOrder(found);
-      setLoading(false);
-    };
-    loadOrder();
-  }, [orderId]);
-
-  const statusConfig = {
-    completed: { label: "Завершён", color: "#10B981" },
-    in_progress: { label: "В пути", color: "#F59E0B" },
-    pending: { label: "Ожидание", color: "#3B82F6" },
-    cancelled: { label: "Отменён", color: "#EF4444" },
+  const { orderId } = useLocalSearchParams<{ orderId?: string | string[] }>();
+  const { data, isPending, isError, isFetching, refetch } = useDemoOrders();
+  const order = data?.find((item) => item.id === orderId);
+  const body = {
+    color: theme.colors.text.primary,
+    fontSize: theme.typography.fontSize.lg,
+    lineHeight: theme.typography.lineHeight.lg,
+  };
+  const caption = {
+    color: theme.colors.text.secondary,
+    fontSize: theme.typography.fontSize.md,
+    lineHeight: theme.typography.lineHeight.md,
+  };
+  const section = {
+    padding: theme.spacing.md,
+    gap: theme.spacing.md,
+    backgroundColor: theme.colors.background.elevated,
+    borderRadius: theme.radius.xxl,
+    borderCurve: "continuous" as const,
   };
 
-  if (loading || !order) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text>Loading...</Text>
-      </SafeAreaView>
-    );
-  }
-
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()}>
-            <Text variant="r400.18" color="#FF6B6B">
-              ← Назад
-            </Text>
-          </TouchableOpacity>
-          <Text variant="r700.20">Заказ #{order.id}</Text>
-        </View>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      showsVerticalScrollIndicator={false}
+      style={{ flex: 1, backgroundColor: theme.colors.background.grouped }}
+      contentContainerStyle={{
+        padding: theme.spacing.md,
+        paddingBottom: theme.spacing.xl,
+        gap: theme.spacing.lg,
+        flexGrow: 1,
+      }}
+      refreshControl={
+        <RefreshControl
+          refreshing={isFetching && data !== undefined}
+          onRefresh={() => {
+            void refetch();
+          }}
+          tintColor={theme.colors.brand.primary}
+          colors={[theme.colors.brand.primary]}
+        />
+      }
+    >
+      {/* Строка резервирует место для ошибки; обновление не сдвигает подробности. */}
+      <OrderRefreshBar
+        description="Информация о заказе"
+        busy={isFetching}
+        failed={isError && data !== undefined}
+        onRefresh={() => {
+          void refetch();
+        }}
+      />
+      {isError && data === undefined && (
+        <OrderState
+          title="Не удалось загрузить заказ"
+          description="Попробуйте ещё раз чуть позже."
+          error
+          action={
+            <OrderAction
+              label="Повторить"
+              onPress={() => {
+                void refetch();
+              }}
+              disabled={isFetching}
+            />
+          }
+        />
+      )}
+      {isPending ? (
+        <OrdersSkeleton />
+      ) : !order && data !== undefined ? (
+        <OrderState
+          title="Заказ не найден"
+          description="Возможно, ссылка устарела. Откройте нужный заказ из списка."
+          action={
+            <OrderAction
+              label="К заказам"
+              onPress={() => router.dismissTo("/(tabs)/orders")}
+            />
+          }
+        />
+      ) : null}
 
-        {/* Status Card */}
-        <Card style={styles.statusCard}>
-          <View style={styles.statusHeader}>
-            <Text variant="r700.18">Заказ от {order.createdAt}</Text>
-            <Badge label={statusConfig[order.status].label} variant="success" />
-          </View>
-        </Card>
-
-        {/* Items */}
-        <Card style={styles.itemsCard}>
-          <Text variant="r700.18" style={styles.sectionTitle}>
-            Товары
-          </Text>
-          {order.items.map((item, idx) => (
-            <View key={idx}>
-              <Text
-                variant="r400.14"
-                color="#333333"
-                style={{ paddingVertical: 8 }}
-              >
-                {item.name} x{item.quantity} - {item.price}₽
+      {order && (
+        <>
+          {/* Исполнитель, номер и статус относятся только к заказу из параметра маршрута. */}
+          <View style={section}>
+            <View style={{ gap: theme.spacing.xxs }}>
+              <Text style={caption}>
+                {orderTypes[order.type ?? "delivery"].label}
               </Text>
-              {idx < order.items.length - 1 && <Divider />}
+              <Text
+                selectable
+                style={{
+                  ...body,
+                  fontFamily: theme.typography.fontFamily.bold,
+                  fontSize: theme.typography.fontSize.h3,
+                  lineHeight: theme.typography.lineHeight.h3,
+                }}
+              >
+                {order.providerName || "Ваш заказ"}
+              </Text>
+              <Text selectable style={caption}>
+                № {order.id} · {formatOrderDate(order.createdAt)}
+              </Text>
             </View>
-          ))}
-        </Card>
-
-        {/* Total */}
-        <Card style={styles.totalCard}>
-          <View style={styles.totalRow}>
-            <Text variant="r700.18">Итого</Text>
-            <Text variant="r700.18" color="#FF6B6B">
-              {order.totalAmount}₽
-            </Text>
+            <OrderStatus order={order} />
           </View>
-        </Card>
-      </ScrollView>
-    </SafeAreaView>
+
+          {/* Состав показан полностью; длинные названия и суммы переносятся без обрезания. */}
+          <View style={section}>
+            <Text
+              accessibilityRole="header"
+              style={{
+                ...body,
+                fontFamily: theme.typography.fontFamily.medium,
+              }}
+            >
+              Состав заказа
+            </Text>
+            {order.items.length === 0 && (
+              <Text style={caption}>Состав заказа уточняется</Text>
+            )}
+            {order.items.map((item, index) => (
+              <View
+                key={`${index}-${item.name}`}
+                style={{
+                  gap: theme.spacing.xxs,
+                  paddingBottom: theme.spacing.md,
+                  borderBottomWidth: 1,
+                  borderBottomColor: theme.colors.border.subtle,
+                }}
+              >
+                <Text selectable style={body}>
+                  {item.name}
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                    gap: theme.spacing.xs,
+                  }}
+                >
+                  <Text selectable style={caption}>
+                    {item.quantity} × {formatOrderAmount(item.price)}
+                  </Text>
+                  <Text
+                    selectable
+                    style={{
+                      ...body,
+                      fontFamily: theme.typography.fontFamily.medium,
+                      fontVariant: ["tabular-nums"],
+                    }}
+                  >
+                    {formatOrderAmount(item.quantity * item.price)}
+                  </Text>
+                </View>
+              </View>
+            ))}
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+                gap: theme.spacing.xs,
+              }}
+            >
+              <Text
+                style={{
+                  ...body,
+                  fontFamily: theme.typography.fontFamily.medium,
+                }}
+              >
+                Сумма заказа
+              </Text>
+              <Text
+                selectable
+                style={{
+                  ...body,
+                  fontFamily: theme.typography.fontFamily.bold,
+                  fontSize: theme.typography.fontSize.title,
+                  lineHeight: theme.typography.lineHeight.title,
+                  fontVariant: ["tabular-nums"],
+                }}
+              >
+                {formatOrderAmount(order.totalAmount)}
+              </Text>
+            </View>
+          </View>
+
+          {/* Дата плановая, а не фактическая; отменённому заказу не обещаем выполнение. */}
+          <View style={section}>
+            {order.address && (
+              <View style={{ gap: theme.spacing.xxs }}>
+                <Text style={caption}>
+                  {order.type === "delivery" ? "Адрес доставки" : "Адрес"}
+                </Text>
+                <Text selectable style={body}>
+                  {order.address}
+                </Text>
+              </View>
+            )}
+            <View style={{ gap: theme.spacing.xxs }}>
+              <Text style={caption}>
+                {isActiveOrder(order)
+                  ? "Запланировано на"
+                  : "Плановая дата заказа"}
+              </Text>
+              <Text selectable style={body}>
+                {formatOrderDate(order.estimatedDeliveryTime, true)}
+              </Text>
+            </View>
+          </View>
+        </>
+      )}
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F5F5F5",
-  },
-  header: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  statusCard: {
-    marginHorizontal: 16,
-    marginBottom: 12,
-  },
-  statusHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  itemsCard: {
-    marginHorizontal: 16,
-    marginBottom: 12,
-  },
-  totalCard: {
-    marginHorizontal: 16,
-    marginBottom: 16,
-  },
-  totalRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  sectionTitle: {
-    marginBottom: 12,
-  },
-});

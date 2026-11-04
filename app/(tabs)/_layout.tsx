@@ -16,7 +16,10 @@ export default function TabLayout() {
     <ScrollChromeProvider>
       <Tabs
         tabBar={(props) => (
-          <ScrollAwareTabBar {...props} collapseOnRoute="services" />
+          <ScrollAwareTabBar
+            {...props}
+            collapseOnPaths={["/services", "/orders"]}
+          />
         )}
         screenOptions={{
           headerShown: false,

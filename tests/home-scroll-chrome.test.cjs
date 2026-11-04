@@ -7,7 +7,7 @@ const ts = require("typescript");
 
 const filename = path.resolve(
   __dirname,
-  "../features/home/utils/scroll-chrome-progress.ts",
+  "../shared/lib/navigation/scroll-chrome-progress.ts",
 );
 const loaded = new Module(filename, module);
 loaded._compile(
