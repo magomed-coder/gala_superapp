@@ -1,4 +1,4 @@
-# 🚀 SuperApp - Quick Start Guide
+# allin - Quick Start Guide
 
 ## What's Included
 
@@ -107,11 +107,21 @@ superapp_che/
 │   ├── search/                  # Search functionality
 │   ├── services/                # Services listing
 │   ├── orders/                  # Order management
-│   └── profile/                 # User profile
+│   ├── profile/                 # User profile
+│   ├── transport/               # Transport search
+│   └── system/                  # App updates and system screens
 ├── shared/                       # Shared resources
-│   ├── components/ui/           # Reusable UI components
+│   ├── components/              # component-name/index.tsx
+│   ├── api/                     # Shared network clients
+│   ├── constants/               # Shared configuration
+│   ├── hooks/                   # Shared hooks
+│   ├── lib/                     # Storage and infrastructure
+│   ├── mocks/                   # Mock data
+│   ├── store/                   # Shared client state
+│   ├── theme/                   # Themes and tokens
 │   ├── types/                   # TypeScript interfaces
-│   └── utils/mocks/             # Mock data
+│   └── utils/                   # Pure helpers
+├── docs/                        # Architecture and project skills
 └── package.json
 ```
 
@@ -180,18 +190,18 @@ Edit the color values in any screen's StyleSheet:
 
 ### Add New Screen
 
-1. Create folder in `features/feature-name/screens/`
-2. Create screen component
-3. Add tab in `app/(tabs)/feature-name.tsx`
-4. Update `app/(tabs)/_layout.tsx`
+1. Create `features/feature-name/screens/example-screen.tsx`.
+2. Add a route in the appropriate `app/` group that re-exports the screen.
+3. Update the relevant `_layout.tsx` when the navigation requires it.
+4. Follow the common feature folders and naming in [docs/architecture.md](docs/architecture.md).
 
 ### Modify Data
 
-Edit `shared/utils/mocks/index.ts` to change mock data.
+Edit `shared/mocks/mock-data.ts` to change mock data.
 
 ### Update UI Components
 
-All UI components are in `shared/components/ui/` - modify as needed.
+Shared UI components are in `shared/components/<component-name>/index.tsx`. Import each component from its own folder.
 
 ## Troubleshooting
 
@@ -281,7 +291,7 @@ The app is production-ready! To deploy:
 
 ## Enjoy! 🎉
 
-You now have a fully functional SuperApp with beautiful UI, complete navigation, and all core features implemented. Start developing and customizing to fit your needs!
+You now have the allin prototype with demo screens and mock data. Start developing and customizing to fit your needs!
 
 ---
 

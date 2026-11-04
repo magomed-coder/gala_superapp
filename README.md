@@ -1,8 +1,20 @@
-# Welcome to your Expo app 👋
+# allin
+
+Документация проекта: [структура приложения](docs/architecture.md), [навыки](docs/skills.md), [результаты проверки переноса](docs/migration-validation.md).
+
+Код приложения организован в `app/`, `features/` и `shared/`. Общие компоненты находятся в `shared/components/<component-name>/index.tsx`; правила именования и импорта описаны в [архитектуре](docs/architecture.md).
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
+
+This project uses **Expo SDK 58** and requires an Expo Go client for SDK 58.
+After changing SDK versions, stop the running Metro server and restart with
+`npx expo start --clear`. In Windows PowerShell, use `npx.cmd expo start --clear`
+if script execution is disabled.
+
+For SDK upgrades, follow the [Expo upgrade guide](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/)
+and run `npx expo install --check` and `npx expo-doctor` to verify dependencies.
 
 1. Install dependencies
 
