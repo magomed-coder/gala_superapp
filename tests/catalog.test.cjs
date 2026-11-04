@@ -16,8 +16,19 @@ function load(relativePath) {
   }).outputText;
   const loaded = new Module(filename, module);
   loaded.filename = filename;
-  loaded.require = (request) =>
-    request.endsWith(".png") ? request : require(request);
+  loaded.require = (request) => {
+    if (request.startsWith("@/")) {
+      const relative = request.slice(2);
+      const resolved = path.resolve(__dirname, "..", relative);
+      if (/\.(png|webp)$/.test(request)) {
+        assert.ok(fs.existsSync(resolved), `Нет изображения: ${relative}`);
+        return request;
+      }
+      if (request.endsWith(".json")) return require(resolved);
+      return load(`${relative}.ts`);
+    }
+    return require(request);
+  };
   loaded._compile(compiled, filename);
   return loaded.exports;
 }
@@ -36,7 +47,8 @@ test("Все предложения имеют уникальный маршру
     new Set(catalogCategories.map((item) => item.id)).size,
     catalogCategories.length,
   );
-  assert.ok(!catalogCategories.some((item) => item.id === "transport"));
+  assert.ok(!catalogCategories.some((item) => item.id === "delivery-moving"));
+  assert.ok(!catalogCategories.some((item) => item.id === "transport-trips"));
   for (const listing of catalogListings) {
     const parent = catalogCategories.find(
       (item) => item.id === listing.categoryId,
@@ -48,13 +60,31 @@ test("Все предложения имеют уникальный маршру
 });
 
 test("Поиск учитывает все слова, регистр и ё/е", () => {
-  const matches = filterCatalog(catalogListings, { query: "  МЫТЬЕ   окон  " });
+  const matches = filterCatalog(catalogListings, { query: "  ПРИЕМ   врачей  " });
   assert.equal(matches.length, 2);
-  assert.ok(matches.every((item) => item.subcategoryId === "windows"));
+  assert.ok(matches.every((item) => item.subcategoryId === "doctors"));
   assert.deepEqual(
     filterCatalog(catalogListings, { query: "несуществующий запрос" }),
     [],
   );
+});
+
+test("Согласованные 19 разделов и 169 подкатегорий доступны с основными изображениями", () => {
+  const sources = require("../assets/imgs/catalog/sources.json");
+  assert.equal(catalogCategories.length, 19);
+  assert.equal(catalogCategories.flatMap((category) => category.children).length, 169);
+  for (const group of sources.categories) {
+    const category = catalogCategories.find((item) => item.id === group.categoryId);
+    assert.ok(category?.image);
+    assert.deepEqual(
+      category.children.map((item) => [item.id, item.name, item.audience]),
+      group.images.map((item) => [item.subcategoryId, item.name, item.audience ?? undefined]),
+    );
+    for (const child of category.children) assert.ok(child.image);
+  }
+  const auto = catalogCategories.find((category) => category.id === "auto");
+  assert.ok(auto.children.slice(5).some((child) => child.id === "tuning"));
+  assert.equal(filterCatalog(catalogListings, { categoryId: "auto", subcategoryId: "tuning" }).length, 2);
 });
 
 test("Категория, подкатегория и цена применяются одновременно", () => {

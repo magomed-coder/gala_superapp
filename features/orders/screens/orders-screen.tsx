@@ -1,5 +1,5 @@
 import { Card } from "@/shared/components/card";
-import { IconCatalog } from "@/features/orders/components/icon-catalog";
+import { CategoryImageGallery } from "@/features/services/components/category-image-gallery";
 import { useAppTheme } from "@/shared/theme";
 import { Text } from "@/shared/components/text";
 import { Ionicons } from "@expo/vector-icons";
@@ -105,9 +105,10 @@ const ORDER_TYPES = {
   },
 };
 
+/** Открывает подборку изображений категорий с возможностью вернуться к демонстрационным заказам. */
 export default function OrdersScreen() {
   const theme = useAppTheme();
-  const [showIconCatalog, setShowIconCatalog] = useState(true);
+  const [showCategoryImages, setShowCategoryImages] = useState(true);
   const router = useRouter();
   const [filters, setFilters] = useState<string[]>(["all"]);
   const [orders, setOrders] = useState<Order[]>([]);
@@ -258,8 +259,8 @@ export default function OrdersScreen() {
     );
   };
 
-  if (showIconCatalog) {
-    return <IconCatalog onClose={() => setShowIconCatalog(false)} />;
+  if (showCategoryImages) {
+    return <CategoryImageGallery onClose={() => setShowCategoryImages(false)} />;
   }
 
   if (loading) {
@@ -277,10 +278,10 @@ export default function OrdersScreen() {
 
   return (
     <SafeAreaView edges={["top"]} style={styles.container}>
-      {/* Временный вход в подбор значка, пока пользователь выбирает оформление вкладки. */}
+      {/* Повторный просмотр иллюстраций доступен над списком заказов. */}
       <TouchableOpacity
         accessibilityRole="button"
-        onPress={() => setShowIconCatalog(true)}
+        onPress={() => setShowCategoryImages(true)}
         style={{
           minHeight: 44,
           justifyContent: "center",
@@ -288,7 +289,7 @@ export default function OrdersScreen() {
         }}
       >
         <Text style={{ color: theme.colors.text.primary }}>
-          Выбрать иконку вкладки
+          Изображения категорий
         </Text>
       </TouchableOpacity>
       <ScrollView

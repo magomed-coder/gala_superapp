@@ -4,6 +4,7 @@ export interface CatalogSubcategory {
   id: string;
   name: string;
   image: ImageProps["source"];
+  audience?: string;
 }
 
 export interface CatalogCategory extends CatalogSubcategory {

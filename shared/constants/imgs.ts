@@ -1,14 +1,14 @@
-import auto from "@/assets/imgs/auto.png";
-import autoservise from "@/assets/imgs/autoservise.png";
-import carParts from "@/assets/imgs/car_parts.png";
-import detailing from "@/assets/imgs/detailing.png";
-import documents from "@/assets/imgs/documents.png";
+import auto from "@/assets/imgs/auto.webp";
+import autoservise from "@/assets/imgs/autoservise.webp";
+import carParts from "@/assets/imgs/car_parts.webp";
+import detailing from "@/assets/imgs/detailing.webp";
+import documents from "@/assets/imgs/documents.webp";
 
-import fieldService from "@/assets/imgs/field_service.png";
-import installment from "@/assets/imgs/installment.png";
-import megaphone from "@/assets/imgs/megaphone.png";
-import towTruck from "@/assets/imgs/tow_truck.png";
-import tuning from "@/assets/imgs/tuning.png";
+import fieldService from "@/assets/imgs/field_service.webp";
+import installment from "@/assets/imgs/installment.webp";
+import megaphone from "@/assets/imgs/megaphone.webp";
+import towTruck from "@/assets/imgs/tow_truck.webp";
+import tuning from "@/assets/imgs/tuning.webp";
 
 export const imgs = {
   auto,

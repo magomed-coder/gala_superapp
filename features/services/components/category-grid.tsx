@@ -18,7 +18,9 @@ export function CategoryTile({
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={item.name}
+      accessibilityLabel={
+        item.audience ? `${item.name}, ${item.audience}` : item.name
+      }
       onPress={onPress}
       style={({ pressed }) => ({
         flex: 1,
@@ -42,6 +44,19 @@ export function CategoryTile({
       >
         {item.name}
       </Text>
+      {/* Аудитория отличает мужской и женский уход без изменения названий услуг. */}
+      {item.audience && (
+        <Text
+          style={{
+            color: theme.colors.text.secondary,
+            fontFamily: theme.typography.fontFamily.regular,
+            fontSize: theme.typography.fontSize.sm,
+            lineHeight: theme.typography.lineHeight.sm,
+          }}
+        >
+          {item.audience}
+        </Text>
+      )}
       {/* Нижние 48 pt зарезервированы под иллюстрацию; длинная подпись увеличивает плитку. */}
       <Image
         source={item.image}

@@ -1,0 +1,10 @@
+{
+  "scope": "assets/imgs (system and brand images excluded)",
+  "files": 243,
+  "beforeBytes": 72709749,
+  "afterBytes": 52094563,
+  "savedPercent": 28.4,
+  "pixelComparison": "Exact RGBA equality, including RGB under zero alpha, and identical dimensions for every image",
+  "webpFiles": 240,
+  "pngFiles": 3
+}

@@ -1,0 +1,212 @@
+[
+  {
+    "originalFile": "auto.webp",
+    "categoryId": "auto",
+    "subcategoryId": "car-sales",
+    "role": "primary",
+    "file": "auto/car-sales-original.webp"
+  },
+  {
+    "originalFile": "cars.webp",
+    "categoryId": "auto",
+    "subcategoryId": "car-sales",
+    "role": "alternative",
+    "file": "auto/car-sales-original-cars.webp"
+  },
+  {
+    "originalFile": "car.webp",
+    "categoryId": "transport-trips",
+    "subcategoryId": "passenger-transport",
+    "role": "primary",
+    "file": "transport-trips/passenger-transport-original.webp",
+    "excludedFromCatalog": true
+  },
+  {
+    "originalFile": "autoparts.webp",
+    "categoryId": "auto",
+    "subcategoryId": "tires",
+    "role": "primary",
+    "file": "auto/tires-original.webp"
+  },
+  {
+    "originalFile": "autorepair.webp",
+    "categoryId": "auto",
+    "subcategoryId": "engine-transmission",
+    "role": "primary",
+    "file": "auto/engine-transmission-original.webp"
+  },
+  {
+    "originalFile": "autoservise.webp",
+    "categoryId": "auto",
+    "subcategoryId": "maintenance",
+    "role": "primary",
+    "file": "auto/maintenance-original.webp"
+  },
+  {
+    "originalFile": "car_parts.webp",
+    "categoryId": "auto",
+    "subcategoryId": "parts-accessories",
+    "role": "primary",
+    "file": "auto/parts-accessories-original.webp"
+  },
+  {
+    "originalFile": "detailing.webp",
+    "categoryId": "auto",
+    "subcategoryId": "detailing",
+    "role": "primary",
+    "file": "auto/detailing-original.webp"
+  },
+  {
+    "originalFile": "detailing-original.webp",
+    "categoryId": "auto",
+    "subcategoryId": "detailing",
+    "role": "alternative",
+    "file": "auto/detailing-original-detailing-original.webp"
+  },
+  {
+    "originalFile": "field_service.webp",
+    "categoryId": "auto",
+    "subcategoryId": "mobile-service",
+    "role": "primary",
+    "file": "auto/mobile-service-original.webp"
+  },
+  {
+    "originalFile": "tow_truck.webp",
+    "categoryId": "auto",
+    "subcategoryId": "towing",
+    "role": "primary",
+    "file": "auto/towing-original.webp"
+  },
+  {
+    "originalFile": "documents.webp",
+    "categoryId": "auto",
+    "subcategoryId": "vehicle-documents",
+    "role": "primary",
+    "file": "auto/vehicle-documents-original.webp"
+  },
+  {
+    "originalFile": "installment.webp",
+    "categoryId": "auto",
+    "subcategoryId": "car-installments",
+    "role": "primary",
+    "file": "auto/car-installments-original.webp"
+  },
+  {
+    "originalFile": "bag.webp",
+    "categoryId": "food-groceries",
+    "subcategoryId": "grocery-stores",
+    "role": "primary",
+    "file": "food-groceries/grocery-stores-original.webp"
+  },
+  {
+    "originalFile": "cleaning.webp",
+    "categoryId": "cleaning-household",
+    "subcategoryId": "home-cleaning",
+    "role": "primary",
+    "file": "cleaning-household/home-cleaning-original.webp"
+  },
+  {
+    "originalFile": "dryclean.webp",
+    "categoryId": "cleaning-household",
+    "subcategoryId": "dry-cleaning",
+    "role": "primary",
+    "file": "cleaning-household/dry-cleaning-original.webp"
+  },
+  {
+    "originalFile": "clothes.webp",
+    "categoryId": "clothing-tailoring",
+    "subcategoryId": "mens-clothing",
+    "role": "primary",
+    "file": "clothing-tailoring/mens-clothing-original.webp"
+  },
+  {
+    "originalFile": "cut.webp",
+    "categoryId": "beauty-care",
+    "subcategoryId": "mens-haircuts",
+    "role": "primary",
+    "file": "beauty-care/mens-haircuts-original.webp"
+  },
+  {
+    "originalFile": "doc.webp",
+    "categoryId": "health",
+    "subcategoryId": "doctors",
+    "role": "primary",
+    "file": "health/doctors-original.webp"
+  },
+  {
+    "originalFile": "pharm.webp",
+    "categoryId": "health",
+    "subcategoryId": "pharmacies",
+    "role": "primary",
+    "file": "health/pharmacies-original.webp"
+  },
+  {
+    "originalFile": "gift.webp",
+    "categoryId": "flowers-gifts",
+    "subcategoryId": "gift-sets",
+    "role": "primary",
+    "file": "flowers-gifts/gift-sets-original.webp"
+  },
+  {
+    "originalFile": "handyAndRepair.webp",
+    "categoryId": "home-repair",
+    "subcategoryId": "electrical",
+    "role": "primary",
+    "file": "home-repair/electrical-original.webp"
+  },
+  {
+    "originalFile": "home.webp",
+    "categoryId": "real-estate",
+    "subcategoryId": "property-sales",
+    "role": "primary",
+    "file": "real-estate/property-sales-original.webp"
+  },
+  {
+    "originalFile": "hotel.webp",
+    "categoryId": "travel-leisure",
+    "subcategoryId": "hotels",
+    "role": "primary",
+    "file": "travel-leisure/hotels-original.webp"
+  },
+  {
+    "originalFile": "tour.webp",
+    "categoryId": "travel-leisure",
+    "subcategoryId": "excursions",
+    "role": "primary",
+    "file": "travel-leisure/excursions-original.webp"
+  },
+  {
+    "originalFile": "megaphone.webp",
+    "categoryId": "business-services",
+    "subcategoryId": "advertising-social",
+    "role": "primary",
+    "file": "business-services/advertising-social-original.webp"
+  },
+  {
+    "originalFile": "phone.webp",
+    "categoryId": "electronics",
+    "subcategoryId": "phones-accessories",
+    "role": "primary",
+    "file": "electronics/phones-accessories-original.webp"
+  },
+  {
+    "originalFile": "sports_nutrition.webp",
+    "categoryId": "sports",
+    "subcategoryId": "sports-nutrition",
+    "role": "primary",
+    "file": "sports/sports-nutrition-original.webp"
+  },
+  {
+    "originalFile": "tuning.webp",
+    "categoryId": "auto",
+    "subcategoryId": "tuning",
+    "role": "primary",
+    "file": "auto/tuning-original.webp"
+  },
+  {
+    "originalFile": "default.webp",
+    "role": "fallback",
+    "file": "fallback.webp",
+    "note": "Служебная заглушка, не отдельная подкатегория."
+  }
+]
