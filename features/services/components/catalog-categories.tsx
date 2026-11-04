@@ -6,15 +6,22 @@ import { useAppTheme } from "@/shared/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { type ReactElement, useState } from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { type FlatListProps, Pressable, Text, View } from "react-native";
+import Animated from "react-native-reanimated";
 
 /** Заголовок открывает подкатегории в нижней панели; плитка ведёт сразу к предложениям. */
 export function CatalogCategories({
   header,
   footer,
+  onScroll,
+  contentContainerStyle,
+  stickyHeader = true,
 }: {
   header: ReactElement;
   footer: ReactElement;
+  onScroll?: FlatListProps<CatalogCategory>["onScroll"];
+  contentContainerStyle?: FlatListProps<CatalogCategory>["contentContainerStyle"];
+  stickyHeader?: boolean;
 }) {
   const theme = useAppTheme();
   const router = useRouter();
@@ -23,13 +30,16 @@ export function CatalogCategories({
 
   return (
     <>
-      {/* Разделы виртуализированы; закреплённый поиск и подвал входят в тот же список. */}
-      <FlatList
+      {/* Разделы виртуализированы; экран задаёт отступы и поведение верхней панели. */}
+      <Animated.FlatList
         data={catalogCategories}
         keyExtractor={(category) => category.id}
         ListHeaderComponent={header}
         ListFooterComponent={footer}
-        stickyHeaderIndices={[0]}
+        stickyHeaderIndices={stickyHeader ? [0] : undefined}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+        contentContainerStyle={contentContainerStyle}
         contentInsetAdjustmentBehavior="automatic"
         showsVerticalScrollIndicator={false}
         initialNumToRender={4}
