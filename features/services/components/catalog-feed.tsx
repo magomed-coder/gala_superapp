@@ -26,12 +26,20 @@ export function CatalogFeed({
   onReset?: () => void;
 }) {
   const theme = useAppTheme();
-  const { fontScale } = useWindowDimensions();
+  const { fontScale, width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const columns = fontScale > 1.5 ? 1 : 2;
+  const columns = fontScale > 1.5 || width < 320 ? 1 : 2;
+  const cardWidth =
+    (width -
+      theme.spacing.md * 2 -
+      insets.left -
+      insets.right -
+      (columns - 1) * theme.spacing.sm) /
+    columns;
 
   return (
     <FlatList
+      testID="catalog-feed"
       key={columns}
       data={listings}
       numColumns={columns}
@@ -42,6 +50,9 @@ export function CatalogFeed({
       keyboardDismissMode="on-drag"
       contentContainerStyle={{
         padding: theme.spacing.md,
+        paddingTop: theme.spacing.xxs,
+        paddingLeft: theme.spacing.md + insets.left,
+        paddingRight: theme.spacing.md + insets.right,
         paddingBottom: theme.spacing.lg + insets.bottom,
         gap: theme.spacing.lg,
         flexGrow: 1,
@@ -49,7 +60,7 @@ export function CatalogFeed({
       columnWrapperStyle={columns === 2 ? { gap: theme.spacing.sm } : undefined}
       ListHeaderComponent={header}
       renderItem={({ item }) => (
-        <View style={{ flex: 1, maxWidth: columns === 2 ? "48.5%" : "100%" }}>
+        <View style={{ width: cardWidth }}>
           <ListingCard listing={item} />
         </View>
       )}

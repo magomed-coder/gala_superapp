@@ -1,12 +1,13 @@
 import { useProfileStore } from "@/features/profile/store/use-profile-store";
+import { ListingImage } from "@/features/services/components/listing-image";
 import type { CatalogListing } from "@/features/services/types/catalog.types";
+import { formatListingPrice } from "@/features/services/utils/listing-presentation";
+import { IconButton } from "@/shared/components/icon-button";
 import { useAppTheme } from "@/shared/theme";
-import { Ionicons } from "@expo/vector-icons";
-import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 
-/** Карточка предложения с отдельным действием сохранения без открытия подробностей. */
+/** Предложение в ленте: изображение, цена, название и место; избранное не открывает детали. */
 export function ListingCard({ listing }: { listing: CatalogListing }) {
   const theme = useAppTheme();
   const router = useRouter();
@@ -18,10 +19,11 @@ export function ListingCard({ listing }: { listing: CatalogListing }) {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <View testID={`listing-card-${listing.id}`} style={{ flex: 1 }}>
+      {/* Изображение и текст открывают одну карточку; цена стоит перед названием, как в референсе. */}
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel={`${listing.title}, от ${listing.price} рублей`}
+        accessibilityLabel={`${listing.title}, ${formatListingPrice(listing)}`}
         onPress={() =>
           router.push({
             pathname: "/listing/[listingId]",
@@ -35,73 +37,61 @@ export function ListingCard({ listing }: { listing: CatalogListing }) {
       >
         <View
           style={{
-            aspectRatio: 1.05,
+            aspectRatio: 1,
             overflow: "hidden",
-            borderRadius: theme.radius.lg,
-            backgroundColor: theme.colors.background.secondary,
+            borderRadius: theme.radius.md,
+            borderCurve: "continuous",
           }}
         >
-          <Image
-            source={listing.image}
-            contentFit="contain"
-            style={{ width: "100%", height: "100%" }}
-          />
+          <ListingImage source={listing.image} label={listing.title} />
         </View>
-        <Text
-          numberOfLines={3}
-          style={{
-            color: theme.colors.text.primary,
-            fontSize: theme.typography.fontSize.lg,
-            lineHeight: theme.typography.lineHeight.md,
-          }}
-        >
-          {listing.title}
-        </Text>
-        <Text
-          style={{
-            color: theme.colors.text.primary,
-            fontFamily: theme.typography.fontFamily.bold,
-            fontSize: theme.typography.fontSize.titleSm,
-          }}
-        >
-          от {listing.price.toLocaleString("ru-RU")} ₽
-        </Text>
-        <Text
-          style={{
-            color: theme.colors.text.tertiary,
-            fontSize: theme.typography.fontSize.md,
-          }}
-        >
-          {listing.location}
-        </Text>
+        <View style={{ gap: theme.spacing.xxs }}>
+          <Text
+            style={{
+              color: theme.colors.text.primary,
+              fontFamily: theme.typography.fontFamily.bold,
+              fontSize: theme.typography.fontSize.titleSm,
+              lineHeight: theme.typography.lineHeight.titleSm,
+              fontVariant: ["tabular-nums"],
+            }}
+          >
+            {formatListingPrice(listing)}
+          </Text>
+          <Text
+            style={{
+              color: theme.colors.text.primary,
+              fontSize: theme.typography.fontSize.md,
+              lineHeight: theme.typography.lineHeight.md,
+            }}
+          >
+            {listing.title}
+          </Text>
+          <Text
+            style={{
+              color: theme.colors.text.tertiary,
+              fontSize: theme.typography.fontSize.sm,
+              lineHeight: theme.typography.lineHeight.sm,
+            }}
+          >
+            {listing.location}
+          </Text>
+        </View>
       </Pressable>
-      {/* Область сердца имеет постоянный размер и не сдвигает карточку. */}
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={`${favorite ? "Убрать из избранного" : "В избранное"}: ${listing.title}`}
-        accessibilityState={{ selected: favorite }}
+
+      {/* Сердце поверх изображения занимает постоянные 48 pt во всех состояниях. */}
+      <IconButton
+        icon={favorite ? "heart" : "heart-outline"}
+        label={`${favorite ? "Убрать из избранного" : "В избранное"}: ${listing.title}`}
+        selected={favorite}
         onPress={() => toggleFavorite(listing.id)}
-        style={({ pressed }) => ({
+        color={favorite ? theme.colors.status.error : theme.colors.text.primary}
+        style={{
           position: "absolute",
           top: theme.spacing.xxs,
           right: theme.spacing.xxs,
-          width: 44,
-          height: 44,
-          borderRadius: theme.radius.full,
           backgroundColor: theme.colors.background.primary,
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: pressed ? theme.opacity.pressed : 1,
-        })}
-      >
-        <Ionicons
-          name={favorite ? "heart" : "heart-outline"}
-          size={theme.components.icon.md}
-          color={
-            favorite ? theme.colors.status.error : theme.colors.text.primary
-          }
-        />
-      </Pressable>
+        }}
+      />
     </View>
   );
 }
