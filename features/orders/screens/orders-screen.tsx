@@ -1,4 +1,6 @@
 import { Card } from "@/shared/components/card";
+import { IconCatalog } from "@/features/orders/components/icon-catalog";
+import { useAppTheme } from "@/shared/theme";
 import { Text } from "@/shared/components/text";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -104,6 +106,8 @@ const ORDER_TYPES = {
 };
 
 export default function OrdersScreen() {
+  const theme = useAppTheme();
+  const [showIconCatalog, setShowIconCatalog] = useState(true);
   const router = useRouter();
   const [filters, setFilters] = useState<string[]>(["all"]);
   const [orders, setOrders] = useState<Order[]>([]);
@@ -254,6 +258,10 @@ export default function OrdersScreen() {
     );
   };
 
+  if (showIconCatalog) {
+    return <IconCatalog onClose={() => setShowIconCatalog(false)} />;
+  }
+
   if (loading) {
     return (
       <SafeAreaView edges={["top"]} style={styles.container}>
@@ -269,6 +277,20 @@ export default function OrdersScreen() {
 
   return (
     <SafeAreaView edges={["top"]} style={styles.container}>
+      {/* Временный вход в подбор значка, пока пользователь выбирает оформление вкладки. */}
+      <TouchableOpacity
+        accessibilityRole="button"
+        onPress={() => setShowIconCatalog(true)}
+        style={{
+          minHeight: 44,
+          justifyContent: "center",
+          paddingHorizontal: theme.spacing.md,
+        }}
+      >
+        <Text style={{ color: theme.colors.text.primary }}>
+          Выбрать иконку вкладки
+        </Text>
+      </TouchableOpacity>
       <ScrollView
         showsVerticalScrollIndicator={false}
         refreshControl={
