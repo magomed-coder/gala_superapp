@@ -3,41 +3,40 @@ import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import { useAuthStore } from "@/contexts/auth.store";
-import { FONTS } from "../constants";
-import { useAppVersionStore } from "../contexts/version.store";
-import { queryClient } from "../shared/api/queryClient";
-import { sleep } from "../shared/helpers/sleep";
+import { AllinSplashScreen } from "@/shared/components/allin-splash-screen";
+import { FONTS } from "@/shared/constants";
+import { useAppVersionStore } from "@/features/system/store/version.store";
+import { queryClient } from "@/shared/api/query-client";
+import { useAppTheme } from "@/shared/theme";
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(console.warn);
 
 export const unstable_settings = {
   anchor: "(tabs)",
 };
 
-// Минимальная длительность отображения сплаш скрина в миллисекундах
-const MIN_SPLASH_DURATION = 5000;
+const MIN_SPLASH_DURATION = 800;
 
 export default function RootLayout() {
+  const theme = useAppTheme();
   const router = useRouter();
-  const { initialize, isInitializing } = useAuthStore();
-  const { checkForUpdate, needsForceUpdate } = useAppVersionStore();
-  const splashStartTime = useRef(Date.now());
-  const [splashMinDurationReached, setSplashMinDurationReached] =
-    useState(false);
+  const { needsForceUpdate } = useAppVersionStore();
+  const [logoReady, setLogoReady] = useState(false);
+  const [splashComplete, setSplashComplete] = useState(false);
 
   const [fontsLoaded, error] = useFonts({
-    [FONTS.RobotoRegular]: require("../assets/fonts/Roboto-Regular.ttf"),
-    [FONTS.RobotoMedium]: require("../assets/fonts/Roboto-Medium.ttf"),
-    [FONTS.RobotoBold]: require("../assets/fonts/Roboto-Bold.ttf"),
+    [FONTS.RobotoRegular]: require("@/assets/fonts/Roboto-Regular.ttf"),
+    [FONTS.RobotoMedium]: require("@/assets/fonts/Roboto-Medium.ttf"),
+    [FONTS.RobotoBold]: require("@/assets/fonts/Roboto-Bold.ttf"),
 
-    [FONTS.UbuntuLight]: require("../assets/fonts/Ubuntu-Light.ttf"),
-    [FONTS.UbuntuRegular]: require("../assets/fonts/Ubuntu-Regular.ttf"),
-    [FONTS.UbuntuMedium]: require("../assets/fonts/Ubuntu-Medium.ttf"),
-    [FONTS.UbuntuBold]: require("../assets/fonts/Ubuntu-Bold.ttf"),
+    [FONTS.UbuntuLight]: require("@/assets/fonts/Ubuntu-Light.ttf"),
+    [FONTS.UbuntuRegular]: require("@/assets/fonts/Ubuntu-Regular.ttf"),
+    [FONTS.UbuntuMedium]: require("@/assets/fonts/Ubuntu-Medium.ttf"),
+    [FONTS.UbuntuBold]: require("@/assets/fonts/Ubuntu-Bold.ttf"),
 
     // [FONTS.InterRegular]: require("../assets/fonts/Inter_18pt-Regular.ttf"),
     // [FONTS.InterSemiBold]: require("../assets/fonts/Inter_18pt-SemiBold.ttf"),
@@ -46,41 +45,76 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (error) throw error;
-    if (fontsLoaded) SplashScreen.hideAsync();
-  }, [fontsLoaded, error]);
+  }, [error]);
+
+  const handleSplashReady = useCallback(() => {
+    // Hide the native splash only after the branded React screen has loaded.
+    SplashScreen.hideAsync().catch(console.warn);
+    setLogoReady(true);
+  }, []);
 
   useEffect(() => {
-    const initializeApp = async () => {
-      // await Promise.all([checkForUpdate(), initialize()]);
+    if (!fontsLoaded || !logoReady) return;
+    const timer = setTimeout(
+      () => setSplashComplete(true),
+      MIN_SPLASH_DURATION,
+    );
+    return () => clearTimeout(timer);
+  }, [fontsLoaded, logoReady]);
 
-      // Гарантируем минимум 5 секунд отображения сплаша
-      const elapsedTime = Date.now() - splashStartTime.current;
-
-      if (elapsedTime < MIN_SPLASH_DURATION) {
-        await sleep(MIN_SPLASH_DURATION - elapsedTime);
-      }
-
-      // Разрешаем закрыть сплаш
-      setSplashMinDurationReached(true);
-
-      // Проверяем нужен ли force update
-      if (needsForceUpdate()) {
-        router.replace("/force-update");
-      }
-    };
-
-    initializeApp();
-  }, [checkForUpdate, initialize, needsForceUpdate, router]);
-
-  if (!fontsLoaded) return null;
+  useEffect(() => {
+    if (splashComplete && needsForceUpdate()) {
+      router.replace("/force-update");
+    }
+  }, [splashComplete, needsForceUpdate, router]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="(auth)" />
-        </Stack>
+        {fontsLoaded && (
+          <View
+            style={{ flex: 1 }}
+            accessibilityElementsHidden={!splashComplete}
+            importantForAccessibility={
+              splashComplete ? "auto" : "no-hide-descendants"
+            }
+          >
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: {
+                  backgroundColor: theme.colors.background.primary,
+                },
+                headerStyle: {
+                  backgroundColor: theme.colors.background.primary,
+                },
+                headerTintColor: theme.colors.text.primary,
+                headerShadowVisible: false,
+                headerTitleAlign: "center",
+              }}
+            >
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen name="(auth)" />
+              <Stack.Screen
+                name="category/[categoryId]/index"
+                options={{ headerShown: true, title: "Категория" }}
+              />
+              <Stack.Screen
+                name="category/[categoryId]/[subcategoryId]"
+                options={{ headerShown: true, title: "Предложения" }}
+              />
+              <Stack.Screen
+                name="listing/[listingId]"
+                options={{ headerShown: true, title: "Предложение" }}
+              />
+              <Stack.Screen
+                name="search"
+                options={{ headerShown: true, title: "Поиск" }}
+              />
+            </Stack>
+          </View>
+        )}
+        {!splashComplete && <AllinSplashScreen onReady={handleSplashReady} />}
       </GestureHandlerRootView>
     </QueryClientProvider>
   );

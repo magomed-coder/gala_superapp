@@ -1,110 +1,105 @@
-import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { Tabs, useSegments } from "expo-router";
-import { StyleSheet } from "react-native";
+import { useAppTheme } from "@/shared/theme";
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+export const unstable_settings = { anchor: "services" };
+
+/** Четыре основные задачи: найти, сохранить, проверить заказы и открыть профиль. */
 export default function TabLayout() {
-  const segments = useSegments();
+  const theme = useAppTheme();
   const insets = useSafeAreaInsets();
-
-  // console.log("Segments:", segments);
-
-  const hideTabBar =
-    segments[segments.length - 1] === "search" ||
-    segments[segments.length - 1] === "transport";
-
-  const commonTabBarStyle = [
-    styles.tabBar,
-    { paddingBottom: 8 + insets.bottom, height: 70 + insets.bottom },
-  ];
 
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#000",
-        tabBarInactiveTintColor: "#BCBBC1",
-        tabBarLabelStyle: styles.tabLabel,
+        tabBarHideOnKeyboard: true,
+        tabBarActiveTintColor: theme.colors.tabBar.active,
+        tabBarInactiveTintColor: theme.colors.tabBar.inactive,
+        tabBarStyle: {
+          backgroundColor: theme.colors.tabBar.background,
+          borderTopColor: theme.colors.border.subtle,
+          // Вкладки уже имеют внутренние отступы; safe area добавляется только снизу.
+          paddingTop: 0,
+          paddingBottom: insets.bottom,
+          height: 56 + insets.bottom,
+        },
+        tabBarLabelStyle: {
+          fontSize: theme.typography.fontSize.sm,
+          lineHeight: theme.typography.lineHeight.sm,
+          fontFamily: theme.typography.fontFamily.regular,
+        },
       }}
     >
       <Tabs.Screen
-        name="main"
-        options={{
-          title: "",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              size={28}
-              name="home-search-outline"
-              color={color}
-            />
-          ),
-          tabBarStyle: hideTabBar
-            ? [{ display: "none" }, ...commonTabBarStyle]
-            : commonTabBarStyle,
-        }}
-      />
-
-      <Tabs.Screen
-        name="transport"
-        options={{
-          title: "",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              size={28}
-              name="truck-fast-outline"
-              color={color}
-            />
-          ),
-          tabBarStyle: hideTabBar
-            ? [{ display: "none" }, ...commonTabBarStyle]
-            : commonTabBarStyle,
-        }}
-      />
-      <Tabs.Screen
         name="services"
         options={{
-          title: "",
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={30} name="apps" color={color} />
+          title: "Услуги",
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name={focused ? "grid" : "grid-outline"}
+              size={theme.components.tabBar.icon}
+              color={
+                focused
+                  ? theme.colors.tabBar.active
+                  : theme.colors.tabBar.inactive
+              }
+            />
           ),
-          tabBarStyle: commonTabBarStyle,
         }}
       />
-
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: "Избранное",
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name={focused ? "bookmark" : "bookmark-outline"}
+              size={theme.components.tabBar.icon}
+              color={
+                focused
+                  ? theme.colors.tabBar.active
+                  : theme.colors.tabBar.inactive
+              }
+            />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="orders"
         options={{
-          title: "",
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={26} name="list" color={color} />
+          title: "Заказы",
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name={focused ? "clipboard" : "clipboard-outline"}
+              size={theme.components.tabBar.icon}
+              color={
+                focused
+                  ? theme.colors.tabBar.active
+                  : theme.colors.tabBar.inactive
+              }
+            />
           ),
-          tabBarStyle: commonTabBarStyle,
         }}
       />
-
       <Tabs.Screen
         name="profile"
         options={{
-          title: "",
-          tabBarIcon: ({ color }) => (
-            <Feather size={26} name="user" color={color} />
+          title: "Профиль",
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name={focused ? "person" : "person-outline"}
+              size={theme.components.tabBar.icon}
+              color={
+                focused
+                  ? theme.colors.tabBar.active
+                  : theme.colors.tabBar.inactive
+              }
+            />
           ),
-          tabBarStyle: commonTabBarStyle,
         }}
       />
     </Tabs>
   );
 }
-
-const styles = StyleSheet.create({
-  tabBar: {
-    borderTopWidth: 1,
-    borderTopColor: "transparent",
-    backgroundColor: "rgba(248, 249, 250, 0.96)",
-    paddingTop: 8,
-  },
-  tabLabel: {
-    fontSize: 12,
-    fontWeight: "600",
-  },
-});
