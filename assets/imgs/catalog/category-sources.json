@@ -75,7 +75,7 @@
     },
     {
       "categoryId": "electronics",
-      "categoryName": "Техника и электроника",
+      "categoryName": "Техника",
       "file": "electronics.webp",
       "thiingsSlug": "laptop",
       "sourcePage": "https://www.thiings.co/things/laptop",
@@ -109,7 +109,7 @@
     },
     {
       "categoryId": "beauty-care",
-      "categoryName": "Красота и уход",
+      "categoryName": "Красота",
       "file": "beauty-care.webp",
       "thiingsSlug": "hair-dryer",
       "sourcePage": "https://www.thiings.co/things/hair-dryer",
@@ -211,7 +211,7 @@
     },
     {
       "categoryId": "weddings-events",
-      "categoryName": "Свадьбы и семейные события",
+      "categoryName": "Свадьбы и праздники",
       "file": "weddings-events.webp",
       "thiingsSlug": "wedding-arch",
       "sourcePage": "https://www.thiings.co/things/wedding-arch",
@@ -245,7 +245,7 @@
     },
     {
       "categoryId": "travel-leisure",
-      "categoryName": "Отдых и путешествия",
+      "categoryName": "Отдых и туризм",
       "file": "travel-leisure.webp",
       "thiingsSlug": "suitcase",
       "sourcePage": "https://www.thiings.co/things/suitcase",
@@ -279,7 +279,7 @@
     },
     {
       "categoryId": "business-services",
-      "categoryName": "Услуги для бизнеса",
+      "categoryName": "Бизнес",
       "file": "business-services.webp",
       "thiingsSlug": "briefcase",
       "sourcePage": "https://www.thiings.co/things/briefcase",
@@ -330,7 +330,7 @@
     },
     {
       "categoryId": "religion-community",
-      "categoryName": "Религиозное обучение и община",
+      "categoryName": "Ислам и община",
       "file": "religion-community.webp",
       "thiingsSlug": "quran",
       "sourcePage": "https://www.thiings.co/things/quran",

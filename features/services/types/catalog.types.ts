@@ -10,10 +10,18 @@ export interface CatalogSubcategory {
 export interface CatalogCategory extends CatalogSubcategory {
   description: string;
   children: CatalogSubcategory[];
+  groups: CatalogCategoryGroup[];
+}
+
+export interface CatalogCategoryGroup {
+  id: string;
+  name: string;
+  children: CatalogSubcategory[];
 }
 
 export interface CatalogListing {
   id: string;
+  kind: "product" | "service";
   categoryId: string;
   subcategoryId: string;
   title: string;

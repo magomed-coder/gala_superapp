@@ -2,6 +2,7 @@ import { catalogCategories } from "@/features/services/api/catalog.data";
 import { CategoryGrid } from "@/features/services/components/category-grid";
 import { CategorySheet } from "@/features/services/components/category-sheet";
 import type { CatalogCategory } from "@/features/services/types/catalog.types";
+import { getCategoryPreview } from "@/features/services/utils/category-preview";
 import { useAppTheme } from "@/shared/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -84,8 +85,9 @@ export function CatalogCategories({
                 color={theme.colors.text.primary}
               />
             </Pressable>
+            {/* Пять примеров представляют все группы объединённого раздела. */}
             <CategoryGrid
-              items={category.children.slice(0, 5)}
+              items={getCategoryPreview(category)}
               onSelect={(subcategoryId) =>
                 router.push({
                   pathname: "/category/[categoryId]/[subcategoryId]",

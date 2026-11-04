@@ -1,4 +1,4 @@
-import { CategoryGrid } from "@/features/services/components/category-grid";
+import { CategoryGroups } from "@/features/services/components/category-groups";
 import type { CatalogCategory } from "@/features/services/types/catalog.types";
 import GenericBottomSheet from "@/shared/components/generic-bottom-sheet";
 import { useAppTheme } from "@/shared/theme";
@@ -105,8 +105,9 @@ export function CategorySheet({
                 />
               </Pressable>
             </View>
-            <CategoryGrid
-              items={category.children}
+            {/* Все подкатегории разделены по темам внутри объединённого раздела. */}
+            <CategoryGroups
+              category={category}
               onSelect={(id) => {
                 if (pendingSelection.current) return;
                 pendingSelection.current = { subcategoryId: id };

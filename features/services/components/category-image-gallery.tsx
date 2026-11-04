@@ -72,7 +72,7 @@ function IllustrationTile({ item }: { item: CategoryIllustration }) {
   );
 }
 
-/** Временная галерея 20 категорий; onClose возвращает пользователя к списку заказов. */
+/** Галерея действующих категорий; onClose возвращает пользователя к списку заказов. */
 export function CategoryImageGallery({ onClose }: { onClose: () => void }) {
   const theme = useAppTheme();
   const { width, fontScale } = useWindowDimensions();

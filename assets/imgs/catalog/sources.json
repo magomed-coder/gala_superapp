@@ -53,7 +53,7 @@
         },
         {
           "subcategoryId": "bakeries-cakes",
-          "name": "Пекарни и торты на заказ",
+          "name": "Выпечка и торты",
           "file": "food-groceries/bakeries-cakes.webp",
           "audience": null,
           "thiingsSlug": "bakery-storefront",
@@ -73,7 +73,7 @@
         },
         {
           "subcategoryId": "grocery-stores",
-          "name": "Продуктовые магазины",
+          "name": "Продукты",
           "audience": null,
           "file": "food-groceries/grocery-stores-original.webp",
           "source": "existing-project-asset",
@@ -87,7 +87,7 @@
           "alternativeImages": [
             {
               "subcategoryId": "grocery-stores",
-              "name": "Продуктовые магазины",
+              "name": "Продукты",
               "file": "food-groceries/grocery-stores.webp",
               "audience": null,
               "thiingsSlug": "grocery-bag",
@@ -199,7 +199,7 @@
         },
         {
           "subcategoryId": "renovation",
-          "name": "Ремонт квартир и домов",
+          "name": "Ремонт жилья",
           "file": "home-repair/renovation.webp",
           "audience": null,
           "thiingsSlug": "paint-roller",
@@ -239,7 +239,7 @@
         },
         {
           "subcategoryId": "heating-water",
-          "name": "Отопление и водоснабжение",
+          "name": "Отопление и вода",
           "file": "home-repair/heating-water.webp",
           "audience": null,
           "thiingsSlug": "radiator",
@@ -259,7 +259,7 @@
         },
         {
           "subcategoryId": "air-conditioning",
-          "name": "Кондиционеры и вентиляция",
+          "name": "Климатическая техника",
           "file": "home-repair/air-conditioning.webp",
           "audience": null,
           "thiingsSlug": "air-conditioner",
@@ -345,7 +345,7 @@
       "images": [
         {
           "subcategoryId": "home-cleaning",
-          "name": "Уборка квартир и домов",
+          "name": "Уборка жилья",
           "audience": null,
           "file": "cleaning-household/home-cleaning-original.webp",
           "source": "existing-project-asset",
@@ -359,7 +359,7 @@
           "alternativeImages": [
             {
               "subcategoryId": "home-cleaning",
-              "name": "Уборка квартир и домов",
+              "name": "Уборка жилья",
               "file": "cleaning-household/home-cleaning.webp",
               "audience": null,
               "thiingsSlug": "cleaning-kit",
@@ -485,7 +485,7 @@
         },
         {
           "subcategoryId": "pest-control",
-          "name": "Дезинсекция и дератизация",
+          "name": "Борьба с вредителями",
           "file": "cleaning-household/pest-control.webp",
           "audience": null,
           "thiingsSlug": "handheld-fumigation-sprayer",
@@ -611,7 +611,7 @@
         },
         {
           "subcategoryId": "furniture-repair",
-          "name": "Ремонт и перетяжка мебели",
+          "name": "Ремонт мебели",
           "file": "furniture-interior/furniture-repair.webp",
           "audience": null,
           "thiingsSlug": "staple-gun",
@@ -713,11 +713,11 @@
     },
     {
       "categoryId": "electronics",
-      "categoryName": "Техника и электроника",
+      "categoryName": "Техника",
       "images": [
         {
           "subcategoryId": "phone-repair",
-          "name": "Ремонт телефонов и планшетов",
+          "name": "Ремонт гаджетов",
           "file": "electronics/phone-repair.webp",
           "audience": null,
           "thiingsSlug": "cracked-phone-screen",
@@ -737,7 +737,7 @@
         },
         {
           "subcategoryId": "computer-repair",
-          "name": "Ремонт компьютеров и ноутбуков",
+          "name": "Ремонт компьютеров",
           "file": "electronics/computer-repair.webp",
           "audience": null,
           "thiingsSlug": "pc-motherboard",
@@ -757,7 +757,7 @@
         },
         {
           "subcategoryId": "appliance-repair",
-          "name": "Ремонт бытовой техники",
+          "name": "Ремонт техники",
           "file": "electronics/appliance-repair.webp",
           "audience": null,
           "thiingsSlug": "washing-machine",
@@ -777,7 +777,7 @@
         },
         {
           "subcategoryId": "appliance-installation",
-          "name": "Установка и подключение техники",
+          "name": "Установка техники",
           "file": "electronics/appliance-installation.webp",
           "audience": null,
           "thiingsSlug": "extension-cord",
@@ -797,7 +797,7 @@
         },
         {
           "subcategoryId": "internet-wifi",
-          "name": "Настройка интернета и Wi-Fi",
+          "name": "Настройка сети",
           "file": "electronics/internet-wifi.webp",
           "audience": null,
           "thiingsSlug": "router",
@@ -817,7 +817,7 @@
         },
         {
           "subcategoryId": "security-intercom",
-          "name": "Видеонаблюдение и домофоны",
+          "name": "Системы безопасности",
           "file": "electronics/security-intercom.webp",
           "audience": null,
           "thiingsSlug": "cctv",
@@ -877,7 +877,7 @@
         },
         {
           "subcategoryId": "computers-parts",
-          "name": "Компьютеры и комплектующие",
+          "name": "Компьютерная техника",
           "file": "electronics/computers-parts.webp",
           "audience": null,
           "thiingsSlug": "desktop-computer",
@@ -923,7 +923,7 @@
       "images": [
         {
           "subcategoryId": "maintenance",
-          "name": "Автосервис и обслуживание",
+          "name": "Автосервис",
           "audience": null,
           "file": "auto/maintenance-original.webp",
           "source": "existing-project-asset",
@@ -963,7 +963,7 @@
         },
         {
           "subcategoryId": "diagnostics",
-          "name": "Диагностика и автоэлектрика",
+          "name": "Диагностика и электрика",
           "file": "auto/diagnostics.webp",
           "audience": null,
           "thiingsSlug": "car-battery",
@@ -983,7 +983,7 @@
         },
         {
           "subcategoryId": "engine-transmission",
-          "name": "Ремонт двигателя и коробки",
+          "name": "Двигатель и коробка",
           "audience": null,
           "file": "auto/engine-transmission-original.webp",
           "source": "existing-project-asset",
@@ -997,7 +997,7 @@
           "alternativeImages": [
             {
               "subcategoryId": "engine-transmission",
-              "name": "Ремонт двигателя и коробки",
+              "name": "Двигатель и коробка",
               "file": "auto/engine-transmission.webp",
               "audience": null,
               "thiingsSlug": "engine",
@@ -1044,7 +1044,7 @@
         },
         {
           "subcategoryId": "body-paint",
-          "name": "Кузовной ремонт и покраска",
+          "name": "Кузов и покраска",
           "file": "auto/body-paint.webp",
           "audience": null,
           "thiingsSlug": "spraycan",
@@ -1104,7 +1104,7 @@
         },
         {
           "subcategoryId": "detailing",
-          "name": "Детейлинг и химчистка",
+          "name": "Уход за машиной",
           "audience": null,
           "file": "auto/detailing-original.webp",
           "source": "existing-project-asset",
@@ -1118,7 +1118,7 @@
           "alternativeImages": [
             {
               "subcategoryId": "detailing",
-              "name": "Детейлинг и химчистка",
+              "name": "Уход за машиной",
               "file": "auto/detailing.webp",
               "audience": null,
               "thiingsSlug": "microfiber-towel",
@@ -1199,7 +1199,7 @@
         },
         {
           "subcategoryId": "car-inspection",
-          "name": "Подбор и проверка авто",
+          "name": "Подбор и осмотр",
           "file": "auto/car-inspection.webp",
           "audience": null,
           "thiingsSlug": "blue-car",
@@ -1219,7 +1219,7 @@
         },
         {
           "subcategoryId": "car-sales",
-          "name": "Автосалоны и продажа авто",
+          "name": "Продажа машин",
           "audience": null,
           "file": "auto/car-sales-original.webp",
           "source": "existing-project-asset",
@@ -1290,7 +1290,7 @@
         },
         {
           "subcategoryId": "vehicle-documents",
-          "name": "Оформление автодокументов",
+          "name": "Документы на машину",
           "audience": null,
           "file": "auto/vehicle-documents-original.webp",
           "source": "existing-project-asset",
@@ -1346,7 +1346,7 @@
     },
     {
       "categoryId": "beauty-care",
-      "categoryName": "Красота и уход",
+      "categoryName": "Красота",
       "images": [
         {
           "subcategoryId": "mens-haircuts",
@@ -1390,7 +1390,7 @@
         },
         {
           "subcategoryId": "beard-grooming",
-          "name": "Стрижка и оформление бороды",
+          "name": "Уход за бородой",
           "file": "beauty-care/beard-grooming.webp",
           "audience": "Для мужчин",
           "thiingsSlug": "electric-shaver",
@@ -1410,7 +1410,7 @@
         },
         {
           "subcategoryId": "mens-hair-care",
-          "name": "Уход за волосами и кожей головы",
+          "name": "Уход за волосами",
           "file": "beauty-care/mens-hair-care.webp",
           "audience": "Для мужчин",
           "thiingsSlug": "tooth-comb",
@@ -1470,7 +1470,7 @@
         },
         {
           "subcategoryId": "hair-color-care",
-          "name": "Окрашивание и уход за волосами",
+          "name": "Окрашивание и уход",
           "file": "beauty-care/hair-color-care.webp",
           "audience": "Для женщин",
           "thiingsSlug": "hair-dye",
@@ -1550,7 +1550,7 @@
         },
         {
           "subcategoryId": "face-body-care",
-          "name": "Уход за лицом и телом",
+          "name": "Уход за кожей",
           "file": "beauty-care/face-body-care.webp",
           "audience": "Для женщин",
           "thiingsSlug": "moisturizer",
@@ -1570,7 +1570,7 @@
         },
         {
           "subcategoryId": "spa-hammam",
-          "name": "SPA и хаммам",
+          "name": "Спа и хаммам",
           "file": "beauty-care/spa-hammam.webp",
           "audience": "Для женщин",
           "thiingsSlug": "towel",
@@ -1676,7 +1676,7 @@
         },
         {
           "subcategoryId": "diagnostics",
-          "name": "УЗИ и диагностика",
+          "name": "Диагностика",
           "file": "health/diagnostics.webp",
           "audience": null,
           "thiingsSlug": "medical-report",
@@ -1717,7 +1717,7 @@
         },
         {
           "subcategoryId": "eye-care",
-          "name": "Офтальмология и оптика",
+          "name": "Зрение и оптика",
           "file": "health/eye-care.webp",
           "audience": null,
           "thiingsSlug": "eye-chart",
@@ -1737,7 +1737,7 @@
         },
         {
           "subcategoryId": "rehabilitation",
-          "name": "Реабилитация и лечебная физкультура",
+          "name": "Реабилитация",
           "file": "health/rehabilitation.webp",
           "audience": null,
           "thiingsSlug": "resistance-band",
@@ -1777,7 +1777,7 @@
         },
         {
           "subcategoryId": "psychology",
-          "name": "Психологическая помощь",
+          "name": "Психологи",
           "file": "health/psychology.webp",
           "audience": null,
           "thiingsSlug": "brain",
@@ -1922,7 +1922,7 @@
         },
         {
           "subcategoryId": "creative-clubs",
-          "name": "Детские творческие кружки",
+          "name": "Творческие кружки",
           "file": "children-family/creative-clubs.webp",
           "audience": null,
           "thiingsSlug": "crayons",
@@ -1962,7 +1962,7 @@
         },
         {
           "subcategoryId": "baby-equipment-rental",
-          "name": "Прокат колясок и детского оборудования",
+          "name": "Прокат для детей",
           "file": "children-family/baby-equipment-rental.webp",
           "audience": null,
           "thiingsSlug": "stroller",
@@ -2008,7 +2008,7 @@
         },
         {
           "subcategoryId": "tutoring",
-          "name": "Школьные репетиторы",
+          "name": "Репетиторы",
           "file": "education/tutoring.webp",
           "audience": null,
           "thiingsSlug": "notebook",
@@ -2028,7 +2028,7 @@
         },
         {
           "subcategoryId": "exam-preparation",
-          "name": "Подготовка к ОГЭ и ЕГЭ",
+          "name": "Подготовка к экзаменам",
           "file": "education/exam-preparation.webp",
           "audience": null,
           "thiingsSlug": "clipboard",
@@ -2090,7 +2090,7 @@
         },
         {
           "subcategoryId": "programming",
-          "name": "Программирование и компьютерная грамотность",
+          "name": "Компьютерные курсы",
           "file": "education/programming.webp",
           "audience": null,
           "thiingsSlug": "laptop",
@@ -2110,7 +2110,7 @@
         },
         {
           "subcategoryId": "vocational-training",
-          "name": "Профессиональные курсы",
+          "name": "Обучение профессиям",
           "file": "education/vocational-training.webp",
           "audience": null,
           "thiingsSlug": "graduation-cap",
@@ -2176,7 +2176,7 @@
       "images": [
         {
           "subcategoryId": "fitness-training",
-          "name": "Залы, фитнес и тренеры",
+          "name": "Фитнес",
           "file": "sports/fitness-training.webp",
           "audience": null,
           "thiingsSlug": "barbell",
@@ -2236,7 +2236,7 @@
         },
         {
           "subcategoryId": "team-sports",
-          "name": "Футбол и командные виды спорта",
+          "name": "Командный спорт",
           "file": "sports/team-sports.webp",
           "audience": null,
           "thiingsSlug": "soccer-ball",
@@ -2296,7 +2296,7 @@
         },
         {
           "subcategoryId": "venue-rental",
-          "name": "Аренда спортивных площадок",
+          "name": "Аренда площадок",
           "file": "sports/venue-rental.webp",
           "audience": null,
           "thiingsSlug": "basketball-court",
@@ -2542,7 +2542,7 @@
         },
         {
           "subcategoryId": "clothing-repair",
-          "name": "Ремонт и подгонка одежды",
+          "name": "Ремонт одежды",
           "file": "clothing-tailoring/clothing-repair.webp",
           "audience": null,
           "thiingsSlug": "tailors-scissors",
@@ -2584,11 +2584,11 @@
     },
     {
       "categoryId": "weddings-events",
-      "categoryName": "Свадьбы и семейные события",
+      "categoryName": "Свадьбы и праздники",
       "images": [
         {
           "subcategoryId": "wedding-planning",
-          "name": "Организация свадьбы",
+          "name": "Свадьба под ключ",
           "file": "weddings-events/wedding-planning.webp",
           "audience": null,
           "thiingsSlug": "wedding-arch",
@@ -2608,7 +2608,7 @@
         },
         {
           "subcategoryId": "nikah-planning",
-          "name": "Организация никаха",
+          "name": "Никах под ключ",
           "file": "weddings-events/nikah-planning.webp",
           "audience": null,
           "thiingsSlug": "quran",
@@ -2648,7 +2648,7 @@
         },
         {
           "subcategoryId": "chefs",
-          "name": "Повара для свадьбы",
+          "name": "Свадебные повара",
           "file": "weddings-events/chefs.webp",
           "audience": null,
           "thiingsSlug": "chef-hat",
@@ -2668,7 +2668,7 @@
         },
         {
           "subcategoryId": "event-staff",
-          "name": "Персонал для свадьбы",
+          "name": "Свадебный персонал",
           "file": "weddings-events/event-staff.png",
           "audience": null,
           "thiingsSlug": "waiter",
@@ -2689,7 +2689,7 @@
         },
         {
           "subcategoryId": "event-decor",
-          "name": "Оформление и декор",
+          "name": "Декор праздников",
           "file": "weddings-events/event-decor.webp",
           "audience": null,
           "thiingsSlug": "bridal-bouquet",
@@ -2769,7 +2769,7 @@
         },
         {
           "subcategoryId": "outfit-rental",
-          "name": "Прокат праздничных нарядов",
+          "name": "Прокат нарядов",
           "file": "weddings-events/outfit-rental.webp",
           "audience": null,
           "thiingsSlug": "wedding-dress",
@@ -2896,7 +2896,7 @@
         },
         {
           "subcategoryId": "personalized-gifts",
-          "name": "Подарки с именем и гравировкой",
+          "name": "Подарки на заказ",
           "file": "flowers-gifts/personalized-gifts.webp",
           "audience": null,
           "thiingsSlug": "name-plate",
@@ -2919,7 +2919,7 @@
     },
     {
       "categoryId": "travel-leisure",
-      "categoryName": "Отдых и путешествия",
+      "categoryName": "Отдых и туризм",
       "images": [
         {
           "subcategoryId": "hotels",
@@ -3003,7 +3003,7 @@
         },
         {
           "subcategoryId": "holiday-cottages",
-          "name": "Коттеджи для отдыха",
+          "name": "Коттеджи",
           "file": "travel-leisure/holiday-cottages.webp",
           "audience": null,
           "thiingsSlug": "mountain-cabin",
@@ -3063,7 +3063,7 @@
         },
         {
           "subcategoryId": "guided-hikes",
-          "name": "Походы с проводником",
+          "name": "Походы с гидом",
           "file": "travel-leisure/guided-hikes.webp",
           "audience": null,
           "thiingsSlug": "hiking-backpack",
@@ -3209,7 +3209,7 @@
         },
         {
           "subcategoryId": "property-sales",
-          "name": "Покупка и продажа жилья",
+          "name": "Продажа жилья",
           "audience": null,
           "file": "real-estate/property-sales-original.webp",
           "source": "existing-project-asset",
@@ -3223,7 +3223,7 @@
           "alternativeImages": [
             {
               "subcategoryId": "property-sales",
-              "name": "Покупка и продажа жилья",
+              "name": "Продажа жилья",
               "file": "real-estate/property-sales.webp",
               "audience": null,
               "thiingsSlug": "apartment-building",
@@ -3269,7 +3269,7 @@
         },
         {
           "subcategoryId": "land",
-          "name": "Земельные участки",
+          "name": "Участки",
           "file": "real-estate/land.webp",
           "audience": null,
           "thiingsSlug": "blueprint",
@@ -3310,7 +3310,7 @@
         },
         {
           "subcategoryId": "realtors",
-          "name": "Услуги риелтора",
+          "name": "Риелторы",
           "file": "real-estate/realtors.webp",
           "audience": null,
           "thiingsSlug": "house-key",
@@ -3332,7 +3332,7 @@
     },
     {
       "categoryId": "business-services",
-      "categoryName": "Услуги для бизнеса",
+      "categoryName": "Бизнес",
       "images": [
         {
           "subcategoryId": "accounting",
@@ -3356,7 +3356,7 @@
         },
         {
           "subcategoryId": "legal",
-          "name": "Юридические услуги",
+          "name": "Юристы",
           "file": "business-services/legal.webp",
           "audience": null,
           "thiingsSlug": "scales-of-justice",
@@ -3436,7 +3436,7 @@
         },
         {
           "subcategoryId": "advertising-social",
-          "name": "Реклама и ведение соцсетей",
+          "name": "Продвижение бизнеса",
           "audience": null,
           "file": "business-services/advertising-social-original.webp",
           "source": "existing-project-asset",
@@ -3450,7 +3450,7 @@
           "alternativeImages": [
             {
               "subcategoryId": "advertising-social",
-              "name": "Реклама и ведение соцсетей",
+              "name": "Продвижение бизнеса",
               "file": "business-services/advertising-social.webp",
               "audience": null,
               "thiingsSlug": "megaphone",
@@ -3662,7 +3662,7 @@
         },
         {
           "subcategoryId": "garden-tools",
-          "name": "Садовые инструменты и техника",
+          "name": "Садовый инвентарь",
           "file": "garden-farming/garden-tools.webp",
           "audience": null,
           "thiingsSlug": "wheelbarrow",
@@ -3702,7 +3702,7 @@
         },
         {
           "subcategoryId": "animal-supplies",
-          "name": "Корма и товары для животных",
+          "name": "Товары для животных",
           "file": "garden-farming/animal-supplies.webp",
           "audience": null,
           "thiingsSlug": "pet-food-bowl",
@@ -3722,7 +3722,7 @@
         },
         {
           "subcategoryId": "veterinary",
-          "name": "Ветеринарные услуги",
+          "name": "Ветеринары",
           "file": "garden-farming/veterinary.webp",
           "audience": null,
           "thiingsSlug": "pet-carrier",
@@ -3744,11 +3744,11 @@
     },
     {
       "categoryId": "religion-community",
-      "categoryName": "Религиозное обучение и община",
+      "categoryName": "Ислам и община",
       "images": [
         {
           "subcategoryId": "quran-reading",
-          "name": "Обучение чтению Корана",
+          "name": "Чтение Корана",
           "file": "religion-community/quran-reading.webp",
           "audience": null,
           "thiingsSlug": "quran",
@@ -3851,7 +3851,7 @@
         },
         {
           "subcategoryId": "prayer-supplies",
-          "name": "Молитвенные принадлежности",
+          "name": "Всё для молитвы",
           "file": "religion-community/prayer-supplies.webp",
           "audience": null,
           "thiingsSlug": "prayer-beads",
@@ -3871,7 +3871,7 @@
         },
         {
           "subcategoryId": "community-meetings",
-          "name": "Занятия и встречи общины",
+          "name": "Жизнь общины",
           "file": "religion-community/community-meetings.webp",
           "audience": null,
           "thiingsSlug": "conference-table",
@@ -3892,7 +3892,7 @@
         },
         {
           "subcategoryId": "mosques-centers",
-          "name": "Мечети и исламские центры",
+          "name": "Мечети и центры",
           "file": "religion-community/mosques-centers.webp",
           "audience": null,
           "thiingsSlug": "mosque",
