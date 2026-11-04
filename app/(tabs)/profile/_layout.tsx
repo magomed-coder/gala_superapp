@@ -7,7 +7,7 @@ export default function ProfileLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="edit" />
       <Stack.Screen name="addresses" />
       <Stack.Screen name="settings" />
