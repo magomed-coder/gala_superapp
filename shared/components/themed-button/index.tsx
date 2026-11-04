@@ -24,8 +24,10 @@ type ButtonProps = {
   rightIcon?: ReactNode;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  accessibilityLabel?: string;
 };
 
+/** Подбирает цвета существующего варианта кнопки из активной темы. */
 function resolveVariantColors(
   variant: ButtonVariant,
   colors: ReturnType<typeof useAppTheme>["colors"],
@@ -53,6 +55,7 @@ function resolveVariantColors(
   };
 }
 
+/** Кнопка действия; сохраняет размеры и доступную подпись во время загрузки. */
 export function Button({
   label,
   onPress,
@@ -63,6 +66,7 @@ export function Button({
   rightIcon,
   style,
   textStyle,
+  accessibilityLabel,
 }: ButtonProps) {
   const theme = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -70,6 +74,13 @@ export function Button({
 
   return (
     <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel ?? label}
+      aria-busy={!!loading}
+      accessibilityState={{
+        disabled: !!(disabled || loading),
+        busy: !!loading,
+      }}
       onPress={onPress}
       disabled={disabled || loading}
       style={({ pressed }) => [
@@ -83,33 +94,37 @@ export function Button({
         (disabled || loading) && styles.disabled,
       ]}
     >
-      {loading ? (
-        <ActivityIndicator color={variantColors.textColor} />
-      ) : (
-        <View style={styles.content}>
-          {leftIcon}
-          {label ? (
-            <Text
-              style={[
-                styles.text,
-                {
-                  color: variantColors.textColor,
-                  fontFamily: theme.typography.fontFamily.medium,
-                  fontSize: theme.typography.fontSize.body,
-                },
-                textStyle,
-              ]}
-            >
-              {label}
-            </Text>
-          ) : null}
-          {rightIcon}
-        </View>
+      {/* Контент сохраняет высоту при загрузке, индикатор расположен поверх него. */}
+      <View style={[styles.content, loading && { opacity: 0 }]}>
+        {leftIcon}
+        {label ? (
+          <Text
+            style={[
+              styles.text,
+              {
+                color: variantColors.textColor,
+                fontFamily: theme.typography.fontFamily.medium,
+                fontSize: theme.typography.fontSize.body,
+              },
+              textStyle,
+            ]}
+          >
+            {label}
+          </Text>
+        ) : null}
+        {rightIcon}
+      </View>
+      {loading && (
+        <ActivityIndicator
+          style={StyleSheet.absoluteFill}
+          color={variantColors.textColor}
+        />
       )}
     </Pressable>
   );
 }
 
+/** Стили кнопки допускают перенос подписи при увеличенном системном шрифте. */
 const createStyles = (theme: ThemeTokens) =>
   StyleSheet.create({
     button: {
@@ -119,6 +134,7 @@ const createStyles = (theme: ThemeTokens) =>
       alignItems: "center",
       justifyContent: "center",
       paddingHorizontal: 12,
+      paddingVertical: theme.spacing.xs,
     },
     content: {
       flexDirection: "row",
@@ -127,6 +143,7 @@ const createStyles = (theme: ThemeTokens) =>
       gap: 7,
     },
     text: {
+      flexShrink: 1,
       textAlign: "center",
       fontFamily: theme.typography.fontFamily.medium,
     },
