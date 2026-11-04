@@ -1,225 +1,188 @@
-import { Button } from "@/shared/components/button";
-import { Card } from "@/shared/components/card";
-import { Divider } from "@/shared/components/divider";
-import { Input } from "@/shared/components/input";
-import { Text } from "@/shared/components/text";
+import { ProfileEmptyState } from "@/features/profile/components/profile-empty-state";
+import { useProfileStore } from "@/features/profile/store/use-profile-store";
+import { SettingsSection } from "@/shared/components/settings-section";
+import { Button } from "@/shared/components/themed-button";
+import { useAppTheme } from "@/shared/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { useState } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useProfileStore } from "@/features/profile/store/use-profile-store";
+import { FlatList, Pressable, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
+const labels = { home: "Дом", work: "Работа", other: "Другой адрес" } as const;
+const icons = {
+  home: "home-outline",
+  work: "briefcase-outline",
+  other: "location-outline",
+} as const;
+
+/** Список адресов: выбор основного и удаление не изменяют размеры соседних элементов. */
 export default function AddressesScreen() {
+  const theme = useAppTheme();
   const router = useRouter();
-  const profile = useProfileStore();
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [newAddress, setNewAddress] = useState({ name: "", address: "" });
-
-  const handleAddAddress = () => {
-    if (newAddress.name && newAddress.address) {
-      profile.addAddress({
-        id: Date.now().toString(),
-        name: newAddress.name,
-        address: newAddress.address,
-        isDefault: profile.addresses.length === 0,
-      });
-      setNewAddress({ name: "", address: "" });
-      setShowAddForm(false);
-    }
-  };
-
-  const handleRemoveAddress = (id: string) => {
-    profile.removeAddress(id);
-  };
-
-  const handleSetDefault = (id: string) => {
-    profile.setDefaultAddress(id);
-  };
+  const addresses = useProfileStore((state) => state.addresses);
+  const removeAddress = useProfileStore((state) => state.removeAddress);
+  const setDefaultAddress = useProfileStore((state) => state.setDefaultAddress);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => router.back()}
-            style={styles.backRow}
-            accessibilityRole="button"
-            accessibilityLabel="Назад"
+    <SafeAreaView edges={["left", "right"]} style={{ flex: 1 }}>
+      {/* Виртуализированный список растёт без вложенного ScrollView. */}
+      <FlatList
+        data={addresses}
+        keyExtractor={(item) => item.id}
+        contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={{
+          padding: theme.spacing.md,
+          paddingBottom: theme.spacing.xxxl,
+          gap: theme.spacing.md,
+        }}
+        ListHeaderComponent={
+          <Text
+            style={{
+              color: theme.colors.text.secondary,
+              fontFamily: theme.typography.fontFamily.regular,
+              fontSize: theme.typography.fontSize.md,
+              lineHeight: theme.typography.lineHeight.md,
+            }}
           >
-            <Ionicons name="arrow-back" size={20} color="#FF6B6B" />
-            <Text size="lg" color="#FF6B6B" style={{ marginLeft: 8 }}>
-              Назад
-            </Text>
-          </TouchableOpacity>
-          <Text size="xl" weight="bold" style={{ marginTop: 8 }}>
-            Мои адреса
+            Выберите основной адрес для доставки и выездных услуг.
           </Text>
-        </View>
-
-        {/* Addresses List */}
-        {profile.addresses.map((addr) => (
-          <Card key={addr.id} style={styles.addressCard}>
-            <View style={styles.addressHeader}>
-              <View style={{ flex: 1 }}>
-                <Text weight="semibold" size="lg">
-                  {addr.name}
-                </Text>
-                <Text size="sm" color="#666666" style={{ marginTop: 4 }}>
-                  {addr.address}
-                </Text>
-              </View>
-              {addr.isDefault && (
-                <View
+        }
+        ListEmptyComponent={
+          <ProfileEmptyState
+            icon="location-outline"
+            title="Добавьте первый адрес"
+            description="Дом, работа или другое удобное место — сохраните адрес, чтобы не вводить его заново."
+          />
+        }
+        renderItem={({ item }) => (
+          <SettingsSection>
+            {/* Область отметки всегда присутствует; длинный адрес переносится целиком. */}
+            <Pressable
+              accessibilityRole="radio"
+              aria-checked={item.isDefault}
+              accessibilityState={{ checked: item.isDefault }}
+              accessibilityLabel={
+                labels[item.type] + ", " + item.city + ", " + item.street
+              }
+              onPress={() => setDefaultAddress(item.id)}
+              style={({ pressed }) => ({
+                flexDirection: "row",
+                gap: theme.spacing.sm,
+                alignItems: "center",
+                paddingVertical: theme.spacing.md,
+                opacity: pressed ? theme.opacity.pressed : 1,
+              })}
+            >
+              <Ionicons
+                name={icons[item.type]}
+                size={theme.components.icon.md}
+                color={theme.colors.text.tertiary}
+              />
+              <View style={{ flex: 1, gap: theme.spacing.xxs }}>
+                <Text
                   style={{
-                    paddingHorizontal: 8,
-                    paddingVertical: 4,
-                    backgroundColor: "#FF6B6B20",
-                    borderRadius: 4,
+                    color: theme.colors.text.primary,
+                    fontFamily: theme.typography.fontFamily.medium,
+                    fontSize: theme.typography.fontSize.lg,
+                    lineHeight: theme.typography.lineHeight.lg,
                   }}
                 >
-                  <Text size="xs" color="#FF6B6B" weight="semibold">
-                    По умолчанию
-                  </Text>
-                </View>
-              )}
-            </View>
-            <Divider style={{ marginVertical: 12 }} />
-            <View style={styles.addressActions}>
-              {!addr.isDefault && (
-                <TouchableOpacity
-                  onPress={() => handleSetDefault(addr.id)}
-                  style={styles.actionButton}
-                >
-                  <Ionicons name="star" size={16} color="#10B981" />
-                  <Text
-                    size="sm"
-                    color="#10B981"
-                    weight="semibold"
-                    style={{ marginLeft: 8 }}
-                  >
-                    По умолчанию
-                  </Text>
-                </TouchableOpacity>
-              )}
-              <TouchableOpacity
-                onPress={() => handleRemoveAddress(addr.id)}
-                style={styles.actionButton}
-              >
-                <Ionicons name="trash" size={16} color="#EF4444" />
-                <Text
-                  size="sm"
-                  color="#EF4444"
-                  weight="semibold"
-                  style={{ marginLeft: 8 }}
-                >
-                  Удалить
+                  {labels[item.type]}
                 </Text>
-              </TouchableOpacity>
-            </View>
-          </Card>
-        ))}
-
-        {/* Add Address Form */}
-        {showAddForm && (
-          <Card style={styles.formCard}>
-            <Input
-              placeholder="Название адреса"
-              value={newAddress.name}
-              onChangeText={(text) =>
-                setNewAddress({ ...newAddress, name: text })
-              }
-              style={styles.input}
-            />
-            <Input
-              placeholder="Адрес"
-              value={newAddress.address}
-              onChangeText={(text) =>
-                setNewAddress({ ...newAddress, address: text })
-              }
-              style={styles.input}
-            />
-            <View style={styles.formButtons}>
-              <Button
-                label="Сохранить"
-                variant="primary"
-                onPress={handleAddAddress}
-                style={{ flex: 1 }}
+                <Text
+                  style={{
+                    color: theme.colors.text.secondary,
+                    fontFamily: theme.typography.fontFamily.regular,
+                    fontSize: theme.typography.fontSize.md,
+                    lineHeight: theme.typography.lineHeight.md,
+                  }}
+                >
+                  {item.city}, {item.street}
+                </Text>
+              </View>
+              <Ionicons
+                name={item.isDefault ? "checkmark-circle" : "ellipse-outline"}
+                size={theme.components.icon.md}
+                color={
+                  item.isDefault
+                    ? theme.colors.brand.primary
+                    : theme.colors.border.strong
+                }
               />
-              <Button
-                label="Отмена"
-                variant="secondary"
-                onPress={() => setShowAddForm(false)}
-                style={{ flex: 1, marginLeft: 8 }}
-              />
+            </Pressable>
+            {/* Подпись основного адреса сохраняет место и при снятии выбора. */}
+            <View
+              style={{
+                borderTopWidth: 1,
+                borderTopColor: theme.colors.border.subtle,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: theme.spacing.xs,
+              }}
+            >
+              <View style={{ flex: 1, paddingVertical: theme.spacing.xs }}>
+                <Text
+                  style={{
+                    opacity: item.isDefault ? 1 : 0,
+                    color: theme.colors.text.secondary,
+                    fontFamily: theme.typography.fontFamily.regular,
+                    fontSize: theme.typography.fontSize.md,
+                    lineHeight: theme.typography.lineHeight.md,
+                  }}
+                  accessible={item.isDefault}
+                  accessibilityElementsHidden={!item.isDefault}
+                  importantForAccessibility={
+                    item.isDefault ? "auto" : "no-hide-descendants"
+                  }
+                >
+                  Основной адрес
+                </Text>
+              </View>
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={
+                  "Удалить адрес: " + item.city + ", " + item.street
+                }
+                onPress={() => {
+                  removeAddress(item.id);
+                }}
+                style={({ pressed }) => ({
+                  minWidth: 44,
+                  minHeight: 44,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  opacity: pressed ? theme.opacity.pressed : 1,
+                })}
+              >
+                <Ionicons
+                  name="trash-outline"
+                  size={theme.components.icon.sm}
+                  color={theme.colors.status.error}
+                />
+              </Pressable>
             </View>
-          </Card>
+          </SettingsSection>
         )}
-
-        {/* Add Button */}
-        {!showAddForm && (
-          <View style={styles.addButtonContainer}>
+        ListFooterComponent={
+          <View style={{ gap: theme.spacing.md }}>
             <Button
-              label="+ Добавить адрес"
-              variant="secondary"
-              onPress={() => setShowAddForm(true)}
+              label="Добавить адрес"
+              onPress={() => router.push("/(tabs)/profile/add-address")}
+              style={{ minHeight: theme.components.button.height }}
             />
+            <Text
+              style={{
+                color: theme.colors.text.secondary,
+                fontFamily: theme.typography.fontFamily.regular,
+                fontSize: theme.typography.fontSize.md,
+                lineHeight: theme.typography.lineHeight.md,
+              }}
+            >
+              Адреса доступны в текущем сеансе приложения.
+            </Text>
           </View>
-        )}
-      </ScrollView>
+        }
+      />
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F5F5F5",
-  },
-  header: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  addressCard: {
-    marginHorizontal: 16,
-    marginBottom: 12,
-  },
-  addressHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-  },
-  addressActions: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  formCard: {
-    marginHorizontal: 16,
-    marginBottom: 12,
-  },
-  input: {
-    marginBottom: 12,
-  },
-  formButtons: {
-    flexDirection: "row",
-    gap: 8,
-  },
-  addButtonContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-  },
-  actionButton: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  backRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-});

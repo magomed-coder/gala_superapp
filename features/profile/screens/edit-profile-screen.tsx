@@ -1,128 +1,136 @@
-import { Button } from "@/shared/components/button";
-import { Card } from "@/shared/components/card";
-import { Input } from "@/shared/components/input";
-import { Text } from "@/shared/components/text";
-import { Ionicons } from "@expo/vector-icons";
+import { useAuthStore } from "@/features/auth/store/use-auth-store";
+import { ProfileEmptyState } from "@/features/profile/components/profile-empty-state";
+import {
+  ProfileFormFields,
+  ProfilePage,
+} from "@/features/profile/components/profile-page";
+import { SettingsSection } from "@/shared/components/settings-section";
+import { Button } from "@/shared/components/themed-button";
+import { Input } from "@/shared/components/themed-input";
+import { useAppTheme } from "@/shared/theme";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useAuthStore } from "@/features/auth/store/use-auth-store";
+import { Text } from "react-native";
 
+/** Сбрасывает черновик при смене аккаунта, в том числе после входа с гостевой страницы. */
 export default function EditProfileScreen() {
+  const userId = useAuthStore((state) => state.user?.id);
+  return <EditProfileContent key={userId ?? "guest"} />;
+}
+
+/** Редактирует данные существующей демо-сессии без подстановки вымышленного аккаунта. */
+function EditProfileContent() {
+  const theme = useAppTheme();
   const router = useRouter();
-  const auth = useAuthStore();
+  const user = useAuthStore((state) => state.user);
+  const updateUser = useAuthStore((state) => state.updateUser);
+  const [name, setName] = useState(user?.name ?? "");
+  const [email, setEmail] = useState(user?.email ?? "");
+  const [phone, setPhone] = useState(user?.phone ?? "");
+  const [submitted, setSubmitted] = useState(false);
+  const valid =
+    !!name.trim() &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) &&
+    (!phone.trim() || /^\+?[\d\s()-]{7,25}$/.test(phone.trim()));
+  const changed =
+    name.trim() !== user?.name ||
+    email.trim() !== user?.email ||
+    phone.trim() !== (user?.phone ?? "");
 
-  const [profileData, setProfileData] = useState({
-    firstName: auth.user?.firstName ?? "Иван",
-    lastName: auth.user?.lastName ?? "Петров",
-    email: auth.user?.email ?? "ivan@example.com",
-    phone: auth.user?.phone ?? "+7 (999) 123-45-67",
-  });
-
-  const handleSave = () => {
-    // Update auth store with new user data
-    // auth.updateUser({ ...(auth.user ?? {}), ...profileData });
+  /** Проверяет черновик и обновляет единственный store текущего аккаунта. */
+  const save = () => {
+    setSubmitted(true);
+    if (!valid || !user) return;
+    updateUser({
+      ...user,
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+    });
     router.back();
   };
 
+  if (!user) {
+    return (
+      <ProfilePage>
+        <ProfileEmptyState
+          icon="person-outline"
+          title="Войдите в аккаунт"
+          description="После входа здесь можно изменить личные данные."
+          action={
+            <Button
+              label="Войти"
+              onPress={() => router.push("/(auth)/login")}
+            />
+          }
+        />
+      </ProfilePage>
+    );
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => router.back()}
-            style={styles.backRow}
-            accessibilityRole="button"
-            accessibilityLabel="Назад"
-          >
-            <Ionicons name="arrow-back" size={20} color="#FF6B6B" />
-            <Text size="lg" color="#FF6B6B" style={{ marginLeft: 8 }}>
-              Назад
-            </Text>
-          </TouchableOpacity>
-          <Text size="xl" weight="bold" style={{ marginTop: 8 }}>
-            Редактировать профиль
-          </Text>
-        </View>
+    <ProfilePage form>
+      {/* Поля заполняются только данными текущего аккаунта. */}
+      <SettingsSection
+        title="Основная информация"
+        footer="Изменения действуют в текущем сеансе."
+      >
+        <ProfileFormFields>
+          <Input
+            label="Имя и фамилия"
+            accessibilityLabel="Имя и фамилия"
+            value={name}
+            onChangeText={setName}
+            autoComplete="name"
+            textContentType="name"
+          />
+          <Input
+            label="Электронная почта"
+            accessibilityLabel="Электронная почта"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+            autoComplete="email"
+            textContentType="emailAddress"
+          />
+          <Input
+            label="Телефон · необязательно"
+            accessibilityLabel="Телефон"
+            value={phone}
+            onChangeText={setPhone}
+            keyboardType="phone-pad"
+            autoComplete="tel"
+            textContentType="telephoneNumber"
+          />
+        </ProfileFormFields>
+      </SettingsSection>
 
-        {/* Form */}
-        <Card style={styles.formCard}>
-          <Input
-            placeholder="Имя"
-            value={profileData.firstName}
-            onChangeText={(text) =>
-              setProfileData({ ...profileData, firstName: text })
-            }
-            style={styles.input}
-          />
-          <Input
-            placeholder="Фамилия"
-            value={profileData.lastName}
-            onChangeText={(text) =>
-              setProfileData({ ...profileData, lastName: text })
-            }
-            style={styles.input}
-          />
-          <Input
-            placeholder="Email"
-            value={profileData.email}
-            onChangeText={(text) =>
-              setProfileData({ ...profileData, email: text })
-            }
-            style={styles.input}
-          />
-          <Input
-            placeholder="Телефон"
-            value={profileData.phone}
-            onChangeText={(text) =>
-              setProfileData({ ...profileData, phone: text })
-            }
-            style={styles.input}
-          />
-        </Card>
-
-        {/* Save Button */}
-        <View style={styles.buttonContainer}>
-          <Button
-            label="Сохранить изменения"
-            variant="primary"
-            onPress={handleSave}
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      {/* Место под сообщение всегда занято: ошибка не двигает кнопку сохранения. */}
+      <Text
+        accessibilityLiveRegion="polite"
+        accessible={submitted && !valid}
+        accessibilityElementsHidden={!submitted || valid}
+        importantForAccessibility={
+          submitted && !valid ? "auto" : "no-hide-descendants"
+        }
+        style={{
+          color: theme.colors.status.error,
+          opacity: submitted && !valid ? 1 : 0,
+          fontFamily: theme.typography.fontFamily.regular,
+          fontSize: theme.typography.fontSize.md,
+          lineHeight: theme.typography.lineHeight.md,
+        }}
+      >
+        Проверьте имя, электронную почту и номер телефона.
+      </Text>
+      <Button
+        label="Сохранить изменения"
+        disabled={!changed}
+        onPress={save}
+        style={{ minHeight: theme.components.button.height }}
+      />
+    </ProfilePage>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F5F5F5",
-  },
-  header: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  backRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  formCard: {
-    marginHorizontal: 16,
-    marginVertical: 16,
-  },
-  input: {
-    marginBottom: 12,
-  },
-  buttonContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-  },
-});
