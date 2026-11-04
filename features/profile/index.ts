@@ -1,2 +1,2 @@
 // Profile Feature
-export { useProfileStore } from "./store";
+export { useProfileStore } from "@/features/profile/store";

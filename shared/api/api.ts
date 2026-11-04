@@ -1,9 +1,9 @@
-import { BASE_URL, endpoints } from "@/constants";
+import { BASE_URL, endpoints } from "@/shared/constants";
 import {
   getAccessToken,
   getRefreshToken,
   saveAuthTokens,
-} from "@/services/tokenStorage.service";
+} from "@/shared/lib/storage/token-storage";
 
 import axios, { AxiosRequestConfig, InternalAxiosRequestConfig } from "axios";
 

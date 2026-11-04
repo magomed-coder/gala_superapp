@@ -1,0 +1,88 @@
+import {
+  componentTokens,
+  elevationTokens,
+  motionTokens,
+  opacityTokens,
+  radiusTokens,
+  spacingTokens,
+  typographyTokens,
+  zIndexTokens,
+} from "@/shared/theme/tokens";
+import type { ThemeTokens } from "@/shared/theme/types";
+
+
+export const darkTheme: ThemeTokens = {
+  mode: "dark",
+  colors: {
+    background: {
+      primary: "#000000",
+      grouped: "#000000",
+      secondary: "#111111",
+      tertiary: "#1A1A1A",
+      elevated: "#111111",
+      inverse: "#FFFFFF",
+      overlay: "#00000099",
+    },
+    text: {
+      primary: "#F9FAFB",
+      secondary: "#D1D5DB",
+      tertiary: "#9CA3AF",
+      disabled: "#6B7280",
+      inverted: "#111827",
+      inverse: "#111827",
+      link: "#0099F7",
+    },
+    border: {
+      subtle: "#1A1A1A",
+      default: "#2A2A2A",
+      strong: "#3A3A3A",
+      focus: "#0099F7",
+    },
+    brand: {
+      primary: "#0099F7",
+      primaryMuted: "#13496E",
+      pressed: "#007ED1",
+      light: "#0B2A40",
+      muted: "#13496E",
+      onPrimary: "#FFFFFF",
+    },
+    status: {
+      success: "#97CF26",
+      warning: "#FBBF24",
+      error: "#FF6163",
+      info: "#0099F7",
+    },
+    tabBar: {
+      background: "#111111",
+      active: "#0099F7",
+      inactive: "#9CA3AF",
+      indicator: "#0099F7",
+      shadow: "#000000",
+    },
+    splash: {
+      backgroundStart: "#000000",
+      backgroundEnd: "#111111",
+      core: "#0099F7",
+      glow: "#FFFFFF1A",
+      particlePrimary: "#0099F7",
+      particleSecondary: "#D1D5DB",
+      particleAccent: "#3A3A3A",
+      textPrimary: "#F9FAFB",
+      textSecondary: "#D1D5DB",
+    },
+    skeleton: {
+      base: "#1A1A1A",
+      highlight: "#2A2A2A",
+    },
+    divider: "#1A1A1A",
+    shadow: "#000000",
+  },
+  spacing: spacingTokens,
+  radius: radiusTokens,
+  typography: typographyTokens,
+  elevation: elevationTokens,
+  components: componentTokens,
+  motion: motionTokens,
+  opacity: opacityTokens,
+  zIndex: zIndexTokens,
+};

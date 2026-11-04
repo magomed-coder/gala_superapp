@@ -1,1 +1,1 @@
-export { useAuthStore } from "./useAuthStore";
+export { useAuthStore } from "@/features/auth/store/use-auth-store";

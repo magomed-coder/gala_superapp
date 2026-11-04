@@ -1,2 +1,2 @@
 // Auth Feature
-export { useAuthStore } from "./store";
+export { useAuthStore } from "@/features/auth/store";
