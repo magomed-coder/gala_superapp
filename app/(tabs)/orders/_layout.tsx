@@ -7,7 +7,7 @@ export default function OrdersLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="detail" />
     </Stack>
   );

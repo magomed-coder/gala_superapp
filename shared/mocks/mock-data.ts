@@ -668,6 +668,45 @@ export const orders: Order[] = [
     type: "service",
     address: "ул. Ленина, д. 42, кв. 15",
   },
+  {
+    id: "ord7",
+    status: "completed",
+    totalAmount: 3500,
+    createdAt: "2024-12-20T14:30:00Z",
+    estimatedDeliveryTime: "2024-12-20T16:00:00Z",
+    items: [
+      { name: "Уборка квартиры", quantity: 1, price: 3000 },
+      { name: "Дополнительная мойка окон", quantity: 2, price: 250 },
+    ],
+    type: "service",
+    providerName: "Клининг Сервис",
+    address: "ул. Ленина, д. 42, кв. 15",
+  },
+  {
+    id: "ord8",
+    status: "pending",
+    totalAmount: 8900,
+    createdAt: "2024-12-24T10:00:00Z",
+    estimatedDeliveryTime: "2024-12-24T18:00:00Z",
+    items: [
+      { name: "Бронирование отеля", quantity: 2, price: 4000 },
+      { name: "Завтрак", quantity: 2, price: 450 },
+    ],
+    type: "booking",
+    providerName: "Отель Прима",
+    address: "пр. Мира, д. 15",
+  },
+  {
+    id: "ord6",
+    status: "in_progress",
+    totalAmount: 1500,
+    createdAt: "2024-12-24T11:30:00Z",
+    estimatedDeliveryTime: "2024-12-24T12:30:00Z",
+    items: [{ name: "Ремонт сантехники", quantity: 1, price: 1500 }],
+    type: "service",
+    providerName: "Мастер на час",
+    address: "ул. Советская, д. 28, кв. 7",
+  },
 ];
 
 export const reviews: Review[] = [
