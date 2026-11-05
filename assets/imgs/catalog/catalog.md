@@ -8,10 +8,11 @@ Thiings и прежние изображения проекта. Предыду�
 
 | Подкатегория | Аудитория | Источник |
 | --- | --- | --- |
-| [Рестораны и кафе](food-groceries/restaurants-cafes.webp) | — | [Thiings](https://www.thiings.co/things/restaurant) |
-| [Готовая еда](food-groceries/prepared-food.webp) | — | [Thiings](https://www.thiings.co/things/bento-box) |
-| [Выпечка и торты](food-groceries/bakeries-cakes.webp) | — | [Thiings](https://www.thiings.co/things/bakery-storefront) |
+| [Кафе и рестораны](food-groceries/restaurants-cafes.webp) | — | [Thiings](https://www.thiings.co/things/restaurant) |
+| [Готовая еда](../image-WWKfOJ0cgygutOnJdcup6U10oMvszR.png) | — | Файл пользователя |
+| [Выпечка](food-groceries/bakeries-cakes.webp) | — | [Thiings](https://www.thiings.co/things/bakery-storefront) |
 | [Продукты](food-groceries/grocery-stores-original.webp) | — | Прежний файл `assets/imgs/bag.webp` |
+| [Мясо](../image-SmJB1Ui78TGX75IdRhTzMsRHRs9Sab.png) | — | Файл пользователя |
 
 ## 2. Дом и ремонт
 
@@ -23,9 +24,9 @@ Thiings и прежние изображения проекта. Предыду�
 | [Электрик](home-repair/electrical-original.webp) | — | Прежний файл `assets/imgs/handyAndRepair.webp` |
 | [Мастер на час](home-repair/handyman.webp) | — | [Thiings](https://www.thiings.co/things/toolbox) |
 | [Ремонт жилья](home-repair/renovation.webp) | — | [Thiings](https://www.thiings.co/things/paint-roller) |
-| [Строительство](home-repair/construction.webp) | — | [Thiings](https://www.thiings.co/things/construction-site) |
-| [Отопление и вода](home-repair/heating-water.webp) | — | [Thiings](https://www.thiings.co/things/radiator) |
-| [Климатическая техника](home-repair/air-conditioning.webp) | — | [Thiings](https://www.thiings.co/things/air-conditioner) |
+| [Стройка](home-repair/construction.webp) | — | [Thiings](https://www.thiings.co/things/construction-site) |
+| [Отопление](home-repair/heating-water.webp) | — | [Thiings](https://www.thiings.co/things/radiator) |
+| [Климат](home-repair/air-conditioning.webp) | — | [Thiings](https://www.thiings.co/things/air-conditioner) |
 | [Окна и двери](home-repair/windows-doors.png) | — | [Thiings](https://www.thiings.co/things/window) |
 | [Кровля и фасады](home-repair/roofing.webp) | — | [Thiings](https://www.thiings.co/things/roof-shingles) |
 | [Заборы и ворота](home-repair/fences-gates.png) | — | [Thiings](https://www.thiings.co/things/fence) |
@@ -73,7 +74,7 @@ Thiings и прежние изображения проекта. Предыду�
 | [Настройка сети](electronics/internet-wifi.webp) | — | [Thiings](https://www.thiings.co/things/router) |
 | [Системы безопасности](electronics/security-intercom.webp) | — | [Thiings](https://www.thiings.co/things/cctv) |
 | [Телефоны и аксессуары](electronics/phones-accessories-original.webp) | — | Прежний файл `assets/imgs/phone.webp` |
-| [Компьютерная техника](electronics/computers-parts.webp) | — | [Thiings](https://www.thiings.co/things/desktop-computer) |
+| [Компьютеры](electronics/computers-parts.webp) | — | [Thiings](https://www.thiings.co/things/desktop-computer) |
 | [Бытовая техника](electronics/home-appliances.webp) | — | [Thiings](https://www.thiings.co/things/refrigerator) |
 
 ## 6. Авто
@@ -88,14 +89,14 @@ Thiings и прежние изображения проекта. Предыду�
 | [Ремонт подвески](auto/suspension.webp) | — | [Thiings](https://www.thiings.co/things/car-jack) |
 | [Кузов и покраска](auto/body-paint.webp) | — | [Thiings](https://www.thiings.co/things/spraycan) |
 | [Шиномонтаж](auto/tires-original.webp) | — | Прежний файл `assets/imgs/autoparts.webp` |
-| [Уход за машиной](auto/detailing-original.webp) | — | Прежний файл `assets/imgs/detailing.webp` |
+| [Детейлинг](auto/detailing-original.webp) | — | Прежний файл `assets/imgs/detailing.webp` |
 | [Запчасти и аксессуары](auto/parts-accessories-original.webp) | — | Прежний файл `assets/imgs/car_parts.webp` |
-| [Подбор и осмотр](auto/car-inspection.webp) | — | [Thiings](https://www.thiings.co/things/blue-car) |
-| [Продажа машин](auto/car-sales-original.webp) | — | Прежний файл `assets/imgs/auto.webp` |
+| [Подбор](auto/car-inspection.webp) | — | [Thiings](https://www.thiings.co/things/blue-car) |
+| [Продажи](auto/car-sales-original.webp) | — | Прежний файл `assets/imgs/auto.webp` |
 | [Выездной автосервис](auto/mobile-service-original.webp) | — | Прежний файл `assets/imgs/field_service.webp` |
 | [Эвакуатор](auto/towing-original.webp) | — | Прежний файл `assets/imgs/tow_truck.webp` |
-| [Документы на машину](auto/vehicle-documents-original.webp) | — | Прежний файл `assets/imgs/documents.webp` |
-| [Авто в рассрочку](auto/car-installments-original.webp) | — | Прежний файл `assets/imgs/installment.webp` |
+| [Документы](auto/vehicle-documents-original.webp) | — | Прежний файл `assets/imgs/documents.webp` |
+| [Рассрочка](auto/car-installments-original.webp) | — | Прежний файл `assets/imgs/installment.webp` |
 | [Тюнинг](auto/tuning-original.webp) | — | Прежний файл `assets/imgs/tuning.webp` |
 
 ## 7. Красота
@@ -123,6 +124,7 @@ Thiings и прежние изображения проекта. Предыду�
 | Подкатегория | Аудитория | Источник |
 | --- | --- | --- |
 | [Приём врачей](health/doctors-original.webp) | — | Прежний файл `assets/imgs/doc.webp` |
+| [Сдача крови](../image-6UKQYbgCFWmNBFyrmQZblDMU9o24Cx.png) | — | Файл пользователя |
 | [Стоматология](health/dentistry.webp) | — | [Thiings](https://www.thiings.co/things/tooth) |
 | [Анализы](health/lab-tests.webp) | — | [Thiings](https://www.thiings.co/things/lab-test-tube-rack) |
 | [Диагностика](health/diagnostics.webp) | — | [Thiings](https://www.thiings.co/things/medical-report) |
@@ -130,7 +132,6 @@ Thiings и прежние изображения проекта. Предыду�
 | [Зрение и оптика](health/eye-care.webp) | — | [Thiings](https://www.thiings.co/things/eye-chart) |
 | [Реабилитация](health/rehabilitation.webp) | — | [Thiings](https://www.thiings.co/things/resistance-band) |
 | [Медицинский массаж](health/medical-massage.webp) | — | [Thiings](https://www.thiings.co/things/massage-table) |
-| [Психологи](health/psychology.webp) | — | [Thiings](https://www.thiings.co/things/brain) |
 | [Аптеки](health/pharmacies-original.webp) | — | Прежний файл `assets/imgs/pharm.webp` |
 
 ## 9. Дети и семья
@@ -158,7 +159,6 @@ Thiings и прежние изображения проекта. Предыду�
 | [Репетиторы](education/tutoring.webp) | — | [Thiings](https://www.thiings.co/things/notebook) |
 | [Подготовка к экзаменам](education/exam-preparation.webp) | — | [Thiings](https://www.thiings.co/things/clipboard) |
 | [Иностранные языки](education/foreign-languages.webp) | — | [Thiings](https://www.thiings.co/things/dictionary) |
-| [Арабский язык](education/arabic-language.webp) | — | [Thiings](https://www.thiings.co/things/calligraphy-pen) |
 | [Компьютерные курсы](education/programming.webp) | — | [Thiings](https://www.thiings.co/things/laptop) |
 | [Обучение профессиям](education/vocational-training.webp) | — | [Thiings](https://www.thiings.co/things/graduation-cap) |
 | [Рукоделие и ремёсла](education/craft-training.webp) | — | [Thiings](https://www.thiings.co/things/yarn) |
@@ -174,11 +174,11 @@ Thiings и прежние изображения проекта. Предыду�
 | [Единоборства](sports/martial-arts.webp) | — | [Thiings](https://www.thiings.co/things/boxing-gloves) |
 | [Плавание](sports/swimming.webp) | — | [Thiings](https://www.thiings.co/things/swim-goggles) |
 | [Командный спорт](sports/team-sports.webp) | — | [Thiings](https://www.thiings.co/things/soccer-ball) |
-| [Гимнастика и растяжка](sports/gymnastics.webp) | — | [Thiings](https://www.thiings.co/things/gymnastics-rings) |
+| [Гимнастика](sports/gymnastics.webp) | — | [Thiings](https://www.thiings.co/things/gymnastics-rings) |
 | [Верховая езда](sports/horse-riding.webp) | — | [Thiings](https://www.thiings.co/things/horse-saddle) |
 | [Аренда площадок](sports/venue-rental.webp) | — | [Thiings](https://www.thiings.co/things/basketball-court) |
 | [Спортивные товары](sports/sports-goods.webp) | — | [Thiings](https://www.thiings.co/things/kettlebell) |
-| [Спортивное питание](sports/sports-nutrition-original.webp) | — | Прежний файл `assets/imgs/sports_nutrition.webp` |
+| [Спортпит](sports/sports-nutrition-original.webp) | — | Прежний файл `assets/imgs/sports_nutrition.webp` |
 
 ## 12. Одежда и ателье
 
@@ -186,7 +186,7 @@ Thiings и прежние изображения проекта. Предыду�
 
 | Подкатегория | Аудитория | Источник |
 | --- | --- | --- |
-| [Женская одежда](clothing-tailoring/womens-clothing.webp) | — | [Thiings](https://www.thiings.co/things/long-cardigan) |
+| [Женская одежда](clothing-tailoring/womens-dress.png) | — | [Thiings](https://www.thiings.co/things/dress) |
 | [Мужская одежда](clothing-tailoring/mens-clothing-original.webp) | — | Прежний файл `assets/imgs/clothes.webp` |
 | [Детская одежда](clothing-tailoring/childrens-clothing.webp) | — | [Thiings](https://www.thiings.co/things/plaid-overalls) |
 | [Хиджабы и платки](clothing-tailoring/hijabs-scarves.webp) | — | [Thiings](https://www.thiings.co/things/hijab) |
@@ -203,10 +203,8 @@ Thiings и прежние изображения проекта. Предыду�
 | Подкатегория | Аудитория | Источник |
 | --- | --- | --- |
 | [Свадьба под ключ](weddings-events/wedding-planning.webp) | — | [Thiings](https://www.thiings.co/things/wedding-arch) |
-| [Никах под ключ](weddings-events/nikah-planning.webp) | — | [Thiings](https://www.thiings.co/things/quran) |
 | [Банкетные залы](weddings-events/banquet-halls.webp) | — | [Thiings](https://www.thiings.co/things/dining-table) |
-| [Свадебные повара](weddings-events/chefs.webp) | — | [Thiings](https://www.thiings.co/things/chef-hat) |
-| [Свадебный персонал](weddings-events/event-staff.png) | — | [Thiings](https://www.thiings.co/things/waiter) |
+| [Повара и персонал](weddings-events/chefs.webp) | — | [Thiings](https://www.thiings.co/things/chef-hat) |
 | [Декор праздников](weddings-events/event-decor.webp) | — | [Thiings](https://www.thiings.co/things/bridal-bouquet) |
 | [Фотографы](weddings-events/photographers.webp) | — | [Thiings](https://www.thiings.co/things/camera) |
 | [Видеографы](weddings-events/videographers.webp) | — | [Thiings](https://www.thiings.co/things/video-camera) |
@@ -220,7 +218,6 @@ Thiings и прежние изображения проекта. Предыду�
 | Подкатегория | Аудитория | Источник |
 | --- | --- | --- |
 | [Букеты](flowers-gifts/bouquets.webp) | — | [Thiings](https://www.thiings.co/things/bridal-bouquet) |
-| [Цветочные композиции](flowers-gifts/flower-arrangements.webp) | — | [Thiings](https://www.thiings.co/things/roses) |
 | [Комнатные растения](flowers-gifts/houseplants.webp) | — | [Thiings](https://www.thiings.co/things/monstera) |
 | [Подарочные наборы](flowers-gifts/gift-sets-original.webp) | — | Прежний файл `assets/imgs/gift.webp` |
 | [Подарки на заказ](flowers-gifts/personalized-gifts.webp) | — | [Thiings](https://www.thiings.co/things/name-plate) |
@@ -235,12 +232,10 @@ Thiings и прежние изображения проекта. Предыду�
 | [Гостевые дома](travel-leisure/guesthouses.webp) | — | [Thiings](https://www.thiings.co/things/cottage) |
 | [Базы отдыха](travel-leisure/recreation-centers.webp) | — | [Thiings](https://www.thiings.co/things/glamping) |
 | [Коттеджи](travel-leisure/holiday-cottages.webp) | — | [Thiings](https://www.thiings.co/things/mountain-cabin) |
-| [Экскурсии](travel-leisure/excursions-original.webp) | — | Прежний файл `assets/imgs/tour.webp` |
-| [Походы с гидом](travel-leisure/guided-hikes.webp) | — | [Thiings](https://www.thiings.co/things/hiking-backpack) |
+| [Экскурсии и походы](travel-leisure/excursions-original.webp) | — | Прежний файл `assets/imgs/tour.webp` |
 | [Семейные развлечения](travel-leisure/family-entertainment.webp) | — | [Thiings](https://www.thiings.co/things/ferris-wheel) |
 | [Турагентства](travel-leisure/travel-agencies.webp) | — | [Thiings](https://www.thiings.co/things/suitcase) |
-| [Умра](travel-leisure/umrah.webp) | — | [Thiings](https://www.thiings.co/things/mecca) |
-| [Хадж](travel-leisure/hajj.webp) | — | [Thiings](https://www.thiings.co/things/emoji-1f54b) |
+| [Хадж и умра](travel-leisure/umrah.webp) | — | [Thiings](https://www.thiings.co/things/mecca) |
 
 ## 16. Недвижимость
 
@@ -248,12 +243,11 @@ Thiings и прежние изображения проекта. Предыду�
 
 | Подкатегория | Аудитория | Источник |
 | --- | --- | --- |
-| [Аренда квартир](real-estate/apartment-rental.webp) | — | [Thiings](https://www.thiings.co/things/keys) |
-| [Аренда домов](real-estate/house-rental.webp) | — | [Thiings](https://www.thiings.co/things/home) |
+| [Аренда](real-estate/apartment-rental.webp) | — | [Thiings](https://www.thiings.co/things/keys) |
 | [Продажа жилья](real-estate/property-sales-original.webp) | — | Прежний файл `assets/imgs/home.webp` |
 | [Новостройки](real-estate/new-buildings.webp) | — | [Thiings](https://www.thiings.co/things/apartment-building-1) |
 | [Участки](real-estate/land.webp) | — | [Thiings](https://www.thiings.co/things/blueprint) |
-| [Коммерческая недвижимость](real-estate/commercial-property.webp) | — | [Thiings](https://www.thiings.co/things/emoji-1f3e2) |
+| [Коммерция](real-estate/commercial-property.webp) | — | [Thiings](https://www.thiings.co/things/emoji-1f3e2) |
 | [Риелторы](real-estate/realtors.webp) | — | [Thiings](https://www.thiings.co/things/house-key) |
 
 ## 17. Бизнес
@@ -264,7 +258,7 @@ Thiings и прежние изображения проекта. Предыду�
 | --- | --- | --- |
 | [Бухгалтерия](business-services/accounting.webp) | — | [Thiings](https://www.thiings.co/things/calculator) |
 | [Юристы](business-services/legal.webp) | — | [Thiings](https://www.thiings.co/things/scales-of-justice) |
-| [Регистрация бизнеса](business-services/business-registration.webp) | — | [Thiings](https://www.thiings.co/things/rubber-stamp) |
+| [Регистрация](business-services/business-registration.webp) | — | [Thiings](https://www.thiings.co/things/rubber-stamp) |
 | [Дизайн и брендинг](business-services/branding.webp) | — | [Thiings](https://www.thiings.co/things/digital-drawing-tablet) |
 | [Сайты и приложения](business-services/web-apps.webp) | — | [Thiings](https://www.thiings.co/things/computer-workstation) |
 | [Продвижение бизнеса](business-services/advertising-social-original.webp) | — | Прежний файл `assets/imgs/megaphone.webp` |
@@ -295,7 +289,6 @@ Thiings и прежние изображения проекта. Предыду�
 
 | Подкатегория | Аудитория | Источник |
 | --- | --- | --- |
-| [Чтение Корана](religion-community/quran-reading.webp) | — | [Thiings](https://www.thiings.co/things/quran) |
 | [Таджвид](religion-community/tajweed.webp) | — | [Thiings](https://www.thiings.co/things/book-stand) |
 | [Заучивание Корана](religion-community/quran-memorization.webp) | — | [Thiings](https://www.thiings.co/things/bookmark) |
 | [Основы ислама](religion-community/islam-basics.webp) | — | [Thiings](https://www.thiings.co/things/prayer-rug) |

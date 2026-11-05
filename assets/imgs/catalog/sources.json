@@ -13,7 +13,7 @@
       "images": [
         {
           "subcategoryId": "restaurants-cafes",
-          "name": "Рестораны и кафе",
+          "name": "Кафе и рестораны",
           "file": "food-groceries/restaurants-cafes.webp",
           "audience": null,
           "thiingsSlug": "restaurant",
@@ -34,26 +34,37 @@
         {
           "subcategoryId": "prepared-food",
           "name": "Готовая еда",
-          "file": "food-groceries/prepared-food.webp",
           "audience": null,
-          "thiingsSlug": "bento-box",
-          "thiingsName": "Bento Box",
-          "sourcePage": "https://www.thiings.co/things/bento-box",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-g5x4D885dtv5R6gsLOR4xfwmaN8Vne.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-g5x4D885dtv5R6gsLOR4xfwmaN8Vne.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 44208,
-          "sha256": "d7c1fd534c23f7545cdf736425f93b46960b56a225f1239efa7054cfbff11695",
-          "preCompressionSha256": "9be1600f024c3ee9aa5c756342f5a121f3f939e9f81b8f7fe102b6d35bdd6fb0",
-          "preCompressionBytes": 53976,
-          "rgbaSha256": "5ca65be847c5b5a9d6cf9b0585a16aaed8c62094c7cca097ac22f68f222e3eaf",
-          "encoding": "lossless-webp"
+          "file": "../image-WWKfOJ0cgygutOnJdcup6U10oMvszR.png",
+          "source": "existing-project-asset",
+          "originalFile": "assets/imgs/image-WWKfOJ0cgygutOnJdcup6U10oMvszR.png",
+          "sourceNote": "Изображение указано пользователем.",
+          "alternativeImages": [
+            {
+              "subcategoryId": "prepared-food",
+              "name": "Готовая еда",
+              "file": "food-groceries/prepared-food.webp",
+              "audience": null,
+              "thiingsSlug": "bento-box",
+              "thiingsName": "Bento Box",
+              "sourcePage": "https://www.thiings.co/things/bento-box",
+              "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-g5x4D885dtv5R6gsLOR4xfwmaN8Vne.png",
+              "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-g5x4D885dtv5R6gsLOR4xfwmaN8Vne.png&w=500&q=75",
+              "width": 500,
+              "height": 500,
+              "hasTransparency": true,
+              "bytes": 44208,
+              "sha256": "d7c1fd534c23f7545cdf736425f93b46960b56a225f1239efa7054cfbff11695",
+              "preCompressionSha256": "9be1600f024c3ee9aa5c756342f5a121f3f939e9f81b8f7fe102b6d35bdd6fb0",
+              "preCompressionBytes": 53976,
+              "rgbaSha256": "5ca65be847c5b5a9d6cf9b0585a16aaed8c62094c7cca097ac22f68f222e3eaf",
+              "encoding": "lossless-webp"
+            }
+          ]
         },
         {
           "subcategoryId": "bakeries-cakes",
-          "name": "Выпечка и торты",
+          "name": "Выпечка",
           "file": "food-groceries/bakeries-cakes.webp",
           "audience": null,
           "thiingsSlug": "bakery-storefront",
@@ -110,6 +121,15 @@
           "preCompressionBytes": 119534,
           "rgbaSha256": "436ffe6c23e4e930a005db17b60d88cc9dd36ec789cac844a4b32b4567858b55",
           "encoding": "lossless-webp"
+        },
+        {
+          "subcategoryId": "meat",
+          "name": "Мясо",
+          "audience": null,
+          "file": "../image-SmJB1Ui78TGX75IdRhTzMsRHRs9Sab.png",
+          "source": "existing-project-asset",
+          "originalFile": "assets/imgs/image-SmJB1Ui78TGX75IdRhTzMsRHRs9Sab.png",
+          "sourceNote": "Изображение указано пользователем."
         }
       ]
     },
@@ -219,7 +239,7 @@
         },
         {
           "subcategoryId": "construction",
-          "name": "Строительство",
+          "name": "Стройка",
           "file": "home-repair/construction.webp",
           "audience": null,
           "thiingsSlug": "construction-site",
@@ -239,7 +259,7 @@
         },
         {
           "subcategoryId": "heating-water",
-          "name": "Отопление и вода",
+          "name": "Отопление",
           "file": "home-repair/heating-water.webp",
           "audience": null,
           "thiingsSlug": "radiator",
@@ -259,7 +279,7 @@
         },
         {
           "subcategoryId": "air-conditioning",
-          "name": "Климатическая техника",
+          "name": "Климат",
           "file": "home-repair/air-conditioning.webp",
           "audience": null,
           "thiingsSlug": "air-conditioner",
@@ -877,7 +897,7 @@
         },
         {
           "subcategoryId": "computers-parts",
-          "name": "Компьютерная техника",
+          "name": "Компьютеры",
           "file": "electronics/computers-parts.webp",
           "audience": null,
           "thiingsSlug": "desktop-computer",
@@ -1104,7 +1124,7 @@
         },
         {
           "subcategoryId": "detailing",
-          "name": "Уход за машиной",
+          "name": "Детейлинг",
           "audience": null,
           "file": "auto/detailing-original.webp",
           "source": "existing-project-asset",
@@ -1199,7 +1219,7 @@
         },
         {
           "subcategoryId": "car-inspection",
-          "name": "Подбор и осмотр",
+          "name": "Подбор",
           "file": "auto/car-inspection.webp",
           "audience": null,
           "thiingsSlug": "blue-car",
@@ -1219,7 +1239,7 @@
         },
         {
           "subcategoryId": "car-sales",
-          "name": "Продажа машин",
+          "name": "Продажи",
           "audience": null,
           "file": "auto/car-sales-original.webp",
           "source": "existing-project-asset",
@@ -1290,7 +1310,7 @@
         },
         {
           "subcategoryId": "vehicle-documents",
-          "name": "Документы на машину",
+          "name": "Документы",
           "audience": null,
           "file": "auto/vehicle-documents-original.webp",
           "source": "existing-project-asset",
@@ -1308,7 +1328,7 @@
         },
         {
           "subcategoryId": "car-installments",
-          "name": "Авто в рассрочку",
+          "name": "Рассрочка",
           "audience": null,
           "file": "auto/car-installments-original.webp",
           "source": "existing-project-asset",
@@ -1776,26 +1796,6 @@
           "encoding": "lossless-webp"
         },
         {
-          "subcategoryId": "psychology",
-          "name": "Психологи",
-          "file": "health/psychology.webp",
-          "audience": null,
-          "thiingsSlug": "brain",
-          "thiingsName": "Brain",
-          "sourcePage": "https://www.thiings.co/things/brain",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-vCbtdmRUutVmm5NeAk2OPuldTwPzC9.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-vCbtdmRUutVmm5NeAk2OPuldTwPzC9.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 34350,
-          "sha256": "f2404810144cc774ef1be594eb29e11cd4fa34196352bf1af36e64bb5520e845",
-          "preCompressionSha256": "3fdea0bb03440d5100db4d3c4f83599085bc6d4d961f575c1ca6fd2c14edd9e0",
-          "preCompressionBytes": 40931,
-          "rgbaSha256": "3766914b00c32ad7df47c0e0c2e79e38346b5013a8adea9fb3cb10245ca00d03",
-          "encoding": "lossless-webp"
-        },
-        {
           "subcategoryId": "pharmacies",
           "name": "Аптеки",
           "audience": null,
@@ -1812,6 +1812,15 @@
           "preCompressionBytes": 150020,
           "rgbaSha256": "d9ae2260bbf5bcc1860aab2e0bbf6d008cc9c0f5f9df1187dfee7ff941d7fa3d",
           "encoding": "lossless-webp"
+        },
+        {
+          "subcategoryId": "blood-donation",
+          "name": "Сдача крови",
+          "audience": null,
+          "file": "../image-6UKQYbgCFWmNBFyrmQZblDMU9o24Cx.png",
+          "source": "existing-project-asset",
+          "originalFile": "assets/imgs/image-6UKQYbgCFWmNBFyrmQZblDMU9o24Cx.png",
+          "sourceNote": "Изображение указано пользователем."
         }
       ]
     },
@@ -2068,27 +2077,6 @@
           "encoding": "lossless-webp"
         },
         {
-          "subcategoryId": "arabic-language",
-          "name": "Арабский язык",
-          "file": "education/arabic-language.webp",
-          "audience": null,
-          "thiingsSlug": "calligraphy-pen",
-          "thiingsName": "Calligraphy Pen",
-          "sourcePage": "https://www.thiings.co/things/calligraphy-pen",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-cYhhxZK8USyixUxUt4JapHqHqxNcln.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-cYhhxZK8USyixUxUt4JapHqHqxNcln.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 18152,
-          "sha256": "091c6ecab000c8b56dd797771de7e530ebcba647a323300b4238bc76752c8ca1",
-          "selectionNote": "Каллиграфическое перо как условное обозначение изучения письменности.",
-          "preCompressionSha256": "47ecfe573de0c512ae07ea7c8fcb320971147a2a4056a871ea2b84572f178028",
-          "preCompressionBytes": 24320,
-          "rgbaSha256": "e65d82741fff551c3e2c373ddc3f163f2ba2d4c48cdc3208adc55ef76b13ab31",
-          "encoding": "lossless-webp"
-        },
-        {
           "subcategoryId": "programming",
           "name": "Компьютерные курсы",
           "file": "education/programming.webp",
@@ -2256,7 +2244,7 @@
         },
         {
           "subcategoryId": "gymnastics",
-          "name": "Гимнастика и растяжка",
+          "name": "Гимнастика",
           "file": "sports/gymnastics.webp",
           "audience": null,
           "thiingsSlug": "gymnastics-rings",
@@ -2336,7 +2324,7 @@
         },
         {
           "subcategoryId": "sports-nutrition",
-          "name": "Спортивное питание",
+          "name": "Спортпит",
           "audience": null,
           "file": "sports/sports-nutrition-original.webp",
           "source": "existing-project-asset",
@@ -2383,22 +2371,40 @@
         {
           "subcategoryId": "womens-clothing",
           "name": "Женская одежда",
-          "file": "clothing-tailoring/womens-clothing.webp",
+          "file": "clothing-tailoring/womens-dress.png",
           "audience": null,
-          "thiingsSlug": "long-cardigan",
-          "thiingsName": "Long Cardigan",
-          "sourcePage": "https://www.thiings.co/things/long-cardigan",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-MaKWPIhYk6aSwq0TLXxAQLKUlgsIWU.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-MaKWPIhYk6aSwq0TLXxAQLKUlgsIWU.png&w=500&q=75",
+          "thiingsSlug": "dress",
+          "thiingsName": "Dress",
+          "sourcePage": "https://www.thiings.co/things/dress",
+          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-sjnsZFCzT6VnSOqmWOg9YE53KR68pi.png",
+          "alternativeImages": [
+            {
+              "subcategoryId": "womens-clothing",
+              "name": "Женская одежда",
+              "file": "clothing-tailoring/womens-clothing.webp",
+              "audience": null,
+              "thiingsSlug": "long-cardigan",
+              "thiingsName": "Long Cardigan",
+              "sourcePage": "https://www.thiings.co/things/long-cardigan",
+              "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-MaKWPIhYk6aSwq0TLXxAQLKUlgsIWU.png",
+              "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-MaKWPIhYk6aSwq0TLXxAQLKUlgsIWU.png&w=500&q=75",
+              "width": 500,
+              "height": 500,
+              "hasTransparency": true,
+              "bytes": 14062,
+              "sha256": "869e947377c42366cd4c9a94638fb3975b3ead53553b12a3faff03df8398345c",
+              "preCompressionSha256": "eda6dab8a11499f33b0ada8212576bccd99c8fa3e8882487f831e7100e85e0ad",
+              "preCompressionBytes": 18175,
+              "rgbaSha256": "02b2a66336663a5a461173d8c3ecb6cc8c6d155661cc530a85c1dc3af2bb4953",
+              "encoding": "lossless-webp"
+            }
+          ],
           "width": 500,
           "height": 500,
-          "hasTransparency": true,
-          "bytes": 14062,
-          "sha256": "869e947377c42366cd4c9a94638fb3975b3ead53553b12a3faff03df8398345c",
-          "preCompressionSha256": "eda6dab8a11499f33b0ada8212576bccd99c8fa3e8882487f831e7100e85e0ad",
-          "preCompressionBytes": 18175,
-          "rgbaSha256": "02b2a66336663a5a461173d8c3ecb6cc8c6d155661cc530a85c1dc3af2bb4953",
-          "encoding": "lossless-webp"
+          "hasTransparency": false,
+          "bytes": 57948,
+          "sha256": "51b382043b032f0cc71d421ee802f593d725beeaad9bdda17af188af1ee60d86",
+          "encoding": "png"
         },
         {
           "subcategoryId": "mens-clothing",
@@ -2607,26 +2613,6 @@
           "encoding": "lossless-webp"
         },
         {
-          "subcategoryId": "nikah-planning",
-          "name": "Никах под ключ",
-          "file": "weddings-events/nikah-planning.webp",
-          "audience": null,
-          "thiingsSlug": "quran",
-          "thiingsName": "Quran",
-          "sourcePage": "https://www.thiings.co/things/quran",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-o9nqQnhVbTQAbcVl91V7Nx9aI0c6qI.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-o9nqQnhVbTQAbcVl91V7Nx9aI0c6qI.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 59962,
-          "sha256": "605c348acf4ea645d32ed183732525d9b4ca70278c0e076435e47463ac49e00c",
-          "preCompressionSha256": "d1a20986a8a908aea1144eaadc670fe29c4be15e83541f85827b3aa6152d2c11",
-          "preCompressionBytes": 66335,
-          "rgbaSha256": "af22646157cb0685e904334e1f1c1271916e0be83ef1d24f3e08e15c5a55236c",
-          "encoding": "lossless-webp"
-        },
-        {
           "subcategoryId": "banquet-halls",
           "name": "Банкетные залы",
           "file": "weddings-events/banquet-halls.webp",
@@ -2648,7 +2634,7 @@
         },
         {
           "subcategoryId": "chefs",
-          "name": "Свадебные повара",
+          "name": "Повара и персонал",
           "file": "weddings-events/chefs.webp",
           "audience": null,
           "thiingsSlug": "chef-hat",
@@ -2665,27 +2651,6 @@
           "preCompressionBytes": 27911,
           "rgbaSha256": "84d59fe82f952a8102f29df6520ba2013e3e94699dfc534a7831ef9750175f80",
           "encoding": "lossless-webp"
-        },
-        {
-          "subcategoryId": "event-staff",
-          "name": "Свадебный персонал",
-          "file": "weddings-events/event-staff.png",
-          "audience": null,
-          "thiingsSlug": "waiter",
-          "thiingsName": "Waiter",
-          "sourcePage": "https://www.thiings.co/things/waiter",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-4iF4ut2XN28uLvv7Wedw83xWYW3lGZ.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-4iF4ut2XN28uLvv7Wedw83xWYW3lGZ.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 32653,
-          "sha256": "f994392bb09dac68be6cf8b72c457e91764ab1699d92f68aceb30bd4ab42f268",
-          "selectionNote": "Официант как обозначение обслуживающего персонала свадьбы.",
-          "preCompressionSha256": "2aae1733685b17965fa0445a5c7c31e474fcf0ed98f9087dc178fc4134491578",
-          "preCompressionBytes": 40036,
-          "rgbaSha256": "ddd913402301ed21fb2c6fc568c6621471718cfa670434220907ac1bc9833e39",
-          "encoding": "png"
         },
         {
           "subcategoryId": "event-decor",
@@ -2812,26 +2777,6 @@
           "preCompressionSha256": "a161cd1d17a7275b7e3839a29ea181fb71396775ad09ed71cada5d3705e23121",
           "preCompressionBytes": 61224,
           "rgbaSha256": "93b9be00abac98297e05c35805ca14b02636040cb0b054763e1ce667956119b7",
-          "encoding": "lossless-webp"
-        },
-        {
-          "subcategoryId": "flower-arrangements",
-          "name": "Цветочные композиции",
-          "file": "flowers-gifts/flower-arrangements.webp",
-          "audience": null,
-          "thiingsSlug": "roses",
-          "thiingsName": "Roses",
-          "sourcePage": "https://www.thiings.co/things/roses",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-dOdbJwg9djVAwW5wm4MIv7NhpNC7NA.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-dOdbJwg9djVAwW5wm4MIv7NhpNC7NA.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 41456,
-          "sha256": "2ee2a169bef545f8f566b8ceef104ccba95a27f6798e89f8025982c1cd1a8346",
-          "preCompressionSha256": "041d6b9ca7b93396713bf6e95e846165e2601d0cf6a7cc13f16f2201833f0149",
-          "preCompressionBytes": 47916,
-          "rgbaSha256": "8b8e8c1e9ca04f7a606d9a6e58c4c9e353b99cca24f9506ab26c462575860f69",
           "encoding": "lossless-webp"
         },
         {
@@ -3023,7 +2968,7 @@
         },
         {
           "subcategoryId": "excursions",
-          "name": "Экскурсии",
+          "name": "Экскурсии и походы",
           "audience": null,
           "file": "travel-leisure/excursions-original.webp",
           "source": "existing-project-asset",
@@ -3059,26 +3004,6 @@
           "preCompressionSha256": "c46ae1fc2b62e612108084369361e58a38d86aed227771ae89aa83b5c47bb974",
           "preCompressionBytes": 135604,
           "rgbaSha256": "0d73904d67b5ea9d0f591d8111145f9c68321b1c83ab8adc1e4e58ec90ec29a5",
-          "encoding": "lossless-webp"
-        },
-        {
-          "subcategoryId": "guided-hikes",
-          "name": "Походы с гидом",
-          "file": "travel-leisure/guided-hikes.webp",
-          "audience": null,
-          "thiingsSlug": "hiking-backpack",
-          "thiingsName": "Hiking Backpack",
-          "sourcePage": "https://www.thiings.co/things/hiking-backpack",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-BlslHwZnaEuVB6IEptkam9Cw9Q1Krr.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-BlslHwZnaEuVB6IEptkam9Cw9Q1Krr.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 43196,
-          "sha256": "5078e0d0d3b036bde33eb9b10a046b73705103792bc2446b6e0e050e7a30f3f5",
-          "preCompressionSha256": "a0f05f3290d42c3f68da9b34677be4d495cfe0d97568afe5719274667a514c3f",
-          "preCompressionBytes": 52947,
-          "rgbaSha256": "9946bccd11c3afd87d6fd33c7dbcfa271002d61b4f4f919589b6409113cfed1e",
           "encoding": "lossless-webp"
         },
         {
@@ -3123,7 +3048,7 @@
         },
         {
           "subcategoryId": "umrah",
-          "name": "Умра",
+          "name": "Хадж и умра",
           "file": "travel-leisure/umrah.webp",
           "audience": null,
           "thiingsSlug": "mecca",
@@ -3140,26 +3065,6 @@
           "preCompressionBytes": 52438,
           "rgbaSha256": "148fde78e70f46fefba8e41fe744d497ae22bea912da0548462e35daec0f2918",
           "encoding": "lossless-webp"
-        },
-        {
-          "subcategoryId": "hajj",
-          "name": "Хадж",
-          "file": "travel-leisure/hajj.webp",
-          "audience": null,
-          "thiingsSlug": "emoji-1f54b",
-          "thiingsName": "Kaaba",
-          "sourcePage": "https://www.thiings.co/things/emoji-1f54b",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-4SnTgW54GTMzvT5DeROMrvoJ1PZGQ4.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-4SnTgW54GTMzvT5DeROMrvoJ1PZGQ4.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 26476,
-          "sha256": "4f0986882df0659eb26c2ff3e465c46b19c4f12fa65c8b7c0831504b12564124",
-          "preCompressionSha256": "0e75a06c60d5e13dc5c6dd5d771dacb10a97f5d824ea36c4fa38d45c0184ebda",
-          "preCompressionBytes": 30953,
-          "rgbaSha256": "c581e84aa606ef7776345d40fec67677f771ca3d50a39319c8de0c52d9f9d9a6",
-          "encoding": "lossless-webp"
         }
       ]
     },
@@ -3169,7 +3074,7 @@
       "images": [
         {
           "subcategoryId": "apartment-rental",
-          "name": "Аренда квартир",
+          "name": "Аренда",
           "file": "real-estate/apartment-rental.webp",
           "audience": null,
           "thiingsSlug": "keys",
@@ -3185,26 +3090,6 @@
           "preCompressionSha256": "8e7b9bc4e440a49249509217d0340f48854105ef00f667e6fb08440589ed663e",
           "preCompressionBytes": 36177,
           "rgbaSha256": "d5a91b345c6a9678521f2b079f596eea5d2337abc8f32464a42c04f13e67e947",
-          "encoding": "lossless-webp"
-        },
-        {
-          "subcategoryId": "house-rental",
-          "name": "Аренда домов",
-          "file": "real-estate/house-rental.webp",
-          "audience": null,
-          "thiingsSlug": "home",
-          "thiingsName": "Home",
-          "sourcePage": "https://www.thiings.co/things/home",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-Wvq7585iCYbsHgY7vvs9lvG1MXUZbW.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-Wvq7585iCYbsHgY7vvs9lvG1MXUZbW.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 37618,
-          "sha256": "8f8f446802f2880a2354ca2c2bba95c049a93b919a8631f37b10b53bde51eb8b",
-          "preCompressionSha256": "f537a176c580f1b8e5ab4695664a49fbab3db290461211d52be05c3629d02520",
-          "preCompressionBytes": 45665,
-          "rgbaSha256": "62bb98949cbeeb0438ea0e204d810de031678de597a5178235394999bcd446ed",
           "encoding": "lossless-webp"
         },
         {
@@ -3290,7 +3175,7 @@
         },
         {
           "subcategoryId": "commercial-property",
-          "name": "Коммерческая недвижимость",
+          "name": "Коммерция",
           "file": "real-estate/commercial-property.webp",
           "audience": null,
           "thiingsSlug": "emoji-1f3e2",
@@ -3376,7 +3261,7 @@
         },
         {
           "subcategoryId": "business-registration",
-          "name": "Регистрация бизнеса",
+          "name": "Регистрация",
           "file": "business-services/business-registration.webp",
           "audience": null,
           "thiingsSlug": "rubber-stamp",
@@ -3746,26 +3631,6 @@
       "categoryId": "religion-community",
       "categoryName": "Ислам и община",
       "images": [
-        {
-          "subcategoryId": "quran-reading",
-          "name": "Чтение Корана",
-          "file": "religion-community/quran-reading.webp",
-          "audience": null,
-          "thiingsSlug": "quran",
-          "thiingsName": "Quran",
-          "sourcePage": "https://www.thiings.co/things/quran",
-          "sourceImage": "https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-o9nqQnhVbTQAbcVl91V7Nx9aI0c6qI.png",
-          "downloadUrl": "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-o9nqQnhVbTQAbcVl91V7Nx9aI0c6qI.png&w=500&q=75",
-          "width": 500,
-          "height": 500,
-          "hasTransparency": true,
-          "bytes": 59962,
-          "sha256": "605c348acf4ea645d32ed183732525d9b4ca70278c0e076435e47463ac49e00c",
-          "preCompressionSha256": "d1a20986a8a908aea1144eaadc670fe29c4be15e83541f85827b3aa6152d2c11",
-          "preCompressionBytes": 66335,
-          "rgbaSha256": "af22646157cb0685e904334e1f1c1271916e0be83ef1d24f3e08e15c5a55236c",
-          "encoding": "lossless-webp"
-        },
         {
           "subcategoryId": "tajweed",
           "name": "Таджвид",

@@ -79,6 +79,7 @@ export const catalogCategories: CatalogCategory[] = sections.map((section) => {
 
 // Вид демо-предложения задаётся подкатегорией, а не названием объединённого раздела.
 const productSubcategories = new Set([
+  "meat",
   "prepared-food",
   "bakeries-cakes",
   "grocery-stores",
@@ -106,7 +107,6 @@ const productSubcategories = new Set([
   "shoes",
   "bags-accessories",
   "bouquets",
-  "flower-arrangements",
   "houseplants",
   "gift-sets",
   "personalized-gifts",

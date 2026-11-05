@@ -2,6 +2,18 @@ import type { ImageProps } from "expo-image";
 
 // Явные require включают изображения без потерь; ключи категорий сохранены для совместимости.
 export const catalogImages: Record<string, ImageProps["source"]> = {
+  "../image-WWKfOJ0cgygutOnJdcup6U10oMvszR.png": require(
+    "@/assets/imgs/image-WWKfOJ0cgygutOnJdcup6U10oMvszR.png"
+  ),
+  "../image-6UKQYbgCFWmNBFyrmQZblDMU9o24Cx.png": require(
+    "@/assets/imgs/image-6UKQYbgCFWmNBFyrmQZblDMU9o24Cx.png"
+  ),
+  "../image-SmJB1Ui78TGX75IdRhTzMsRHRs9Sab.png": require(
+    "@/assets/imgs/image-SmJB1Ui78TGX75IdRhTzMsRHRs9Sab.png"
+  ),
+  "clothing-tailoring/womens-dress.png": require(
+    "@/assets/imgs/catalog/clothing-tailoring/womens-dress.png"
+  ),
   "food-groceries.png": require(
     "@/assets/imgs/catalog/food-groceries.webp"
   ),
