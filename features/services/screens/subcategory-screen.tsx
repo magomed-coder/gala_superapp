@@ -1,35 +1,30 @@
+import { CatalogSearchResults } from "@/features/search/components/catalog-search-results";
+import type { CatalogSearchParams } from "@/features/search/types/catalog-search-params";
+import { catalogSearchHref } from "@/features/search/utils/catalog-search-href";
 import { findCatalogCategory } from "@/features/services/api/catalog.data";
-import { CatalogBrowse } from "@/features/services/components/catalog-browse";
 import { CatalogEmptyState } from "@/features/services/components/catalog-empty-state";
 import { useLocalSearchParams, useRouter } from "expo-router";
 
-/** Список подкатегории сохраняет соседние разделы и контекст при переходе в поиск. */
+/** Выдача подкатегории сохраняет поиск и меняет область только после применения нижней панели. */
 export default function SubcategoryScreen() {
-  const { categoryId, subcategoryId } = useLocalSearchParams<{
-    categoryId: string;
-    subcategoryId: string;
-  }>();
-  const category = findCatalogCategory(categoryId);
+  const params = useLocalSearchParams<
+    CatalogSearchParams & { categoryId: string; subcategoryId: string }
+  >();
+  const category = findCatalogCategory(params.categoryId);
   const router = useRouter();
 
-  if (!category?.children.some((child) => child.id === subcategoryId)) {
+  if (!category?.children.some((child) => child.id === params.subcategoryId)) {
     return <CatalogEmptyState title="Подкатегория не найдена" />;
   }
 
   return (
-    <CatalogBrowse
+    <CatalogSearchResults
       category={category}
-      subcategoryId={subcategoryId}
-      onSelectSubcategory={(id) => {
-        if (id) {
-          router.setParams({ subcategoryId: id });
-        } else {
-          router.replace({
-            pathname: "/category/[categoryId]",
-            params: { categoryId: category.id },
-          });
-        }
-      }}
+      subcategoryId={params.subcategoryId}
+      initialSearch={params}
+      onChangeScope={(selection, search) =>
+        router.replace(catalogSearchHref(selection, search))
+      }
     />
   );
 }

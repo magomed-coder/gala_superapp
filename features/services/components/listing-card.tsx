@@ -78,9 +78,9 @@ export function ListingCard({ listing }: { listing: CatalogListing }) {
         </View>
       </Pressable>
 
-      {/* Сердце поверх изображения занимает постоянные 48 pt во всех состояниях. */}
+      {/* Прозрачная кнопка закладки сохраняет область нажатия 48×48 pt во всех состояниях. */}
       <IconButton
-        icon={favorite ? "heart" : "heart-outline"}
+        icon={favorite ? "bookmark" : "bookmark-outline"}
         label={`${favorite ? "Убрать из избранного" : "В избранное"}: ${listing.title}`}
         selected={favorite}
         onPress={() => toggleFavorite(listing.id)}
@@ -89,7 +89,7 @@ export function ListingCard({ listing }: { listing: CatalogListing }) {
           position: "absolute",
           top: theme.spacing.xxs,
           right: theme.spacing.xxs,
-          backgroundColor: theme.colors.background.primary,
+          backgroundColor: "transparent",
         }}
       />
     </View>

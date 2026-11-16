@@ -134,7 +134,18 @@ export const catalogListings: CatalogListing[] = sourceCategories.flatMap(
             ? child.name
             : `${child.name} — ${productSubcategories.has(child.id) ? "под заказ" : "индивидуальный подход"}`,
         price: 500 + categoryIndex * 250 + childIndex * 350 + variant * 600,
+        // Это примеры режимов демокаталога; в форме поставщик выбирает режим явно.
+        purchaseMode:
+          variant === 1 || !productSubcategories.has(child.id)
+            ? "negotiation"
+            : childIndex % 2 === 0
+              ? "both"
+              : "purchase",
         image: child.image,
+        sellerId:
+          variant === 0
+            ? "allin-team"
+            : `${category.id}-${productSubcategories.has(child.id) ? "store" : "specialist"}`,
         seller:
           variant === 0
             ? "Команда ALLIN"

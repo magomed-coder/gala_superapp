@@ -12,7 +12,7 @@ export const catalogImages: Record<string, ImageProps["source"]> = {
     "@/assets/imgs/image-SmJB1Ui78TGX75IdRhTzMsRHRs9Sab.png"
   ),
   "clothing-tailoring/womens-dress.png": require(
-    "@/assets/imgs/catalog/clothing-tailoring/womens-dress.png"
+    "@/assets/imgs/c110de90-5ad8-4bd8-a972-56af30311ad9.png"
   ),
   "food-groceries.png": require(
     "@/assets/imgs/catalog/food-groceries.webp"
@@ -375,7 +375,7 @@ export const catalogImages: Record<string, ImageProps["source"]> = {
     "@/assets/imgs/catalog/sports/sports-nutrition-original.webp"
   ),
   "clothing-tailoring/womens-clothing.webp": require(
-    "@/assets/imgs/catalog/clothing-tailoring/womens-clothing.webp"
+    "@/assets/imgs/c110de90-5ad8-4bd8-a972-56af30311ad9.png"
   ),
   "clothing-tailoring/mens-clothing-original.webp": require(
     "@/assets/imgs/catalog/clothing-tailoring/mens-clothing-original.webp"

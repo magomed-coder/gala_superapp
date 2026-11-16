@@ -3,12 +3,22 @@ import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetScrollView,
   BottomSheetView,
+  type BottomSheetProps,
 } from "@gorhom/bottom-sheet";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import React, { forwardRef } from "react";
-import { StyleSheet, type StyleProp, type ViewStyle } from "react-native";
+import { StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
 
-interface GenericBottomSheetProps {
+interface GenericBottomSheetProps
+  extends Pick<
+    BottomSheetProps,
+    | "keyboardBehavior"
+    | "keyboardBlurBehavior"
+    | "enableBlurKeyboardOnGesture"
+    | "android_keyboardInputMode"
+    | "topInset"
+    | "footerComponent"
+  > {
   snapPoints: (string | number)[];
   index?: number;
   enablePanDownToClose?: boolean;
@@ -18,11 +28,12 @@ interface GenericBottomSheetProps {
   handleIndicatorStyle?: object;
   children?: React.ReactNode;
   scrollable?: boolean;
+  fillContent?: boolean;
   enableDynamicSizing?: boolean;
   contentContainerStyle?: StyleProp<ViewStyle>;
-  // дополнительно: пропсы для keyboard/behavior и т.п. можно тут добавить
 }
 
+/** Общая панель с жестами; параметры клавиатуры и safe area передаются только сценариями, которым они нужны. */
 const GenericBottomSheet = forwardRef<
   BottomSheetMethods,
   GenericBottomSheetProps
@@ -38,8 +49,15 @@ const GenericBottomSheet = forwardRef<
       handleIndicatorStyle,
       children,
       scrollable = false,
+      fillContent = false,
       enableDynamicSizing = true,
       contentContainerStyle,
+      keyboardBehavior,
+      keyboardBlurBehavior,
+      enableBlurKeyboardOnGesture,
+      android_keyboardInputMode,
+      topInset,
+      footerComponent,
     },
     ref,
   ) => {
@@ -50,6 +68,12 @@ const GenericBottomSheet = forwardRef<
         snapPoints={snapPoints}
         enablePanDownToClose={enablePanDownToClose}
         enableDynamicSizing={enableDynamicSizing}
+        keyboardBehavior={keyboardBehavior}
+        keyboardBlurBehavior={keyboardBlurBehavior}
+        enableBlurKeyboardOnGesture={enableBlurKeyboardOnGesture}
+        android_keyboardInputMode={android_keyboardInputMode}
+        topInset={topInset}
+        footerComponent={footerComponent}
         onClose={() => onClose?.()}
         backgroundStyle={[styles.sheetBackground, backgroundStyle]}
         handleIndicatorStyle={[styles.handleIndicator, handleIndicatorStyle]}
@@ -62,8 +86,12 @@ const GenericBottomSheet = forwardRef<
           />
         )}
       >
-        {/* Встроенная прокрутка согласована со свайпом панели и доступна при крупном тексте. */}
-        {scrollable ? (
+        {/* Собственные scrollables получают доступную высоту между шапкой и нижним действием, без absolute-обёртки BottomSheetView. */}
+        {fillContent ? (
+          <View style={[styles.contentContainer, contentContainerStyle]}>
+            {children}
+          </View>
+        ) : scrollable ? (
           <BottomSheetScrollView
             contentContainerStyle={[
               styles.scrollContent,

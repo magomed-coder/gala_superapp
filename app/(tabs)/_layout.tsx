@@ -41,13 +41,14 @@ export default function TabLayout() {
           },
         }}
       >
+        {/* Контур и размер иконок постоянны; активная вкладка меняет только цвет иконки и подписи. */}
         <Tabs.Screen
           name="services"
           options={{
-            title: "Услуги",
+            title: "Каталог",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? "grid" : "grid-outline"}
+                name="grid-outline"
                 size={theme.components.tabBar.icon}
                 color={
                   focused
@@ -61,10 +62,10 @@ export default function TabLayout() {
         <Tabs.Screen
           name="favorites"
           options={{
-            title: "Избранное",
+            title: "Закладки",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? "bookmark" : "bookmark-outline"}
+                name="bookmark-outline"
                 size={theme.components.tabBar.icon}
                 color={
                   focused
@@ -81,7 +82,7 @@ export default function TabLayout() {
             title: "Заказы",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? "clipboard" : "clipboard-outline"}
+                name="clipboard-outline"
                 size={theme.components.tabBar.icon}
                 color={
                   focused
@@ -98,7 +99,7 @@ export default function TabLayout() {
             title: "Профиль",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? "person" : "person-outline"}
+                name="person-outline"
                 size={theme.components.tabBar.icon}
                 color={
                   focused

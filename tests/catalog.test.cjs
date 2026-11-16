@@ -59,7 +59,7 @@ test("В смешанном разделе товары и услуги сохр
   assert.equal(service.seller, "Местный специалист");
   assert.equal(
     formatListingPrice(product),
-    `${product.price.toLocaleString("ru-RU")} ₽`,
+    `от ${product.price.toLocaleString("ru-RU")} ₽`,
   );
   assert.equal(
     formatListingPrice(service),

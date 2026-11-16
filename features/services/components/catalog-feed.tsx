@@ -1,7 +1,7 @@
 import { ListingCard } from "@/features/services/components/listing-card";
 import type { CatalogListing } from "@/features/services/types/catalog.types";
 import { useAppTheme } from "@/shared/theme";
-import type { ReactElement } from "react";
+import { type ReactElement, useEffect, useRef } from "react";
 import {
   FlatList,
   Pressable,
@@ -11,23 +11,28 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-/** Виртуализированная лента; поиск и категории передаются её заголовком, без вложенной вертикальной прокрутки. */
+/** Виртуализированная лента; emptyContent заменяет заглушку, scrollResetKey возвращает к началу без потери фокуса полей. */
 export function CatalogFeed({
   listings,
   header,
+  emptyContent,
   emptyTitle = "Ничего не найдено",
   emptyDescription = "Попробуйте другой запрос или измените фильтры.",
   onReset,
+  scrollResetKey,
 }: {
   listings: CatalogListing[];
   header?: ReactElement;
+  emptyContent?: ReactElement;
   emptyTitle?: string;
   emptyDescription?: string;
   onReset?: () => void;
+  scrollResetKey?: string;
 }) {
   const theme = useAppTheme();
   const { fontScale, width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  const listRef = useRef<FlatList<CatalogListing>>(null);
   const columns = fontScale > 1.5 || width < 320 ? 1 : 2;
   const cardWidth =
     (width -
@@ -37,8 +42,16 @@ export function CatalogFeed({
       (columns - 1) * theme.spacing.sm) /
     columns;
 
+  // Смена области или критериев возвращает к результатам, сохраняя экземпляр списка и поля в его шапке.
+  useEffect(() => {
+    if (scrollResetKey !== undefined) {
+      listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    }
+  }, [scrollResetKey]);
+
   return (
     <FlatList
+      ref={listRef}
       testID="catalog-feed"
       key={columns}
       data={listings}
@@ -65,52 +78,54 @@ export function CatalogFeed({
         </View>
       )}
       ListEmptyComponent={
-        <View
-          style={{
-            alignItems: "center",
-            paddingVertical: theme.spacing.xxl,
-            gap: theme.spacing.sm,
-          }}
-        >
-          <Text
+        emptyContent ?? (
+          <View
             style={{
-              color: theme.colors.text.primary,
-              fontSize: theme.typography.fontSize.titleSm,
-              fontFamily: theme.typography.fontFamily.bold,
+              alignItems: "center",
+              paddingVertical: theme.spacing.xxl,
+              gap: theme.spacing.sm,
             }}
           >
-            {emptyTitle}
-          </Text>
-          <Text
-            style={{
-              color: theme.colors.text.secondary,
-              fontSize: theme.typography.fontSize.lg,
-              textAlign: "center",
-            }}
-          >
-            {emptyDescription}
-          </Text>
-          {onReset && (
-            <Pressable
-              accessibilityRole="button"
-              onPress={onReset}
-              style={({ pressed }) => ({
-                minHeight: 48,
-                padding: theme.spacing.sm,
-                opacity: pressed ? theme.opacity.pressed : 1,
-              })}
+            <Text
+              style={{
+                color: theme.colors.text.primary,
+                fontSize: theme.typography.fontSize.titleSm,
+                fontFamily: theme.typography.fontFamily.bold,
+              }}
             >
-              <Text
-                style={{
-                  color: theme.colors.text.link,
-                  fontSize: theme.typography.fontSize.lg,
-                }}
+              {emptyTitle}
+            </Text>
+            <Text
+              style={{
+                color: theme.colors.text.secondary,
+                fontSize: theme.typography.fontSize.lg,
+                textAlign: "center",
+              }}
+            >
+              {emptyDescription}
+            </Text>
+            {onReset && (
+              <Pressable
+                accessibilityRole="button"
+                onPress={onReset}
+                style={({ pressed }) => ({
+                  minHeight: 48,
+                  padding: theme.spacing.sm,
+                  opacity: pressed ? theme.opacity.pressed : 1,
+                })}
               >
-                Сбросить фильтры
-              </Text>
-            </Pressable>
-          )}
-        </View>
+                <Text
+                  style={{
+                    color: theme.colors.text.link,
+                    fontSize: theme.typography.fontSize.lg,
+                  }}
+                >
+                  Сбросить фильтры
+                </Text>
+              </Pressable>
+            )}
+          </View>
+        )
       }
     />
   );

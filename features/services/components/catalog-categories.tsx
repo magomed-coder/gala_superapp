@@ -73,16 +73,23 @@ export function CatalogCategories({
                 style={{
                   flexShrink: 1,
                   fontFamily: theme.typography.fontFamily.bold,
+                  lineHeight: theme.typography.fontSize.title,
                   fontSize: theme.typography.fontSize.title,
                   color: theme.colors.text.primary,
                 }}
               >
                 {category.name}
               </Text>
+              {/* Высота строки равна размеру стрелки: метрики шрифта не смещают её относительно центра заголовка. */}
               <Ionicons
                 name="arrow-forward-circle"
                 size={theme.components.icon.sm}
                 color={theme.colors.text.primary}
+                style={{
+                  lineHeight: theme.components.icon.sm,
+                  includeFontPadding: false,
+                  textAlignVertical: "center",
+                }}
               />
             </Pressable>
             {/* Пять примеров представляют все группы объединённого раздела. */}

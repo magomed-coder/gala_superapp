@@ -1,8 +1,8 @@
 import type { CatalogListing } from "@/features/services/types/catalog.types";
 
-/** Показывает фиксированную демоцену товара и начальную стоимость услуги одинаково во всех представлениях. */
+/** Показывает фиксированную цену покупки и начальную цену предложения по согласованию. */
 export function formatListingPrice(
-  listing: Pick<CatalogListing, "kind" | "price">,
+  listing: Pick<CatalogListing, "purchaseMode" | "price">,
 ) {
-  return `${listing.kind === "service" ? "от " : ""}${listing.price.toLocaleString("ru-RU")} ₽`;
+  return `${listing.purchaseMode === "negotiation" ? "от " : ""}${listing.price.toLocaleString("ru-RU")} ₽`;
 }
