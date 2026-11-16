@@ -1,4 +1,5 @@
 import { useAuthStore } from "@/features/auth/store/use-auth-store";
+import { authErrorMessage } from "@/features/auth/api/supabase-auth.api";
 import { ProfileEmptyState } from "@/features/profile/components/profile-empty-state";
 import {
   ProfileFormFields,
@@ -15,19 +16,42 @@ import { Text } from "react-native";
 /** Сбрасывает черновик при смене аккаунта, в том числе после входа с гостевой страницы. */
 export default function EditProfileScreen() {
   const userId = useAuthStore((state) => state.user?.id);
+  const loaded = useAuthStore((state) => state.profileLoaded);
+  const failed = useAuthStore((state) => state.profileError);
+  if (userId && !loaded) {
+    return (
+      <ProfilePage>
+        <ProfileEmptyState
+          icon="person-outline"
+          title={failed ? "Не удалось загрузить профиль" : "Загружаем профиль…"}
+          description="Перед редактированием нужны сохранённые данные аккаунта."
+          action={
+            failed ? (
+              <Button
+                label="Повторить"
+                onPress={() => void useAuthStore.getState().reloadProfile()}
+              />
+            ) : undefined
+          }
+        />
+      </ProfilePage>
+    );
+  }
   return <EditProfileContent key={userId ?? "guest"} />;
 }
 
-/** Редактирует данные существующей демо-сессии без подстановки вымышленного аккаунта. */
+/** Сохраняет имя и телефон в приватном серверном профиле текущего аккаунта. */
 function EditProfileContent() {
   const theme = useAppTheme();
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const updateUser = useAuthStore((state) => state.updateUser);
   const [name, setName] = useState(user?.name ?? "");
-  const [email, setEmail] = useState(user?.email ?? "");
+  const email = user?.email ?? "";
   const [phone, setPhone] = useState(user?.phone ?? "");
   const [submitted, setSubmitted] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
   const valid =
     !!name.trim() &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) &&
@@ -38,16 +62,24 @@ function EditProfileContent() {
     phone.trim() !== (user?.phone ?? "");
 
   /** Проверяет черновик и обновляет единственный store текущего аккаунта. */
-  const save = () => {
+  const save = async () => {
     setSubmitted(true);
-    if (!valid || !user) return;
-    updateUser({
-      ...user,
-      name: name.trim(),
-      email: email.trim(),
-      phone: phone.trim(),
-    });
-    router.back();
+    if (!valid || !user || saving) return;
+    setSaving(true);
+    setError("");
+    try {
+      await updateUser({
+        ...user,
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+      });
+      router.back();
+    } catch (cause) {
+      setError(authErrorMessage(cause));
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (!user) {
@@ -73,13 +105,15 @@ function EditProfileContent() {
       {/* Поля заполняются только данными текущего аккаунта. */}
       <SettingsSection
         title="Основная информация"
-        footer="Изменения действуют в текущем сеансе."
+        footer="Имя и телефон сохраняются в аккаунте. Изменение почты пока недоступно."
       >
         <ProfileFormFields>
           <Input
             label="Имя и фамилия"
             accessibilityLabel="Имя и фамилия"
             value={name}
+            editable={!saving}
+            maxLength={160}
             onChangeText={setName}
             autoComplete="name"
             textContentType="name"
@@ -88,7 +122,7 @@ function EditProfileContent() {
             label="Электронная почта"
             accessibilityLabel="Электронная почта"
             value={email}
-            onChangeText={setEmail}
+            editable={false}
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
@@ -99,6 +133,7 @@ function EditProfileContent() {
             label="Телефон · необязательно"
             accessibilityLabel="Телефон"
             value={phone}
+            editable={!saving}
             onChangeText={setPhone}
             keyboardType="phone-pad"
             autoComplete="tel"
@@ -110,24 +145,25 @@ function EditProfileContent() {
       {/* Место под сообщение всегда занято: ошибка не двигает кнопку сохранения. */}
       <Text
         accessibilityLiveRegion="polite"
-        accessible={submitted && !valid}
-        accessibilityElementsHidden={!submitted || valid}
+        accessible={!!error || (submitted && !valid)}
+        accessibilityElementsHidden={!error && (!submitted || valid)}
         importantForAccessibility={
-          submitted && !valid ? "auto" : "no-hide-descendants"
+          error || (submitted && !valid) ? "auto" : "no-hide-descendants"
         }
         style={{
           color: theme.colors.status.error,
-          opacity: submitted && !valid ? 1 : 0,
+          opacity: error || (submitted && !valid) ? 1 : 0,
           fontFamily: theme.typography.fontFamily.regular,
           fontSize: theme.typography.fontSize.md,
           lineHeight: theme.typography.lineHeight.md,
         }}
       >
-        Проверьте имя, электронную почту и номер телефона.
+        {error || "Проверьте имя, электронную почту и номер телефона."}
       </Text>
       <Button
         label="Сохранить изменения"
         disabled={!changed}
+        loading={saving}
         onPress={save}
         style={{ minHeight: theme.components.button.height }}
       />

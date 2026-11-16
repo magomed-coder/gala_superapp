@@ -8,6 +8,7 @@ import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { AllinSplashScreen } from "@/shared/components/allin-splash-screen";
+import { AppSession } from "@/features/system/components/app-session";
 import { FONTS } from "@/shared/constants";
 import { useAppVersionStore } from "@/features/system/store/version.store";
 import { queryClient } from "@/shared/api/query-client";
@@ -79,39 +80,49 @@ export default function RootLayout() {
               splashComplete ? "auto" : "no-hide-descendants"
             }
           >
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: {
-                  backgroundColor: theme.colors.background.primary,
-                },
-                headerStyle: {
-                  backgroundColor: theme.colors.background.primary,
-                },
-                headerTintColor: theme.colors.text.primary,
-                headerShadowVisible: false,
-                headerTitleAlign: "center",
-              }}
-            >
-              <Stack.Screen name="(tabs)" />
-              <Stack.Screen name="(auth)" />
-              <Stack.Screen
-                name="category/[categoryId]/index"
-                options={{ headerShown: true, title: "Категория" }}
-              />
-              <Stack.Screen
-                name="category/[categoryId]/[subcategoryId]"
-                options={{ headerShown: true, title: "Предложения" }}
-              />
-              <Stack.Screen
-                name="listing/[listingId]"
-                options={{ headerShown: true, title: "Предложение" }}
-              />
-              <Stack.Screen
-                name="search"
-                options={{ headerShown: true, title: "Поиск" }}
-              />
-            </Stack>
+            <AppSession>
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                  contentStyle: {
+                    backgroundColor: theme.colors.background.primary,
+                  },
+                  headerStyle: {
+                    backgroundColor: theme.colors.background.primary,
+                  },
+                  headerTintColor: theme.colors.text.primary,
+                  headerShadowVisible: false,
+                  headerTitleAlign: "center",
+                }}
+              >
+                <Stack.Screen name="(tabs)" />
+                <Stack.Screen name="(auth)" />
+                <Stack.Screen
+                  name="create-listing"
+                  options={{ headerShown: true, title: "Черновик предложения" }}
+                />
+                <Stack.Screen
+                  name="category/[categoryId]/index"
+                  options={{ headerShown: true, title: "Категория" }}
+                />
+                <Stack.Screen
+                  name="category/[categoryId]/[subcategoryId]"
+                  options={{ headerShown: true, title: "Предложения" }}
+                />
+                <Stack.Screen
+                  name="listing/[listingId]"
+                  options={{ headerShown: true, title: "Предложение" }}
+                />
+                <Stack.Screen
+                  name="seller/[sellerId]"
+                  options={{ headerShown: true, title: "Продавец" }}
+                />
+                <Stack.Screen
+                  name="search"
+                  options={{ headerShown: true, title: "Поиск" }}
+                />
+              </Stack>
+            </AppSession>
           </View>
         )}
         {!splashComplete && <AllinSplashScreen onReady={handleSplashReady} />}

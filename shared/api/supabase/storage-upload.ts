@@ -1,6 +1,6 @@
 import { Buffer } from "buffer";
 import { File } from "expo-file-system";
-import { supabase } from "@/shared/api/supabase/supabase";
+import { getSupabaseClient } from "@/shared/api/supabase/supabase";
 
 type UploadImageParams = {
   bucket: string;
@@ -39,8 +39,8 @@ export function deleteImageFromBucket(bucket: string, publicUrl: string): void {
     if (!match || !match[1]) return;
 
     const objectPath = match[1];
-    supabase.storage
-      .from(bucket)
+    getSupabaseClient()
+      .storage.from(bucket)
       .remove([objectPath])
       .catch(() => {
         // Silently fail on delete errors
@@ -64,8 +64,8 @@ export async function uploadImageToBucket({
   const fileBase64 = await file.base64();
   const fileBuffer = Buffer.from(fileBase64, "base64");
 
-  const { error: uploadError } = await supabase.storage
-    .from(bucket)
+  const { error: uploadError } = await getSupabaseClient()
+    .storage.from(bucket)
     .upload(objectPath, fileBuffer, {
       upsert: true,
       contentType: mimeType ?? undefined,
@@ -75,7 +75,9 @@ export async function uploadImageToBucket({
     throw uploadError;
   }
 
-  const { data } = supabase.storage.from(bucket).getPublicUrl(objectPath);
+  const { data } = getSupabaseClient()
+    .storage.from(bucket)
+    .getPublicUrl(objectPath);
 
   if (!data.publicUrl) {
     throw new Error("Failed to get public URL for uploaded image");

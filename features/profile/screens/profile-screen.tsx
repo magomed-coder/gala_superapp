@@ -1,4 +1,5 @@
 import { useAuthStore } from "@/features/auth/store/use-auth-store";
+import { authErrorMessage } from "@/features/auth/api/supabase-auth.api";
 import { ProfileMenuGroup } from "@/features/profile/components/profile-menu-group";
 import { AllinText } from "@/shared/components/allin-text";
 import { AppFooter } from "@/shared/components/app-footer";
@@ -29,8 +30,10 @@ export default function ProfileScreen() {
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
   const [logoutVisible, setLogoutVisible] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
+  const [logoutError, setLogoutError] = useState("");
   const [failedAvatar, setFailedAvatar] = useState<string>();
-  const name = user?.name?.trim() || "Ваш профиль";
+  const name = user ? user.name?.trim() || "Ваш профиль" : "Гость";
   const initials = name
     .split(/\s+/)
     .slice(0, 2)
@@ -43,11 +46,20 @@ export default function ProfileScreen() {
     color: theme.colors.text.primary,
   };
 
-  /** Завершает демонстрационную сессию после подтверждения пользователя. */
-  const confirmLogout = () => {
-    logout();
-    setLogoutVisible(false);
-    router.replace("/(auth)/login");
+  /** Завершает текущую серверную сессию; при ошибке оставляет возможность повторить выход. */
+  const confirmLogout = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    setLogoutError("");
+    try {
+      await logout();
+      setLogoutVisible(false);
+      router.replace("/(auth)/login");
+    } catch (cause) {
+      setLogoutError(authErrorMessage(cause));
+    } finally {
+      setLoggingOut(false);
+    }
   };
 
   return (
@@ -150,7 +162,7 @@ export default function ProfileScreen() {
                     color: theme.colors.text.tertiary,
                   }}
                 >
-                  Войдите в аккаунт ALLIN
+                  Войдите в свой аккаунт
                 </AllinText>
               )}
             </View>
@@ -249,6 +261,11 @@ export default function ProfileScreen() {
           {/* Основные настройки и переключатель общей темы приложения. */}
           <ProfileMenuGroup
             items={[
+              {
+                label: "Подготовить предложение",
+                icon: "add-circle-outline",
+                route: "/create-listing",
+              },
               {
                 label: "Настройки профиля",
                 icon: "settings-outline",
@@ -405,8 +422,21 @@ export default function ProfileScreen() {
             <Text style={{ ...bodyStyle, color: theme.colors.text.secondary }}>
               Вы сможете снова войти в любой момент.
             </Text>
+            {/* Область ошибки сохраняет положение кнопки при неудачном выходе. */}
+            <Text
+              accessibilityLiveRegion="polite"
+              style={{
+                ...bodyStyle,
+                minHeight: theme.typography.lineHeight.lg * 3,
+                color: theme.colors.status.error,
+              }}
+            >
+              {logoutError}
+            </Text>
             <Pressable
               accessibilityRole="button"
+              disabled={loggingOut}
+              accessibilityState={{ disabled: loggingOut, busy: loggingOut }}
               onPress={confirmLogout}
               style={({ pressed }) => ({
                 minHeight: 48,

@@ -2,6 +2,8 @@ import { create } from "zustand";
 import type { ProfileAddress } from "@/features/profile/types/profile-address";
 
 interface ProfileState {
+  ownerId: string | null;
+  setOwner: (ownerId: string | null) => void;
   addresses: ProfileAddress[];
   favoriteShops: string[];
   favoriteServices: string[];
@@ -14,6 +16,13 @@ interface ProfileState {
 
 /** Владеет локальными адресами и избранным; список адресов имеет один основной адрес. */
 export const useProfileStore = create<ProfileState>((set) => ({
+  ownerId: null,
+  setOwner: (ownerId) =>
+    set((state) =>
+      state.ownerId === ownerId
+        ? state
+        : { ownerId, addresses: [], favoriteShops: [], favoriteServices: [] },
+    ),
   addresses: [],
   favoriteShops: [],
   favoriteServices: [],
