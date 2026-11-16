@@ -12,7 +12,7 @@ import {
 
 import { ThemeTokens, useAppTheme } from "@/shared/theme";
 
-type ButtonVariant = "solid" | "outline" | "ghost";
+type ButtonVariant = "solid" | "outline" | "ghost" | "contrast";
 
 type ButtonProps = {
   label?: string;
@@ -32,6 +32,14 @@ function resolveVariantColors(
   variant: ButtonVariant,
   colors: ReturnType<typeof useAppTheme>["colors"],
 ) {
+  if (variant === "contrast") {
+    return {
+      backgroundColor: colors.background.inverse,
+      borderColor: colors.background.inverse,
+      textColor: colors.text.inverse,
+    };
+  }
+
   if (variant === "outline") {
     return {
       backgroundColor: colors.background.secondary,

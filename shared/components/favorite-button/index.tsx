@@ -25,6 +25,7 @@ type FavoriteButtonProps = {
   style?: StyleProp<ViewStyle>;
 };
 
+/** Переключает сохранение предложения; isFavorite задаёт заполненную иконку закладки. */
 export function FavoriteButton({
   isFavorite,
   onPress,
@@ -75,7 +76,7 @@ export function FavoriteButton({
     >
       <Animated.View style={animatedStyle}>
         <Ionicons
-          name={isFavorite ? "heart" : "heart-outline"}
+          name={isFavorite ? "bookmark" : "bookmark-outline"}
           size={size}
           color={isFavorite ? resolvedActiveColor : resolvedInactiveColor}
         />

@@ -20,6 +20,7 @@ export type InputProps = TextInputProps & {
   leftIcon?: keyof typeof Ionicons.glyphMap;
   rightIcon?: keyof typeof Ionicons.glyphMap;
   onRightIconPress?: () => void;
+  rightIconAccessibilityLabel?: string;
   containerStyle?: StyleProp<ViewStyle>;
   inputContainerStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
@@ -27,12 +28,14 @@ export type InputProps = TextInputProps & {
   errorStyle?: StyleProp<TextStyle>;
 };
 
+/** Поле с подписью и тематическими состояниями; правая иконка может выполнять доступное действие. */
 export function Input({
   label,
   error,
   leftIcon,
   rightIcon,
   onRightIconPress,
+  rightIconAccessibilityLabel,
   containerStyle,
   inputContainerStyle,
   inputStyle,
@@ -123,10 +126,15 @@ export function Input({
 
         {rightIcon ? (
           <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={rightIconAccessibilityLabel}
+            accessibilityState={{ disabled: !editable || !onRightIconPress }}
             onPress={onRightIconPress}
-            hitSlop={8}
-            disabled={!onRightIconPress}
-            style={({ pressed }) => [pressed && styles.iconPressed]}
+            disabled={!editable || !onRightIconPress}
+            style={({ pressed }) => [
+              styles.iconButton,
+              pressed && styles.iconPressed,
+            ]}
           >
             <Ionicons
               name={rightIcon}
@@ -156,6 +164,7 @@ export function Input({
   );
 }
 
+/** Постоянная рамка и область правой кнопки сохраняют геометрию при смене состояний. */
 const createStyles = (theme: ThemeTokens) =>
   StyleSheet.create({
     wrapper: {
@@ -189,7 +198,13 @@ const createStyles = (theme: ThemeTokens) =>
       marginRight: 10,
     },
     rightIcon: {
-      marginLeft: 10,
+      alignSelf: "center",
+    },
+    iconButton: {
+      minWidth: 44,
+      minHeight: 44,
+      alignItems: "center",
+      justifyContent: "center",
     },
     iconPressed: {
       opacity: 0.72,

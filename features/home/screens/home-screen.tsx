@@ -1,3 +1,4 @@
+import { FrequentlyUsed } from "@/features/home/components/frequently-used";
 import { useScrollChromeController } from "@/shared/lib/navigation/use-scroll-chrome-controller";
 import { CatalogCategories } from "@/features/services/components/catalog-categories";
 import { CatalogSearchLink } from "@/features/services/components/catalog-search-link";
@@ -33,7 +34,13 @@ export default function HomeScreen() {
       {/* Отступы постоянны при скролле: скрытие панелей не сдвигает строки списка. */}
       {/* Отступ над логотипом задаёт последняя категория: spacing.lg, как в профиле. */}
       <CatalogCategories
-        header={<View style={{ height: headerHeight }} />}
+        header={
+          <View>
+            {/* Резерв под поиск сохраняется при скрытии панели; подборка прокручивается вместе с разделами. */}
+            <View style={{ height: headerHeight }} />
+            <FrequentlyUsed />
+          </View>
+        }
         footer={<AppFooter style={{ paddingBottom: theme.spacing.xs }} />}
         stickyHeader={false}
         onScroll={onScroll}
